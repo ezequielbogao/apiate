@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import logo from "../assets/logo.svg";
 
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -28,20 +29,21 @@ const Header = () => {
 
     return (
         <div className="px-5 gap-5 flex align-middle items-center justify-between py-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
-            <div className="flex">
-                <div className="flex flex-col me-10">
-                    <span className="text-md text-azure-400 dark:text-azure-400">
-                        API - ATENEA
+            <div className="flex align-middle items-center">
+                <img src={logo} alt="Logo de la aplicación" className="me-5" />
+                <div className="flex flex-col">
+                    <span className="text-md text-azure-400 dark:text-azure-400 font-light">
+                        API Atenea
                     </span>
-                    <span className="text-lg text-azure-800 dark:text-azure-200 font-bold">
-                        INFORMACIÓN GENERAL
+                    <span className="text-lg text-azure-700 dark:text-azure-300 font-medium">
+                        VISUALIZACIÓN DE DATOS
                     </span>
                 </div>
             </div>
             <div className="">
                 <button
                     onClick={toggleDarkMode}
-                    className="p-2 rounded-full bg-azure-100 text-azure-800 dark:text-yellow-300 hover:bg-azure-200 dark:bg-azure-800 border-none focus:outline-none">
+                    className="p-2 transition-colors duration-700 ease-in-out rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800  hover:dark:bg-azure-600 border-none focus:outline-none">
                     {darkMode ? (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

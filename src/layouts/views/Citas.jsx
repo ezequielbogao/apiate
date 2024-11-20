@@ -44,10 +44,10 @@ const Citas = () => {
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
                 <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-thin">
+                        <span className="text-md text-azure-400 font-light">
                             Sistema
                         </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-normal">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             CITAS
                         </span>
                     </div>
@@ -75,8 +75,8 @@ const Citas = () => {
                                         {TABLE_CITAS.map((head) => (
                                             <th
                                                 key={head}
-                                                className="bg-azure-200 dark:bg-azure-600  p-4">
-                                                <span className="text-sm font-normal leading-none opacity-70 text-azure-700 dark:text-azure-100">
+                                                className="bg-azure-200 dark:bg-azure-800 p-4">
+                                                <span className="text-md font-medium leading-none text-azure-700 dark:text-azure-100">
                                                     {head}
                                                 </span>
                                             </th>
@@ -101,33 +101,33 @@ const Citas = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {mail}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {organizacion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {telefono}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {canal}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {fecha_turno}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
                                                         <span
-                                                            className={`font-normal text-sm ${
+                                                            className={`font-light text-sm ${
                                                                 estado_turno ===
                                                                 "Cancelada"
                                                                     ? "text-red-500"

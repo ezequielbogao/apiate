@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-const Inter = (props) => {
-    Inter.propTypes = {
+const Charts = (props) => {
+    Charts.propTypes = {
         width: PropTypes.string,
         height: PropTypes.string,
     };
@@ -17,15 +17,14 @@ const Inter = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-heart-rate-monitor text-azure-800 dark:text-azure-200">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-table-alias text-azure-800 dark:text-azure-200">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
-            <path d="M7 20h10" />
-            <path d="M9 16v4" />
-            <path d="M15 16v4" />
-            <path d="M7 10h2l2 3l2 -6l1 3h3" />
+            <path d="M3 12v-7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-7" />
+            <path d="M3 10h18" />
+            <path d="M10 3v10" />
+            <path d="M2 17a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
         </svg>
     );
 };
 
-export default Inter;
+export default Charts;

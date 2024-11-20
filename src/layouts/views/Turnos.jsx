@@ -45,10 +45,10 @@ const Turnos = () => {
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
                 <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-thin">
+                        <span className="text-md text-azure-400 font-light">
                             Salud
                         </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-normal">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             TURNOS
                         </span>
                     </div>
@@ -76,8 +76,8 @@ const Turnos = () => {
                                         {TABLE_TURNOS.map((head) => (
                                             <th
                                                 key={head}
-                                                className="bg-azure-200 dark:bg-azure-600  p-4">
-                                                <span className="text-sm font-normal leading-none opacity-70 text-azure-700 dark:text-azure-100">
+                                                className="bg-azure-200 dark:bg-azure-800 p-4">
+                                                <span className="text-md font-medium leading-none  text-azure-700 dark:text-azure-100">
                                                     {head}
                                                 </span>
                                             </th>
@@ -103,37 +103,37 @@ const Turnos = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {paciente}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {medico}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {especialidad}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {ubicacion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {procedimiento}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {llegada}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {salida}
                                                         </span>
                                                     </td>

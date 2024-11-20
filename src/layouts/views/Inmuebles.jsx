@@ -39,10 +39,10 @@ const Inmuebles = () => {
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
                 <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-thin">
+                        <span className="text-md text-azure-400 font-light">
                             Rafam
                         </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-normal">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             INMUEBLES
                         </span>
                     </div>

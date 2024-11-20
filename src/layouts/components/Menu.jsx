@@ -8,12 +8,17 @@ import { useForm } from "react-hook-form";
 import { useMenu } from "../../Context/MenuContext";
 import Casa from "./icons/Casa";
 import Auto from "./icons/Auto";
+import Charts from "./icons/Charts";
 import Store from "./icons/Store";
 import Inter from "./icons/Inter";
 import Corazon from "./icons/Corazon";
 import Turnosmed from "./icons/Turnosmed";
 
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 const Menu = () => {
+    const navigate = useNavigate();
     const {
         persona,
         setPersona,
@@ -48,6 +53,8 @@ const Menu = () => {
             );
             setPersona(response.data.data.Datos_personales.Persona[0]);
             setSistemas(response.data.data.Sistemas);
+            toast.success("Persona con DNI " + dni + " encontrada con exito!");
+            navigate("/personal");
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
@@ -95,7 +102,11 @@ const Menu = () => {
                         </button>
                     </div>
                 </form>
-                <span className="text-azure-300 font-normal text-left text-sm mb-3">
+                <span className="text-azure-300 font-light text-left text-sm mb-3">
+                    HOME
+                </span>
+                <MenuButton to={"/"} icon={<Charts />} title={"Dashboard"} />
+                <span className="text-azure-300 font-light text-left text-sm mt-10 mb-3">
                     PERSONA
                 </span>
                 <MenuButton
@@ -103,12 +114,12 @@ const Menu = () => {
                     icon={<User />}
                     title={"Información"}
                 />
-                <span className="text-azure-300 font-normal text-left text-sm mt-10 mb-3">
+                <span className="text-azure-300 font-light text-left text-sm mt-10 mb-3">
                     SISTEMA
                 </span>
                 <MenuButton to={"/citas"} icon={<Citas />} title={"Citas"} />
                 <MenuButton to={"/pagos"} icon={<Pago />} title={"Pagos"} />
-                <span className="text-azure-300 font-normal text-left text-sm mt-10 mb-3">
+                <span className="text-azure-300 font-light text-left text-sm mt-10 mb-3">
                     RAFAM
                 </span>
                 <MenuButton
@@ -126,7 +137,7 @@ const Menu = () => {
                     icon={<Auto />}
                     title={"Rodados"}
                 />
-                <span className="text-azure-300 font-normal text-left text-sm mt-10 mb-3">
+                <span className="text-azure-300 font-light text-left text-sm mt-10 mb-3">
                     SALUD
                 </span>
                 <MenuButton

@@ -9,7 +9,7 @@ const Store = (props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={props.width ? props.width : "20"}
+            width={props.width ? props.width : "30"}
             height={props.height ? props.height : "20"}
             viewBox="0 0 24 24"
             fill="none"
@@ -17,7 +17,7 @@ const Store = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-building-store text-azure-800 dark:text-azure-400">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-building-store text-azure-800 dark:text-azure-200">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M3 21l18 0" />
             <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />

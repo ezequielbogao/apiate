@@ -37,10 +37,10 @@ const Internacion = () => {
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
                 <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-thin">
+                        <span className="text-md text-azure-400 font-light">
                             Salud
                         </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-normal">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             INTERNACIÓN
                         </span>
                     </div>
@@ -68,8 +68,8 @@ const Internacion = () => {
                                         {TABLE_INTERNACION.map((head) => (
                                             <th
                                                 key={head}
-                                                className="bg-azure-200 dark:bg-azure-600  p-4">
-                                                <span className="text-sm font-normal leading-none opacity-70 text-azure-700 dark:text-azure-100">
+                                                className="bg-azure-200 dark:bg-azure-800 p-4">
+                                                <span className="text-md font-medium leading-none  text-azure-700 dark:text-azure-100">
                                                     {head}
                                                 </span>
                                             </th>

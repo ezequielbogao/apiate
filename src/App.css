@@ -5,6 +5,53 @@
     text-align: center;
 }
 
+/* src/styles.css o src/App.css */
+
+/* Regular */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./assets/fonts/Comfortaa-Regular.ttf") format("woff2"),
+        url("./assets/fonts/Comfortaa-Regular.ttf") format("woff");
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Light */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./assets/fonts/Comfortaa-Light.ttf") format("woff2"),
+        url("./assets/fonts/Comfortaa-Light.ttf") format("woff");
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+/* Medium */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./assets/fonts/Comfortaa-Medium.ttf") format("woff2"),
+        url("./assets/fonts/Comfortaa-Medium.ttf") format("woff");
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+/* Semi-Bold */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./assets/fonts/Comfortaa-SemiBold.ttf") format("woff2"),
+        url("./assets/fonts/Comfortaa-SemiBold.ttf") format("woff");
+    font-weight: 600; /* Semi-Bold */
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("./assets/fonts/Comfortaa-Bold.ttf") format("woff2"),
+        url("./assets/fonts/Comfortaa-Bold.ttf") format("woff");
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
 .logo {
     height: 6em;
     padding: 1.5em;
@@ -16,6 +63,90 @@
 }
 .logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* src/styles.css o src/App.css */
+
+/* Usando la fuente regular para el cuerpo de la página */
+body {
+    font-family: "Karla", sans-serif;
+    font-weight: 400; /* Regular */
+}
+
+/* Usando semi-bold para títulos o subtítulos */
+h1,
+h2,
+h3 {
+    font-family: "Karla", sans-serif;
+    font-weight: 600; /* Semi-Bold */
+}
+
+/* Usando bold para los botones o destacados */
+button,
+strong {
+    font-family: "Karla", sans-serif;
+    font-weight: 700; /* Bold */
+}
+
+/* Usando extra-bold para títulos importantes */
+h1 {
+    font-family: "Karla", sans-serif;
+    font-weight: 800; /* Extra-Bold */
+}
+
+/* Usando light para subtítulos o texto más fino */
+h4,
+h5,
+h6,
+.light-text {
+    font-family: "Karla", sans-serif;
+    font-weight: 300; /* Light */
+}
+
+/* Usando extra-light para textos finos y ligeros */
+p {
+    font-family: "Karla", sans-serif;
+    font-weight: 200; /* Extra-Light */
+}
+
+/* src/styles.css o src/App.css */
+
+/* Regular */
+@font-face {
+    font-family: "Karla";
+    src: url("./assets/fonts/Karla-Regular.ttf") format("truetype");
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Light */
+@font-face {
+    font-family: "Karla";
+    src: url("./assets/fonts/Karla-Light.ttf") format("truetype");
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+/* Medium */
+@font-face {
+    font-family: "Karla";
+    src: url("./assets/fonts/Karla-Medium.ttf") format("truetype");
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+/* Semi-Bold */
+@font-face {
+    font-family: "Karla";
+    src: url("./assets/fonts/Karla-SemiBold.ttf") format("truetype");
+    font-weight: 600; /* Semi-Bold */
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: "Karla";
+    src: url("./assets/fonts/Karla-Bold.ttf") format("truetype");
 }
 
 @keyframes logo-spin {

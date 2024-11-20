@@ -4,6 +4,17 @@ module.exports = withMT({
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        karla: ['Karla', 'sans-serif'],
+      },
+      fontWeight: {
+        light: 300,        // Light
+        medium: 500,       // Medium
+        semiBold: 600,     // Semi-Bold
+        bold: 700,         // Bold
+        extraBold: 800,    // Extra-Bold
+        extraLight: 200,   // Extra-Light
+      },
       colors: {
         azure: {
           '50': '#f5f6fa',

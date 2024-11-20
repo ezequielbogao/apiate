@@ -9,7 +9,7 @@ const Auto = (props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={props.width ? props.width : "20"}
+            width={props.width ? props.width : "30"}
             height={props.height ? props.height : "20"}
             viewBox="0 0 24 24"
             fill="none"
@@ -17,7 +17,7 @@ const Auto = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-car text-azure-800 dark:text-azure-400">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-car text-azure-800 dark:text-azure-200">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
             <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />

@@ -69,7 +69,7 @@ const Home = () => {
                                             className="bg-azure-200 dark:bg-azure-800  p-4">
                                             <Typography
                                                 variant="small"
-                                                className="font-normal leading-none opacity-70 text-azure-700 dark:text-azure-100">
+                                                className="font-light leading-none opacity-70 text-azure-700 dark:text-azure-100">
                                                 {head}
                                             </Typography>
                                         </th>
@@ -94,33 +94,33 @@ const Home = () => {
                                                 key={index}
                                                 className="even:bg-azure-100/100 dark:even:bg-azure-800/100">
                                                 <td className="p-4">
-                                                    <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                    <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                         {mail}
                                                     </span>
                                                 </td>
                                                 <td className="p-4">
-                                                    <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                    <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                         {organizacion}
                                                     </span>
                                                 </td>
                                                 <td className="p-4">
-                                                    <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                    <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                         {telefono}
                                                     </span>
                                                 </td>
                                                 <td className="p-4">
-                                                    <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                    <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                         {canal}
                                                     </span>
                                                 </td>
                                                 <td className="p-4">
-                                                    <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                    <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                         {fecha_turno}
                                                     </span>
                                                 </td>
                                                 <td className="p-4">
                                                     <span
-                                                        className={`font-normal text-sm ${
+                                                        className={`font-light text-sm ${
                                                             estado_turno ===
                                                             "Cancelada"
                                                                 ? "text-red-500"

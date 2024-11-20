@@ -18,8 +18,12 @@ import Emergencias from "./layouts/views/Emergencias";
 import Internacion from "./layouts/views/Internacion";
 import Turnos from "./layouts/views/Turnos";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./layouts/views/Dashboard";
+
 const router = createBrowserRouter([
-    { path: "/", element: <Home /> },
+    { path: "/", element: <Dashboard /> },
     { path: "/citas", element: <Citas /> },
     { path: "/pagos", element: <Pagos /> },
     { path: "/personal", element: <Personal /> },
@@ -37,6 +41,7 @@ createRoot(document.getElementById("root")).render(
                 <Header />
                 <RouterProvider router={router} />
                 {/* <Footer /> */}
+                <ToastContainer />
             </div>
         </MenuProvider>
     </StrictMode>

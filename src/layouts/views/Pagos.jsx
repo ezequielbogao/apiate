@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 import Content from "../components/Content";
+import { Spinner } from "@material-tailwind/react";
 
 const Pagos = () => {
     const { sistemas, error, loading } = useMenu();
@@ -43,10 +44,10 @@ const Pagos = () => {
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
                 <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-thin">
+                        <span className="text-md text-azure-400 font-light">
                             Sistema
                         </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-normal">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             PAGOS
                         </span>
                     </div>
@@ -54,19 +55,9 @@ const Pagos = () => {
                 <div className="p-5">
                     {loading ? (
                         <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
+                            <Spinner className="h-30 w-30 text-gray-900/50" />
                         </div>
-                    ) : (
-                        sistemas && <></>
-                    )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
-                    {sistemas && sistemas.Pagos ? (
+                    ) : sistemas && sistemas.Pagos ? (
                         <div className="overflow-auto bg-azure-50 dark:bg-azure-900 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
@@ -74,8 +65,8 @@ const Pagos = () => {
                                         {TABLE_PAGOS.map((head) => (
                                             <th
                                                 key={head}
-                                                className="bg-azure-200 dark:bg-azure-800  p-4">
-                                                <span className="text-sm font-normal leading-none opacity-70 text-azure-700 dark:text-azure-100">
+                                                className="bg-azure-200 dark:bg-azure-800 p-4">
+                                                <span className="text-md font-medium leading-none text-azure-700 dark:text-azure-100">
                                                     {head}
                                                 </span>
                                             </th>
@@ -100,33 +91,33 @@ const Pagos = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-800/100">
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {tipo}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {modo_pago}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {imponible}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {importe}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
                                                             {fecha_pago}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
                                                         <span
-                                                            className={`font-normal text-sm ${
+                                                            className={`font-light text-sm ${
                                                                 estado ===
                                                                 "Cancelada"
                                                                     ? "text-red-500"
@@ -195,6 +186,11 @@ const Pagos = () => {
                         </div>
                     ) : (
                         <></>
+                    )}
+                    {error && (
+                        <div className="w-full h-full flex justify-center align-middle items-center">
+                            <p className="text-red-600">Error</p>
+                        </div>
                     )}
                 </div>
             </div>
