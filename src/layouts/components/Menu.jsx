@@ -49,7 +49,7 @@ const Menu = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/persons/${dni}`
+                `http://localhost:5000/atenea/api/persons?document=${dni}`
             );
 
             setPersona(response.data.data.Datos_personales.Persona[0]);
