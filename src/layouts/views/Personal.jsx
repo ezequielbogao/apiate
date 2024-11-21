@@ -1,6 +1,7 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
 import { Spinner } from "@material-tailwind/react";
+import Loading from "../components/Loading";
 
 const Personal = () => {
     const { persona, error, loading } = useMenu();
@@ -20,13 +21,11 @@ const Personal = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <Spinner className="h-30 w-30 text-gray-900/50" />
-                        </div>
+                        <Loading title="datos personales" />
                     ) : (
                         persona && (
-                            <div className="bg-azure-50 dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                                <div className="bg-azure-50 dark:bg-azure-800 text-azure-600 mb-10">
+                            <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                <div className=" text-azure-600 mb-10">
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
                                             Nombre y Apellido

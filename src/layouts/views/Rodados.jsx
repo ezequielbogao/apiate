@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
+import Loading from "../components/Loading";
+import Auto from "../components/icons/Auto";
 
 const Rodados = () => {
     const { sistemas, error, loading } = useMenu();
-
-    const TABLE_RODADOS = [];
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -48,25 +48,49 @@ const Rodados = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
+                        <Loading title="rodados" />
+                    ) : sistemas &&
+                      sistemas.Rafam_imponibles &&
+                      sistemas.Rafam_imponibles.Rodados ? (
+                        sistemas.Rafam_imponibles.Rodados.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {paginatedPages.map(
+                                    ({ NRO_RODADO, DEUDA_RODADO }, index) => (
+                                        <div
+                                            key={index}
+                                            className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                            <div className=" text-azure-600">
+                                                <div className="flex flex-col align-middle items-center justify-center">
+                                                    <Auto
+                                                        width="50"
+                                                        height="50"
+                                                    />
+                                                    <span className="text-azure-300 text-md font-medium mt-3">
+                                                        N° {NRO_RODADO}
+                                                    </span>
+                                                    <span className="text-red-600 dark:text-red-400 text-lg font-medium">
+                                                        {DEUDA_RODADO}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        ) : (
+                            <tr>
+                                <td colSpan="6" className="p-4 text-center">
+                                    No hay rodados disponibles.
+                                </td>
+                            </tr>
+                        )
                     ) : (
-                        sistemas && <></>
+                        <></>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">
                             <p className="text-red-600">Error</p>
                         </div>
-                    )}
-                    {sistemas &&
-                    sistemas.Rafam_imponibles &&
-                    sistemas.Rafam_imponibles.Rodados ? (
-                        <></>
-                    ) : (
-                        <></>
                     )}
                 </div>
             </div>

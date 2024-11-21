@@ -1,5 +1,6 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
+import Loading from "../components/Loading";
 
 const Emergencias = () => {
     const { sistemas, error, loading } = useMenu();
@@ -19,20 +20,8 @@ const Emergencias = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
-                    ) : (
-                        sistemas && <></>
-                    )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
-                    {sistemas && sistemas.Salud_emergencias ? (
+                        <Loading title="citas" />
+                    ) : sistemas && sistemas.Salud_emergencias ? (
                         sistemas.Salud_emergencias.length > 0 ? (
                             sistemas.Salud_emergencias.map(
                                 (
@@ -50,10 +39,10 @@ const Emergencias = () => {
                                 ) => (
                                     <div
                                         key={index}
-                                        className="bg-azure-50 dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                                        <div className="bg-azure-50 dark:bg-azure-800 text-azure-600 mb-10">
+                                        className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                        <div className=" text-azure-600 mb-10">
                                             <div className="flex justify-between">
-                                                <span className="text-azure-600 text-md font-medium">
+                                                <span className="text-azure-300 text-md font-medium">
                                                     Paciente # {paciente}
                                                 </span>
                                                 <span className="text-azure-600 dark:text-azure-100 text-md font-medium">
@@ -106,6 +95,11 @@ const Emergencias = () => {
                         )
                     ) : (
                         <></>
+                    )}
+                    {error && (
+                        <div className="w-full h-full flex justify-center align-middle items-center">
+                            <p className="text-red-600">Error</p>
+                        </div>
                     )}
                 </div>
             </div>

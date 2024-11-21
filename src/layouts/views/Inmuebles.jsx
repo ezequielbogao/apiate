@@ -1,11 +1,11 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
 import { useState } from "react";
+import Loading from "../components/Loading";
+import Casa from "../components/icons/Casa";
 
 const Inmuebles = () => {
     const { sistemas, error, loading } = useMenu();
-
-    const TABLE_INMUEBLES = [];
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -49,25 +49,52 @@ const Inmuebles = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
+                        <Loading title="inmuebles" />
+                    ) : sistemas &&
+                      sistemas.Rafam_imponibles &&
+                      sistemas.Rafam_imponibles.Inmuebles ? (
+                        sistemas.Rafam_imponibles.Inmuebles.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {paginatedPages.map(
+                                    (
+                                        { NRO_INMUEBLE, DEUDA_INMUEBLE },
+                                        index
+                                    ) => (
+                                        <div
+                                            key={index}
+                                            className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                            <div className=" text-azure-600">
+                                                <div className="flex flex-col align-middle items-center justify-center">
+                                                    <Casa
+                                                        width="50"
+                                                        height="50"
+                                                    />
+                                                    <span className="text-azure-300 text-md font-medium mt-3">
+                                                        N° {NRO_INMUEBLE}
+                                                    </span>
+                                                    <span className="text-red-600 dark:text-red-400 text-lg font-medium">
+                                                        {DEUDA_INMUEBLE}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        ) : (
+                            <tr>
+                                <td colSpan="6" className="p-4 text-center">
+                                    No hay inmuebles disponibles.
+                                </td>
+                            </tr>
+                        )
                     ) : (
-                        sistemas && <></>
+                        <></>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">
                             <p className="text-red-600">Error</p>
                         </div>
-                    )}
-                    {sistemas &&
-                    sistemas.Rafam_imponibles &&
-                    sistemas.Rafam_imponibles.Inmuebles ? (
-                        <></>
-                    ) : (
-                        <></>
                     )}
                 </div>
             </div>

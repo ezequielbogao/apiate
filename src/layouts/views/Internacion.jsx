@@ -1,20 +1,31 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 
 const Internacion = () => {
     const { sistemas, error, loading } = useMenu();
 
-    const TABLE_INTERNACION = [];
+    const TABLE_INTERNACION = [
+        "Paciente",
+        "Cód. Paciente",
+        "Cobertura",
+        "Fecha Ingreso",
+        "Fecha Egreso",
+        "Descripcion",
+        "Observaciones",
+        "Cod. Ubicación",
+        "Descripción",
+    ];
 
     let totalPage = 0;
     let paginatedPages = 0;
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Salud_Internacion) {
-        totalPage = Math.ceil(sistemas.Salud_Internacion.length / itemsPerPage);
-        paginatedPages = sistemas.Salud_Internacion.slice(
+    if (sistemas && sistemas.Salud_internacion) {
+        totalPage = Math.ceil(sistemas.Salud_internacion.length / itemsPerPage);
+        paginatedPages = sistemas.Salud_internacion.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -32,6 +43,10 @@ const Internacion = () => {
         }
     };
 
+    useEffect(() => {
+        console.log(paginatedPages);
+    }, [paginatedPages]);
+
     return (
         <Content>
             <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
@@ -47,21 +62,9 @@ const Internacion = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
-                    ) : (
-                        sistemas && <></>
-                    )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
-                    {sistemas && sistemas.Salud_Turnos ? (
-                        <div className="overflow-auto bg-azure-50 dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
+                        <Loading title="internación" />
+                    ) : sistemas && sistemas.Salud_internacion ? (
+                        <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
                                     <tr>
@@ -76,7 +79,85 @@ const Internacion = () => {
                                         ))}
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    {sistemas.Salud_internacion.length > 0 ? (
+                                        paginatedPages.map(
+                                            (
+                                                {
+                                                    paciente,
+                                                    pacoCodigo,
+                                                    cobeDescripcion,
+                                                    inteFechaIngreso,
+                                                    inteFechaEgreso,
+                                                    tiinDescripcion,
+                                                    inteObservaciones,
+                                                    ubicCodigo,
+                                                    ubicDescripcion,
+                                                },
+                                                index
+                                            ) => (
+                                                <tr
+                                                    key={index}
+                                                    className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {paciente}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {pacoCodigo}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {cobeDescripcion}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {inteFechaIngreso}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {inteFechaEgreso}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {tiinDescripcion}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {inteObservaciones}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {ubicCodigo}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                            {ubicDescripcion}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )
+                                    ) : (
+                                        <tr>
+                                            <td
+                                                colSpan="6"
+                                                className="p-4 text-center">
+                                                No hay internaciones
+                                                disponibles.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
                             </table>
                             <div className="flex justify-center items-center mt-4">
                                 <button
@@ -124,6 +205,11 @@ const Internacion = () => {
                         </div>
                     ) : (
                         <></>
+                    )}
+                    {error && (
+                        <div className="w-full h-full flex justify-center align-middle items-center">
+                            <p className="text-red-600">Error</p>
+                        </div>
                     )}
                 </div>
             </div>

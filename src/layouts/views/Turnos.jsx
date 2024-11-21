@@ -1,6 +1,7 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
 import { useState } from "react";
+import Loading from "../components/Loading";
 
 const Turnos = () => {
     const { sistemas, error, loading } = useMenu();
@@ -55,21 +56,9 @@ const Turnos = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
-                    ) : (
-                        sistemas && <></>
-                    )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
-                    {sistemas && sistemas.Salud_Turnos ? (
-                        <div className="overflow-auto bg-azure-50 dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
+                        <Loading title="turnos" />
+                    ) : sistemas && sistemas.Salud_Turnos ? (
+                        <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
                                     <tr>
@@ -103,37 +92,37 @@ const Turnos = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {paciente}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {medico}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {especialidad}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {ubicacion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {procedimiento}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {llegada}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-md text-azure-600 dark:text-azure-300">
+                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
                                                             {salida}
                                                         </span>
                                                     </td>
@@ -197,6 +186,11 @@ const Turnos = () => {
                         </div>
                     ) : (
                         <></>
+                    )}
+                    {error && (
+                        <div className="w-full h-full flex justify-center align-middle items-center">
+                            <p className="text-red-600">Error</p>
+                        </div>
                     )}
                 </div>
             </div>

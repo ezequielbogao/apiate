@@ -2,8 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./App.css";
 import "./index.css";
-import Home from "./layouts/Home";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
@@ -20,6 +18,7 @@ import Turnos from "./layouts/views/Turnos";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import Dashboard from "./layouts/views/Dashboard";
 
 const router = createBrowserRouter([

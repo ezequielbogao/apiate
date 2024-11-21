@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
+import Loading from "../components/Loading";
 
 const Comercios = () => {
     const { sistemas, error, loading } = useMenu();
@@ -48,25 +49,18 @@ const Comercios = () => {
                 </div>
                 <div className="p-5">
                     {loading ? (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-azure-600 dark:text-azure-200">
-                                Cargando...
-                            </p>
-                        </div>
+                        <Loading title="comercios" />
+                    ) : sistemas &&
+                      sistemas.Rafam_imponibles &&
+                      sistemas.Rafam_imponibles.Comercios ? (
+                        <></>
                     ) : (
-                        sistemas && <></>
+                        <></>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">
                             <p className="text-red-600">Error</p>
                         </div>
-                    )}
-                    {sistemas &&
-                    sistemas.Rafam_imponibles &&
-                    sistemas.Rafam_imponibles.Comercios ? (
-                        <></>
-                    ) : (
-                        <></>
                     )}
                 </div>
             </div>

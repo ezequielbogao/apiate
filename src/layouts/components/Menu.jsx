@@ -51,14 +51,17 @@ const Menu = () => {
             const response = await axios.get(
                 `http://localhost:5000/api/persona/${dni}`
             );
+
             setPersona(response.data.data.Datos_personales.Persona[0]);
             setSistemas(response.data.data.Sistemas);
+            console.log(sistemas);
             toast.success("Persona con DNI " + dni + " encontrada con exito!");
-            navigate("/personal");
+            // navigate("/personal");
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
             );
+            toast.error("Error");
         } finally {
             setLoading(false);
         }
