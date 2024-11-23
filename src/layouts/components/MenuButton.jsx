@@ -12,7 +12,9 @@ const MenuButton = (props) => {
     };
     return (
         <Tooltip
-            content={props.title}
+            content={`${props.title}   ${
+                props.count ? "(" + props.count + ")" : ""
+            }`}
             placement="right"
             className="block md:hidden bg-white text-azure-600 dark:text-white dark:bg-azure-600 text-md">
             <Link
@@ -32,7 +34,7 @@ const MenuButton = (props) => {
                     </div>
                 </div>
                 {props.count ? (
-                    <span className="text-sm text-azure-600">
+                    <span className="text-sm text-azure-600 hidden md:block">
                         {props.count}
                     </span>
                 ) : (
