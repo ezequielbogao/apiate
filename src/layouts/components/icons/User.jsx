@@ -17,7 +17,7 @@ const User = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-address-book text-azure-800 dark:text-azure-200">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-address-book text-azure-800 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" />
             <path d="M10 16h6" />

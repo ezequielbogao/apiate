@@ -27,14 +27,14 @@ const MenuButton = (props) => {
                             {props.label}
                         </span>
                         <div className="flex justify-between">
-                            <span className="text-sm text-azure-700 dark:text-azure-200 font-light">
+                            <span className="text-sm text-azure-700 dark:text-azure-100 font-light">
                                 {props.title}
                             </span>
                         </div>
                     </div>
                 </div>
                 {props.count ? (
-                    <span className="text-sm text-azure-600 hidden md:block">
+                    <span className="text-sm text-azure-600 dark:text-azure-100 hidden md:block">
                         {props.count}
                     </span>
                 ) : (

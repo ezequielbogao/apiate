@@ -111,39 +111,40 @@ const Personal = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="datos personales" />
-                    ) : (
-                        persona &
-                        (
-                            <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                                <div className=" text-azure-600 mb-10">
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            Nombre y Apellido
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {persona.nombre} {persona.apellido}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            Documento
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {persona.documento}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            Dirección
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {persona.calle}
-                                            {persona.altura}
-                                        </span>
-                                    </div>
+                    ) : persona ? (
+                        <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className=" text-azure-600 mb-10">
+                                <div className="flex flex-col mt-3">
+                                    <span className="text-azure-300 font-light">
+                                        Nombre y Apellido
+                                    </span>
+                                    <span className=" dark:text-azure-100 font-medium">
+                                        {persona.nombre} {persona.apellido}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col mt-3">
+                                    <span className="text-azure-300 font-light">
+                                        Documento
+                                    </span>
+                                    <span className=" dark:text-azure-100 font-medium">
+                                        {persona.documento}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col mt-3">
+                                    <span className="text-azure-300 font-light">
+                                        Dirección
+                                    </span>
+                                    <span className=" dark:text-azure-100 font-medium">
+                                        {persona.calle}
+                                        {persona.altura}
+                                    </span>
                                 </div>
                             </div>
-                        )
+                        </div>
+                    ) : (
+                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                            NO HAY INFORMACION PERSONAL DISPONIBLE
+                        </div>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

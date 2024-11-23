@@ -17,7 +17,7 @@ const Charts = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-table-alias text-azure-800 dark:text-azure-200">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-table-alias text-azure-800 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M3 12v-7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-7" />
             <path d="M3 10h18" />
