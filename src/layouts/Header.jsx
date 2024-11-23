@@ -11,7 +11,6 @@ import Lupa from "./components/icons/Lupa";
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
 
-    const [dni, setDni] = useState(null);
     const {
         persona,
         setPersona,
@@ -54,8 +53,7 @@ const Header = () => {
     }, [darkMode]);
 
     const onSubmit = async () => {
-        setDni(watch("dni"));
-        console.log(dni);
+        let dni = document.querySelector("[name=dni]").value;
         setLoading(true);
         setError(null);
 
@@ -66,7 +64,6 @@ const Header = () => {
 
             setPersona(response.data.data.datos_personales.persona[0]);
             setSistemas(response.data.data.sistemas);
-            console.log(sistemas);
             toast.success("Persona con DNI " + dni + " encontrada con exito!");
             // navigate("/personal");
         } catch (err) {
@@ -152,7 +149,7 @@ const Header = () => {
                         <input
                             className="py-0 px-2 w-full rounded-tl-xl rounded-bl-xl text-azure-600 dark:bg-azure-700 focus:outline-none text-sm dark:text-azure-100"
                             placeholder="Buscar por DNI"
-                            {...register("dni", { required: true })}
+                            name="dni"
                         />
 
                         <button
