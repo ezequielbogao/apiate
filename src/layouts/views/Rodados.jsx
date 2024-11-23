@@ -3,6 +3,7 @@ import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
 import Loading from "../components/Loading";
 import Auto from "../components/icons/Auto";
+import { Link } from "react-router-dom";
 
 const Rodados = () => {
     const { sistemas, error, loading } = useMenu();
@@ -12,11 +13,11 @@ const Rodados = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Rafam_imponibles.Rodados) {
+    if (sistemas && sistemas.rafam_imponibles.rodados) {
         totalPage = Math.ceil(
-            sistemas.Rafam_imponibles.Rodados.length / itemsPerPage
+            sistemas.rafam_imponibles.rodados.length / itemsPerPage
         );
-        paginatedPages = sistemas.Rafam_imponibles.Rodados.slice(
+        paginatedPages = sistemas.rafam_imponibles.rodados.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -50,15 +51,16 @@ const Rodados = () => {
                     {loading ? (
                         <Loading title="rodados" />
                     ) : sistemas &&
-                      sistemas.Rafam_imponibles &&
-                      sistemas.Rafam_imponibles.Rodados ? (
-                        sistemas.Rafam_imponibles.Rodados.length > 0 ? (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      sistemas.rafam_imponibles &&
+                      sistemas.rafam_imponibles.rodados ? (
+                        sistemas.rafam_imponibles.rodados.length > 0 ? (
+                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {paginatedPages.map(
                                     ({ NRO_RODADO, DEUDA_RODADO }, index) => (
-                                        <div
+                                        <Link
+                                            to={`/rafam/rodado/${NRO_RODADO}`}
                                             key={index}
-                                            className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                            className="bg-white shadow-sm hover:-translate-y-1 transition-transform ease-in dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
                                             <div className=" text-azure-600">
                                                 <div className="flex flex-col align-middle items-center justify-center">
                                                     <Auto
@@ -73,7 +75,7 @@ const Rodados = () => {
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 )}
                             </div>

@@ -21,9 +21,9 @@ const Emergencias = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="citas" />
-                    ) : sistemas && sistemas.Salud_emergencias ? (
-                        sistemas.Salud_emergencias.length > 0 ? (
-                            sistemas.Salud_emergencias.map(
+                    ) : sistemas && sistemas.salud_emergencias ? (
+                        sistemas.salud_emergencias.length > 0 ? (
+                            sistemas.salud_emergencias.map(
                                 (
                                     {
                                         paciente,

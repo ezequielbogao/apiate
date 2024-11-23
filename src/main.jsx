@@ -10,11 +10,13 @@ import Pagos from "./layouts/views/Pagos";
 import Personal from "./layouts/views/Personal";
 import { MenuProvider } from "./Context/MenuContext";
 import Comercios from "./layouts/views/Comercios";
-import Inmuebles from "./layouts/views/Inmuebles";
-import Rodados from "./layouts/views/Rodados";
 import Emergencias from "./layouts/views/Emergencias";
 import Internacion from "./layouts/views/Internacion";
 import Turnos from "./layouts/views/Turnos";
+import Inmuebles from "./layouts/views/Inmuebles";
+import Inmueble from "./layouts/views/singles/Inmueble";
+import Rodados from "./layouts/views/Rodados";
+import Rodado from "./layouts/views/singles/Rodado";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +30,9 @@ const router = createBrowserRouter([
     { path: "/personal", element: <Personal /> },
     { path: "/rafam/comercios", element: <Comercios /> },
     { path: "/rafam/inmuebles", element: <Inmuebles /> },
+    { path: "/rafam/inmueble/:inmueble", element: <Inmueble /> },
     { path: "/rafam/rodados", element: <Rodados /> },
+    { path: "/rafam/rodado/:rodado", element: <Rodado /> },
     { path: "/salud/emergencias", element: <Emergencias /> },
     { path: "/salud/internacion", element: <Internacion /> },
     { path: "/salud/turnos", element: <Turnos /> },

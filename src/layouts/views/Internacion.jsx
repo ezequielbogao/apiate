@@ -23,9 +23,9 @@ const Internacion = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Salud_internacion) {
-        totalPage = Math.ceil(sistemas.Salud_internacion.length / itemsPerPage);
-        paginatedPages = sistemas.Salud_internacion.slice(
+    if (sistemas && sistemas.salud_internacion) {
+        totalPage = Math.ceil(sistemas.salud_internacion.length / itemsPerPage);
+        paginatedPages = sistemas.salud_internacion.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -63,7 +63,7 @@ const Internacion = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="internación" />
-                    ) : sistemas && sistemas.Salud_internacion ? (
+                    ) : sistemas && sistemas.salud_internacion ? (
                         <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
@@ -80,7 +80,7 @@ const Internacion = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sistemas.Salud_internacion.length > 0 ? (
+                                    {sistemas.salud_internacion.length > 0 ? (
                                         paginatedPages.map(
                                             (
                                                 {

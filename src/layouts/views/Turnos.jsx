@@ -21,9 +21,9 @@ const Turnos = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Salud_Turnos) {
-        totalPage = Math.ceil(sistemas.Salud_Turnos.length / itemsPerPage);
-        paginatedPages = sistemas.Salud_Turnos.slice(
+    if (sistemas && sistemas.salud_Turnos) {
+        totalPage = Math.ceil(sistemas.salud_Turnos.length / itemsPerPage);
+        paginatedPages = sistemas.salud_Turnos.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -57,7 +57,7 @@ const Turnos = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="turnos" />
-                    ) : sistemas && sistemas.Salud_Turnos ? (
+                    ) : sistemas && sistemas.salud_Turnos ? (
                         <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
@@ -74,7 +74,7 @@ const Turnos = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sistemas.Salud_Turnos.length > 0 ? (
+                                    {sistemas.salud_Turnos.length > 0 ? (
                                         paginatedPages.map(
                                             (
                                                 {

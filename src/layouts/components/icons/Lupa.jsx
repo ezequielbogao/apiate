@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-const Turnosmed = (props) => {
-    Turnosmed.propTypes = {
+const Lupa = (props) => {
+    Lupa.propTypes = {
         width: PropTypes.string,
         height: PropTypes.string,
     };
@@ -17,14 +17,12 @@ const Turnosmed = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-report-medical  text-azure-800 dark:text-azure-200">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-search">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-            <path d="M10 14l4 0" />
-            <path d="M12 12l0 4" />
+            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+            <path d="M21 21l-6 -6" />
         </svg>
     );
 };
 
-export default Turnosmed;
+export default Lupa;

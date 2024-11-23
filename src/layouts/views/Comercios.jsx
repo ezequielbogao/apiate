@@ -13,11 +13,11 @@ const Comercios = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Rafam_imponibles.Comercios) {
+    if (sistemas && sistemas.rafam_imponibles.comercios) {
         totalPage = Math.ceil(
-            sistemas.Rafam_imponibles.Comercios.length / itemsPerPage
+            sistemas.rafam_imponibles.comercios.length / itemsPerPage
         );
-        paginatedPages = sistemas.Rafam_imponibles.Comercios.slice(
+        paginatedPages = sistemas.rafam_imponibles.comercios.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -52,7 +52,7 @@ const Comercios = () => {
                         <Loading title="comercios" />
                     ) : sistemas &&
                       sistemas.Rafam_imponibles &&
-                      sistemas.Rafam_imponibles.Comercios ? (
+                      sistemas.Rafam_imponibles.comercios ? (
                         <></>
                     ) : (
                         <></>

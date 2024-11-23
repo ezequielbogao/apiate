@@ -21,9 +21,9 @@ const Pagos = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Pagos) {
-        totalPage = Math.ceil(sistemas.Pagos.length / itemsPerPage);
-        paginatedPages = sistemas.Pagos.slice(
+    if (sistemas && sistemas.pagos) {
+        totalPage = Math.ceil(sistemas.pagos.length / itemsPerPage);
+        paginatedPages = sistemas.pagos.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -56,7 +56,7 @@ const Pagos = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="pagos" />
-                    ) : sistemas && sistemas.Pagos ? (
+                    ) : sistemas && sistemas.pagos ? (
                         <div className="overflow-auto bg-white dark:bg-azure-900 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
@@ -73,7 +73,7 @@ const Pagos = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sistemas.Pagos.length > 0 ? (
+                                    {sistemas.pagos.length > 0 ? (
                                         paginatedPages.map(
                                             (
                                                 {

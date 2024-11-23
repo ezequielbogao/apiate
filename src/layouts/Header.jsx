@@ -1,8 +1,34 @@
 import { useEffect, useState } from "react";
 import logo_black from "../assets/logo_black.svg";
 import logo_white from "../assets/logo_white.svg";
+import { useForm } from "react-hook-form";
+import { useMenu } from "../Context/MenuContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import Lupa from "./components/icons/Lupa";
+
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
+
+    const [dni, setDni] = useState(null);
+    const {
+        persona,
+        setPersona,
+        sistemas,
+        setSistemas,
+        error,
+        setError,
+        loading,
+        setLoading,
+    } = useMenu();
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -27,60 +53,117 @@ const Header = () => {
         }
     }, [darkMode]);
 
+    const onSubmit = async () => {
+        setDni(watch("dni"));
+        console.log(dni);
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/persons?document=${dni}`
+            );
+
+            setPersona(response.data.data.datos_personales.persona[0]);
+            setSistemas(response.data.data.sistemas);
+            console.log(sistemas);
+            toast.success("Persona con DNI " + dni + " encontrada con exito!");
+            // navigate("/personal");
+        } catch (err) {
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
-            <div className="flex align-middle items-center">
-                <img
-                    src={darkMode ? logo_white : logo_black}
-                    alt="Logo de la aplicación"
-                    className="me-5 w-14 md:w-20"
-                />
-                <div className="flex flex-col">
-                    <span className="text-sm md:text-md text-azure-400 dark:text-azure-400 font-light">
-                        API Atenea
-                    </span>
-                    <span className="text-md md:text-lg text-azure-700 dark:text-azure-300 font-medium">
-                        VISUALIZACIÓN DE DATOS
-                    </span>
+        <>
+            <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <div className="flex align-middle items-center">
+                    <a href="/">
+                        <img
+                            src={darkMode ? logo_white : logo_black}
+                            alt="Logo de la aplicación"
+                            className="me-5 w-14 md:w-20"
+                        />
+                    </a>
+                    <div className="flex flex-col">
+                        <span className="text-sm md:text-md text-azure-400 dark:text-azure-400 font-light">
+                            API Atenea
+                        </span>
+                        <span className="text-md md:text-lg text-azure-700 dark:text-azure-300 font-medium">
+                            VISUALIZACIÓN DE DATOS
+                        </span>
+                    </div>
+                </div>
+                <div className="flex">
+                    <button
+                        onClick={toggleDarkMode}
+                        className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">
+                        {darkMode ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="icon icon-tabler icons-tabler-outline icon-tabler-sun">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                            </svg>
+                        ) : (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="icon icon-tabler icons-tabler-outline icon-tabler-moon">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                            </svg>
+                        )}
+                    </button>
                 </div>
             </div>
-            <div className="">
-                <button
-                    onClick={toggleDarkMode}
-                    className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">
-                    {darkMode ? (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="icon icon-tabler icons-tabler-outline icon-tabler-sun">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
-                        </svg>
-                    ) : (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="icon icon-tabler icons-tabler-outline icon-tabler-moon">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-                        </svg>
-                    )}
-                </button>
+            <div className="block md:flex px-5 align-middle items-end justify-end py-2 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex rounded-xl">
+                    <div className="flex flex-row w-full border-2 border-azure-200 dark:border-azure-500 rounded-xl">
+                        <input
+                            className="py-0 px-2 w-full rounded-tl-xl rounded-bl-xl text-azure-600 dark:bg-azure-700 focus:outline-none text-sm dark:text-azure-100"
+                            placeholder="Buscar por DNI"
+                            {...register("dni", { required: true })}
+                        />
+
+                        <button
+                            type="submit"
+                            className="transition-colors rounded-xl text-azure-700  hover:text-green-300 bg-transparent hover:dark:text-green-500 dark:text-azure-50 border-none focus:outline-none">
+                            <Lupa />
+                        </button>
+                    </div>
+                </form>
             </div>
-        </div>
+        </>
     );
 };
 
