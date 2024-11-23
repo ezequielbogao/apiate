@@ -57,7 +57,7 @@ const Turnos = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="turnos" />
-                    ) : sistemas && sistemas.salud_Turnos ? (
+                    ) : sistemas && sistemas.salud_turnos ? (
                         <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
