@@ -6,7 +6,7 @@ const Content = ({ children }) => {
         children: PropTypes.object,
     };
     return (
-        <div className="mx-0 md:mx-auto grid grid-cols-12 w-full h-full min-h-screen bg-azure-100 dark:bg-azure-900">
+        <div className="w-full flex h-full min-h-screen bg-azure-100 dark:bg-azure-900">
             <Menu />
             {children}
         </div>

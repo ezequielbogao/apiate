@@ -28,18 +28,18 @@ const Header = () => {
     }, [darkMode]);
 
     return (
-        <div className="px-5 gap-5 flex align-middle items-center justify-between py-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+        <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
             <div className="flex align-middle items-center">
                 <img
                     src={darkMode ? logo_white : logo_black}
                     alt="Logo de la aplicación"
-                    className="me-5"
+                    className="me-5 w-14 md:w-20"
                 />
                 <div className="flex flex-col">
-                    <span className="text-md text-azure-400 dark:text-azure-400 font-light">
+                    <span className="text-sm md:text-md text-azure-400 dark:text-azure-400 font-light">
                         API Atenea
                     </span>
-                    <span className="text-lg text-azure-700 dark:text-azure-300 font-medium">
+                    <span className="text-md md:text-lg text-azure-700 dark:text-azure-300 font-medium">
                         VISUALIZACIÓN DE DATOS
                     </span>
                 </div>
@@ -53,7 +53,6 @@ const Header = () => {
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
-                            viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="1"
@@ -69,7 +68,6 @@ const Header = () => {
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
-                            viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="1"

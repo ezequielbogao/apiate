@@ -49,8 +49,8 @@ const Internacion = () => {
 
     return (
         <Content>
-            <div className="col-span-12 sm:col-span-9 md:col-span-10 text-left">
-                <div className="col-span-12 p-5 text-left  border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+            <div className="text-left w-full">
+                <div className="p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
                         <span className="text-md text-azure-400 font-light">
                             Salud
@@ -168,7 +168,6 @@ const Internacion = () => {
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
                                         height="24"
-                                        viewBox="0 0 24 24"
                                         fill="currentColor"
                                         className="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-left">
                                         <path
@@ -190,7 +189,6 @@ const Internacion = () => {
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
                                         height="24"
-                                        viewBox="0 0 24 24"
                                         fill="currentColor"
                                         className="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
                                         <path
