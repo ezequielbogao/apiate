@@ -25,7 +25,7 @@ const Dashboard = () => {
                         <Loading title="Tablero" />
                     ) : sistemas &&
                       sistemas.Rafam_imponibles &&
-                      sistemas.Rafam_imponibles.Rodados ? (
+                      sistemas.Rafam_imponibles.rodados ? (
                         <></>
                     ) : (
                         <></>

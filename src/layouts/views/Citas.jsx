@@ -20,9 +20,9 @@ const Citas = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.Citas) {
-        totalPage = Math.ceil(sistemas.Citas.length / itemsPerPage);
-        paginatedPages = sistemas.Citas.slice(
+    if (sistemas && sistemas.citas) {
+        totalPage = Math.ceil(sistemas.citas.length / itemsPerPage);
+        paginatedPages = sistemas.citas.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -56,7 +56,7 @@ const Citas = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="citas" />
-                    ) : sistemas && sistemas.Citas ? (
+                    ) : sistemas && sistemas.citas ? (
                         <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700">
                             <table className="w-full min-w-max table-auto text-left">
                                 <thead>
@@ -73,7 +73,7 @@ const Citas = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sistemas.Citas.length > 0 ? (
+                                    {sistemas.citas.length > 0 ? (
                                         paginatedPages.map(
                                             (
                                                 {
