@@ -100,47 +100,47 @@ const Internacion = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {paciente}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {pacoCodigo}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {cobeDescripcion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {inteFechaIngreso}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {inteFechaEgreso}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {tiinDescripcion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {inteObservaciones}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {ubicCodigo}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {ubicDescripcion}
                                                         </span>
                                                     </td>
@@ -202,7 +202,9 @@ const Internacion = () => {
                             </div>
                         </div>
                     ) : (
-                        <></>
+                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                            NO HAY INTERNACIONES DISPONIBLES
+                        </div>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

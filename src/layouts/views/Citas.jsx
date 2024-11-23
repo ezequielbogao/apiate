@@ -90,33 +90,33 @@ const Citas = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {mail}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {organizacion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {telefono}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {canal}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {fecha_turno}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
                                                         <span
-                                                            className={`font-light text-sm ${
+                                                            className={`font-normal text-sm ${
                                                                 estado_turno ===
                                                                 "Cancelada"
                                                                     ? "text-red-500"
@@ -182,7 +182,11 @@ const Citas = () => {
                             </div>
                         </div>
                     ) : (
-                        <></>
+                        <tr>
+                            <td colSpan="6" className="p-4 text-center">
+                                No hay citas disponibles.
+                            </td>
+                        </tr>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

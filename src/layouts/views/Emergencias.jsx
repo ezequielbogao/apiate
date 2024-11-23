@@ -89,12 +89,14 @@ const Emergencias = () => {
                         ) : (
                             <tr>
                                 <td colSpan="6" className="p-4 text-center">
-                                    No hay citas disponibles.
+                                    No hay emergencias disponibles.
                                 </td>
                             </tr>
                         )
                     ) : (
-                        <></>
+                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                            NO HAY EMERGENCIAS DISPONIBLES
+                        </div>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

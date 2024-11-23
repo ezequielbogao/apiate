@@ -90,33 +90,33 @@ const Pagos = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-800/100">
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {tipo}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {modo_pago}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {imponible}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {importe}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {fecha_pago}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
                                                         <span
-                                                            className={`font-light text-sm ${
+                                                            className={`font-normal text-sm ${
                                                                 estado ===
                                                                 "Cancelada"
                                                                     ? "text-red-500"
@@ -182,7 +182,9 @@ const Pagos = () => {
                             </div>
                         </div>
                     ) : (
-                        <></>
+                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                            NO HAY PAGOS DISPONIBLES
+                        </div>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

@@ -10,12 +10,44 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import Loading from "../components/Loading";
-import { Input } from "postcss";
 import Checks from "../components/icons/Checks";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import CheckItem from "../components/CheckItem";
+import Systems from "../components/icons/Systems";
 
 const Personal = () => {
-    const { persona, error, loading } = useMenu();
+    const { persona, setError, error, loading } = useMenu();
+    const [checksActive, setChecksActive] = useState(false);
+    const [checks, setChecks] = useState(null);
 
+    const loadSystems = async () => {
+        let getChecks = null;
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/personas/${persona.documento}/sistemas`
+            );
+            getChecks = response.data.data[0];
+        } catch (err) {
+            console.log(err);
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        } finally {
+            setChecks(getChecks);
+            console.log(getChecks);
+        }
+    };
+
+    const active = () => {
+        setChecksActive(!checksActive);
+    };
+
+    useEffect(() => {
+        if (persona) loadSystems();
+    }, [persona]);
     return (
         <Content>
             <div className="text-left w-full">
@@ -28,58 +60,60 @@ const Personal = () => {
                             INFORMACIÓN
                         </span>
                     </div>
-                    <Popover placement="bottom">
-                        <PopoverHandler>
-                            <button
-                                type="submit"
-                                className="text-lg flex justify-center items-center transition-colors rounded-xl text-azure-700  hover:text-green-300 bg-transparent hover:dark:text-green-500 dark:text-azure-50 border-none focus:outline-none">
-                                <Lupacheck width="40" height="40" />
-                                Sistemas activos
-                            </button>
-                        </PopoverHandler>
-                        <PopoverContent className="md:1/12 lg:w-1/6 bg-white dark:bg-azure-700 dark:border-azure-500">
-                            <table className="w-full min-w-max table-auto text-left ">
-                                <tbody>
-                                    <tr>
-                                        <td className="p-4">
-                                            <span className="font-light text-sm text-azure-600 dark:text-azure-300">
-                                                Salud
-                                            </span>
-                                        </td>
-                                        <td className="p-4 flex justify-end">
-                                            <span className="font-light text-sm text-blue-600 dark:text-azure-300">
-                                                <Checks
-                                                    width="30"
-                                                    height="30"
+                    <div className="flex flex-col">
+                        {checks ? (
+                            <>
+                                <button
+                                    onClick={active}
+                                    className="text-lg gap-3 flex justify-center items-center transition-colors rounded-xl text-azure-700  hover:text-green-300 bg-transparent hover:dark:text-light-green-500 dark:text-azure-50 border-none focus:outline-none">
+                                    <Systems width="40" height="40" />
+                                    SISTEMAS
+                                </button>
+                                <div
+                                    className={`bg-white w-[230px] px-4 dark:bg-azure-700 right-0 dark:border-azure-500 border-2 rounded-xl border-azure-100 absolute mt-16 ${
+                                        !checksActive ? "hidden" : "block"
+                                    }`}>
+                                    <div className="w-full min-w-max table-auto text-left">
+                                        {checks ? (
+                                            <>
+                                                <CheckItem
+                                                    title="Autogestion"
+                                                    check={checks.autogestion}
                                                 />
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4">
-                                            <span className="font-light text-sm text-azure-600 dark:text-azure-300">
-                                                Rafam
-                                            </span>
-                                        </td>
-                                        <td className="p-4 flex justify-end">
-                                            <span className="font-light text-sm text-gray-400 dark:text-azure-300">
-                                                <Checks
-                                                    width="30"
-                                                    height="30"
+                                                <CheckItem
+                                                    title="Rafam"
+                                                    check={checks.rafam}
                                                 />
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </PopoverContent>
-                    </Popover>
+                                                <CheckItem
+                                                    title="Salud"
+                                                    check={checks.salud}
+                                                />
+                                                <CheckItem
+                                                    title="Reclamos"
+                                                    check={checks.reclamos}
+                                                />
+                                                <CheckItem
+                                                    title="Citas"
+                                                    check={checks.citas}
+                                                />
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
                 </div>
                 <div className="p-5">
                     {loading ? (
                         <Loading title="datos personales" />
                     ) : (
-                        persona && (
+                        persona &
+                        (
                             <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
                                 <div className=" text-azure-600 mb-10">
                                     <div className="flex flex-col mt-3">

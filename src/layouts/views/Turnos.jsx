@@ -92,37 +92,37 @@ const Turnos = () => {
                                                     key={index}
                                                     className="even:bg-azure-100/100 dark:even:bg-azure-700/100">
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {paciente}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {medico}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {especialidad}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {ubicacion}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {procedimiento}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {llegada}
                                                         </span>
                                                     </td>
                                                     <td className="p-4">
-                                                        <span className="font-light text-sm text-azure-600 dark:text-azure-300">
+                                                        <span className="font-normal text-sm text-azure-600 dark:text-azure-300">
                                                             {salida}
                                                         </span>
                                                     </td>
@@ -183,7 +183,9 @@ const Turnos = () => {
                             </div>
                         </div>
                     ) : (
-                        <></>
+                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                            NO HAY TURNOS DISPONIBLES
+                        </div>
                     )}
                     {error && (
                         <div className="w-full h-full flex justify-center align-middle items-center">

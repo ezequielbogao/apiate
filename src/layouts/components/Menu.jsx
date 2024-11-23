@@ -28,7 +28,12 @@ const Menu = () => {
                     title={"Información"}
                 />
                 <MenuSection text="CONDUCIR" cs="mt-10" />
-                <MenuButton to={"/citas"} icon={<Citas />} title={"Citas"} />
+                <MenuButton
+                    to={"/citas"}
+                    icon={<Citas />}
+                    title={"Citas"}
+                    count={sistemas?.citas?.length ?? null}
+                />
                 <MenuSection text="AUTOGESTIÓN" cs="mt-10" />
                 <MenuButton
                     to={"/pagos"}
