@@ -27,8 +27,9 @@ const Menu = () => {
                     icon={<User />}
                     title={"Información"}
                 />
-                <MenuSection text="SISTEMA" cs="mt-10" />
+                <MenuSection text="CONDUCIR" cs="mt-10" />
                 <MenuButton to={"/citas"} icon={<Citas />} title={"Citas"} />
+                <MenuSection text="AUTOGESTIÓN" cs="mt-10" />
                 <MenuButton
                     to={"/pagos"}
                     icon={<Pago />}

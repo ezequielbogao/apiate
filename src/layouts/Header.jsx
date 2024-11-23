@@ -10,7 +10,6 @@ import Lupa from "./components/icons/Lupa";
 
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
-
     const {
         persona,
         setPersona,
@@ -59,7 +58,7 @@ const Header = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/persons?document=${dni}`
+                `http://localhost:5000/atenea/api/personas?document=${dni}`
             );
 
             setPersona(response.data.data.datos_personales.persona[0]);
