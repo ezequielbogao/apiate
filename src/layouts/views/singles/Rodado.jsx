@@ -5,34 +5,38 @@ import Loading from "../../components/Loading";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Errormsg from "../../components/Errormsg";
 
 const Rodado = () => {
     const { sistemas, error, loading, setLoading, setError } = useMenu();
     const { rodado } = useParams();
+    const [rod, setRod] = useState(null);
 
     const loadData = async (rodado) => {
         setLoading(true);
         setError(null);
 
-        // try {
-        //     const response = await axios.get(
-        //         `http://localhost:5000/atenea/api/rafam/rodado/${rodado}`
-        //     );
-
-        //     // navigate("/personal");
-        // } catch (err) {
-        //     setError(
-        //         err.response ? err.response.data.message : "Error desconocido"
-        //     );
-        //     toast.error("Error");
-        // } finally {
-        //     setLoading(false);
-        // }
+        let getRod = null;
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/rafam/rodado/${rodado}`
+            );
+            getRod = response.data.data;
+            console.log(getRod);
+        } catch (err) {
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        } finally {
+            setRod(getRod);
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        if (rodado) loadData(rodado);
-    });
+        if (rodado && !rod) loadData(rodado);
+    }, [rodado]);
 
     return (
         <Content>
@@ -55,12 +59,81 @@ const Rodado = () => {
                     </div>
                 </div>
                 <div className="p-5">
-                    {loading ? <Loading title="rodado" /> : <></>}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
+                    {loading ? (
+                        <Loading title="rodado" />
+                    ) : rod ? (
+                        <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
+                                <div className="flex flex-col w-full md:w-6/12">
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            ANIO
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.ANIO ?? "-"}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            CARROCERIA
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.CARROCERIA ?? "-"}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            DOMINIO
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.DOMINIO ?? "-"}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            MARCA
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.MARCA ?? "-"}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col w-full md:w-6/12">
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            MODELO
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.MODELO ?? "-"}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            MOTOR
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.MOTOR ?? "-"}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col mt-3">
+                                        <span className="text-azure-300 font-light">
+                                            NÚMERO RODADO
+                                        </span>
+                                        <span className=" dark:text-azure-100 font-medium">
+                                            {rod.NRO_DODADO ?? "-"}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    ) : (
+                        !error && (
+                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                NO HAY RODADO DISPONIBLE
+                            </div>
+                        )
                     )}
+                    {error && <Errormsg />}
                 </div>
             </div>
         </Content>

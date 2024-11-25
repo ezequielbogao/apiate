@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Lupa from "./components/icons/Lupa";
+import Logout from "./components/icons/Logout";
 
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -93,7 +94,12 @@ const Header = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex">
+                <div className="flex gap-4">
+                    <Link
+                        to="/login"
+                        className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">
+                        <Logout />
+                    </Link>
                     <button
                         onClick={toggleDarkMode}
                         className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">

@@ -22,6 +22,7 @@ const Personal = () => {
     const { persona, setError, error, loading } = useMenu();
     const [checksActive, setChecksActive] = useState(false);
     const [checks, setChecks] = useState(null);
+    const [adicionales, setAdicionales] = useState(null);
 
     const loadSystems = async () => {
         let getChecks = null;
@@ -40,12 +41,34 @@ const Personal = () => {
         }
     };
 
+    const loadAdicionales = async () => {
+        let getAdicionales = null;
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/persona/${persona.documento}/adicionales`
+            );
+            getAdicionales = response.data.data;
+            console.log(response.data.data);
+        } catch (err) {
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        } finally {
+            setAdicionales(getAdicionales);
+        }
+    };
+
     const active = () => {
         setChecksActive(!checksActive);
     };
 
     useEffect(() => {
-        if (persona) loadSystems();
+        if (persona) {
+            loadSystems();
+            loadAdicionales();
+            console.log(adicionales);
+        }
     }, [persona]);
     return (
         <Content>
@@ -115,7 +138,7 @@ const Personal = () => {
                             <div className=" text-azure-600 mb-10">
                                 <div className="flex flex-col mt-3">
                                     <span className="text-azure-300 font-light">
-                                        Nombre y Apellido
+                                        NOMBRE Y APELLIDO
                                     </span>
                                     <span className=" dark:text-azure-100 font-medium">
                                         {persona.nombre} {persona.apellido}
@@ -123,7 +146,7 @@ const Personal = () => {
                                 </div>
                                 <div className="flex flex-col mt-3">
                                     <span className="text-azure-300 font-light">
-                                        Documento
+                                        DOCUMENTO
                                     </span>
                                     <span className=" dark:text-azure-100 font-medium">
                                         {persona.documento}
@@ -131,7 +154,7 @@ const Personal = () => {
                                 </div>
                                 <div className="flex flex-col mt-3">
                                     <span className="text-azure-300 font-light">
-                                        Dirección
+                                        DIRECCIÓN
                                     </span>
                                     <span className=" dark:text-azure-100 font-medium">
                                         {persona.calle}
@@ -148,6 +171,41 @@ const Personal = () => {
                         )
                     )}
                     {error && <Errormsg />}
+                </div>
+                <div className="p-5">
+                    {adicionales && (
+                        <div className="bg-white dark:bg-azure-700 rounded-xl mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <span className="text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                DATOS ADICIONALES
+                            </span>
+                            <div className="text-md text-orange-800 dark:text-orange-300 mb-4 font-light">
+                                La información que se muestra a continuación
+                                provienen de varios sistemas. Es por esto, que
+                                algunos datos pueden estar repetidos o
+                                desorganizados.
+                            </div>
+                            <div className="text-azure-600 mb-10">
+                                {Object.entries(adicionales).map(
+                                    ([key, value]) => (
+                                        <div key={key} className="mb-5">
+                                            <span className="text-azure-400 font-light text-sm">
+                                                {key}:
+                                            </span>
+                                            <ul>
+                                                {value.map((item, index) => (
+                                                    <li
+                                                        className="mx-3 text-azure-500 text-sm"
+                                                        key={index}>
+                                                        {item}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </Content>

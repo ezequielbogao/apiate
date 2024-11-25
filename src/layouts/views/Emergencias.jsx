@@ -37,42 +37,42 @@ const Emergencias = () => {
                                         <div className=" text-azure-600 mb-10">
                                             <div className="flex justify-between">
                                                 <span className="text-azure-300 text-md font-medium">
-                                                    Paciente # {paciente}
+                                                    PACIENTE # {paciente}
                                                 </span>
-                                                <span className="text-azure-600 dark:text-azure-100 text-md font-medium">
-                                                    Código # {pacoCodigo}
+                                                <span className="text-azure-600 dark:text-azure-100 text-md font-normal">
+                                                    CÓDIGO # {pacoCodigo}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col mt-3">
                                                 <span className="text-azure-300 font-light">
-                                                    Ubicación
+                                                    UBICACIÓN
                                                 </span>
-                                                <span className=" dark:text-azure-100 font-light">
+                                                <span className=" dark:text-azure-100 font-normal">
                                                     {emerCalle} {emerAltura}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col mt-3">
                                                 <span className="text-azure-300 font-light">
-                                                    Observaciones
+                                                    OBSERVACIONES
                                                 </span>
-                                                <p className=" dark:text-azure-100 font-light">
+                                                <p className=" dark:text-azure-100 font-normal">
                                                     {observaciones}
                                                 </p>
                                             </div>
                                             <div className="flex flex-col mt-3">
                                                 <span className="text-azure-300 font-light">
-                                                    Codigo y Descripción
+                                                    CÓDIGO Y DESCRIPCIÓN
                                                 </span>
-                                                <span className=" dark:text-azure-100 font-light">
+                                                <span className=" dark:text-azure-100 font-normal">
                                                     {emecCodigo}{" "}
                                                     {emecDescripcion}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col mt-3">
                                                 <span className="text-azure-300 font-light">
-                                                    Cobertura
+                                                    COBERTURA
                                                 </span>
-                                                <span className=" dark:text-azure-100 font-light">
+                                                <span className=" dark:text-azure-100 font-normal">
                                                     {cobeDescripcion}
                                                 </span>
                                             </div>
