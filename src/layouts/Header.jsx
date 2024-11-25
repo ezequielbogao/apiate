@@ -58,13 +58,12 @@ const Header = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/personas?document=${dni}`
+                `http://localhost:5000/atenea/api/persona/${dni}`
             );
-
-            setPersona(response.data.data.datos_personales.persona[0]);
-            setSistemas(response.data.data.sistemas);
+            // console.log(response.data[0].data.datos_personales);
+            setPersona(response.data[0].data.datos_personales.persona[0]);
+            setSistemas(response.data[0].data.sistemas);
             toast.success("Persona con DNI " + dni + " encontrada con exito!");
-            // navigate("/personal");
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
