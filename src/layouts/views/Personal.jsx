@@ -16,6 +16,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import CheckItem from "../components/CheckItem";
 import Systems from "../components/icons/Systems";
+import Errormsg from "../components/Errormsg";
 
 const Personal = () => {
     const { persona, setError, error, loading } = useMenu();
@@ -51,12 +52,12 @@ const Personal = () => {
     return (
         <Content>
             <div className="text-left w-full">
-                <div className="flex justify-between p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <div className="p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
-                        <span className="sm:text-sm md:text-md text-azure-400 font-light">
+                        <span className="text-md text-azure-400 font-light">
                             Persona
                         </span>
-                        <span className="sm:text-xl md:text-2xl text-azure-700 dark:text-azure-300 font-medium">
+                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
                             INFORMACIÓN
                         </span>
                     </div>
@@ -142,15 +143,13 @@ const Personal = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                            NO HAY INFORMACION PERSONAL DISPONIBLE
-                        </div>
+                        !error && (
+                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                NO HAY INFORMACIÓN PERSONAL DISPONIBLE
+                            </div>
+                        )
                     )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
+                    {error && <Errormsg />}
                 </div>
             </div>
         </Content>

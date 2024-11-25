@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 import Content from "../components/Content";
-import { Spinner } from "@material-tailwind/react";
 import Loading from "../components/Loading";
+import ContentHeader from "../components/ContentHeader";
+import Errormsg from "../components/Errormsg";
 
 const Pagos = () => {
     const { sistemas, error, loading } = useMenu();
@@ -43,16 +44,8 @@ const Pagos = () => {
     return (
         <Content>
             <div className="text-left w-full">
-                <div className="p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
-                    <div className="flex flex-col text-left">
-                        <span className="text-md text-azure-400 font-light">
-                            Sistema
-                        </span>
-                        <span className="text-2xl text-azure-700 dark:text-azure-300 font-medium">
-                            PAGOS
-                        </span>
-                    </div>
-                </div>
+                <ContentHeader label="Autogestión" title="PAGOS" />
+
                 <div className="p-5">
                     {loading ? (
                         <Loading title="pagos" />
@@ -182,15 +175,13 @@ const Pagos = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                            NO HAY PAGOS DISPONIBLES
-                        </div>
+                        !error && (
+                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                NO HAY PAGOS DISPONIBLES
+                            </div>
+                        )
                     )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
-                        </div>
-                    )}
+                    {error && <Errormsg />}
                 </div>
             </div>
         </Content>
