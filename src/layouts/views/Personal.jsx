@@ -27,18 +27,16 @@ const Personal = () => {
         let getChecks = null;
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/personas/${persona.documento}/sistemas`
+                `http://localhost:5000/atenea/api/persona/${persona.documento}/sistemas`
             );
             getChecks = response.data.data[0];
         } catch (err) {
-            console.log(err);
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
             );
             toast.error("Error");
         } finally {
             setChecks(getChecks);
-            console.log(getChecks);
         }
     };
 
@@ -52,7 +50,7 @@ const Personal = () => {
     return (
         <Content>
             <div className="text-left w-full">
-                <div className="p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <div className="p-5 flex justify-between text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
                         <span className="text-md text-azure-400 font-light">
                             Persona
