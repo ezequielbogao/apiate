@@ -120,7 +120,7 @@ const Rodado = () => {
                                             NÚMERO RODADO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {rod.NRO_DODADO ?? "-"}
+                                            {rod.NRO_RODADO ?? "-"}
                                         </span>
                                     </div>
                                 </div>

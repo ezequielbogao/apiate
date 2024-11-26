@@ -68,7 +68,13 @@ const Rodados = () => {
                                                         <span className="text-azure-300 text-md font-medium mt-3">
                                                             N° {NRO_RODADO}
                                                         </span>
-                                                        <span className="text-red-600 dark:text-red-400 text-lg font-medium">
+                                                        <span
+                                                            className={`${
+                                                                DEUDA_RODADO !=
+                                                                "0.00"
+                                                                    ? "text-red-600 dark:text-red-400"
+                                                                    : "text-green-600 dark:text-green-400"
+                                                            }  text-lg font-medium`}>
                                                             {DEUDA_RODADO}
                                                         </span>
                                                     </div>
