@@ -117,7 +117,7 @@ const Rodado = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            NÚMERO RODADO
+                                            NÚMERO DE RODADO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {rod.NRO_RODADO ?? "-"}
