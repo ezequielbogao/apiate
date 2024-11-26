@@ -21,7 +21,7 @@ const Comercio = () => {
             const response = await axios.get(
                 `http://localhost:5000/atenea/api/rafam/comercio/${comercio}`
             );
-            getCom = response.data.data;
+            getCom = response.data.data[0];
             console.log(getCom);
         } catch (err) {
             setError(

@@ -21,7 +21,7 @@ const Inmueble = () => {
             const response = await axios.get(
                 `http://localhost:5000/atenea/api/rafam/inmueble/${inmueble}`
             );
-            getImn = response.data.data;
+            getImn = response.data.data[0];
             console.log(getImn);
         } catch (err) {
             setError(

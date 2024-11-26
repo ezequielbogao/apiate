@@ -1,22 +1,14 @@
-import Content from "../components/Content";
-import { useMenu } from "../../Context/MenuContext";
-import Lupacheck from "../components/icons/Lupacheck";
-import {
-    Button,
-    Popover,
-    PopoverContent,
-    PopoverHandler,
-    Spinner,
-    Typography,
-} from "@material-tailwind/react";
-import Loading from "../components/Loading";
-import Checks from "../components/icons/Checks";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useMenu } from "../../Context/MenuContext";
+
+import Content from "../components/Content";
+import Loading from "../components/Loading";
 import CheckItem from "../components/CheckItem";
 import Systems from "../components/icons/Systems";
 import Errormsg from "../components/Errormsg";
+
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Personal = () => {
     const { persona, setError, error, loading } = useMenu();

@@ -21,7 +21,7 @@ const Rodado = () => {
             const response = await axios.get(
                 `http://localhost:5000/atenea/api/rafam/rodado/${rodado}`
             );
-            getRod = response.data.data;
+            getRod = response.data.data[0];
             console.log(getRod);
         } catch (err) {
             setError(
