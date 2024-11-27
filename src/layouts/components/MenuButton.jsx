@@ -9,6 +9,7 @@ const MenuButton = (props) => {
         title: PropTypes.string,
         to: PropTypes.string,
         count: PropTypes.number,
+        path: PropTypes.string,
     };
     return (
         <Tooltip
@@ -16,10 +17,12 @@ const MenuButton = (props) => {
                 props.count ? "(" + props.count + ")" : ""
             }`}
             placement="right"
-            className="block md:hidden bg-white text-azure-600 dark:text-white dark:bg-azure-600 text-md">
+            className={`block md:hidden bg-white  text-azure-600 dark:text-white dark:bg-azure-600 text-md`}>
             <Link
                 to={props.to}
-                className={`flex p-0 md:p-2 py-2 justify-center md:justify-between md:items-center gap-3 transition-colors duration-300 ease-in-out hover:bg-azure-50 dark:hover:bg-azure-600 rounded-xl`}>
+                className={`flex p-0 md:p-2 py-2 justify-center ${
+                    props.path === props.to ? "shadow-md dark:bg-azure-600" : ""
+                } md:justify-between md:items-center gap-3 transition-colors duration-300 ease-in-out hover:bg-azure-50 dark:hover:bg-azure-500 rounded-xl`}>
                 <div className="flex gap-2 align-middle items-center">
                     {props.icon}
                     <div className="content flex-col text-left hidden md:block">
@@ -27,7 +30,12 @@ const MenuButton = (props) => {
                             {props.label}
                         </span>
                         <div className="flex justify-between">
-                            <span className="text-sm text-azure-700 dark:text-azure-100 font-light">
+                            <span
+                                className={`text-sm ${
+                                    props.path === props.to
+                                        ? "text-azure-700 font-bold dark:text-azure-100"
+                                        : " text-azure-700 dark:text-azure-100 font-light"
+                                } `}>
                                 {props.title}
                             </span>
                         </div>

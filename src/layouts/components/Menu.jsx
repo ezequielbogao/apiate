@@ -12,23 +12,33 @@ import Turnosmed from "./icons/Turnosmed";
 
 import MenuSection from "./MenuSection";
 import { useMenu } from "../../Context/MenuContext";
+import { useLocation } from "react-router-dom";
 
 const Menu = () => {
     const { sistemas, error, loading } = useMenu();
 
+    const location = useLocation();
+    const path = location.pathname;
     return (
         <div className="w-2/12 justify-between md:px-5 border-r-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
             <div className="flex flex-col mt-5">
                 <MenuSection text="HOME" />
-                <MenuButton to={"/"} icon={<Charts />} title={"Dashboard"} />
+                <MenuButton
+                    path={path}
+                    to={"/"}
+                    icon={<Charts />}
+                    title={"Dashboard"}
+                />
                 <MenuSection text="PERSONA" cs="mt-10" />
                 <MenuButton
+                    path={path}
                     to={"/personal"}
                     icon={<User />}
                     title={"Información"}
                 />
                 <MenuSection text="CONDUCIR" cs="mt-10" />
                 <MenuButton
+                    path={path}
                     to={"/citas"}
                     icon={<Citas />}
                     title={"Citas"}
@@ -36,6 +46,7 @@ const Menu = () => {
                 />
                 <MenuSection text="AUTOGESTIÓN" cs="mt-10" />
                 <MenuButton
+                    path={path}
                     to={"/pagos"}
                     icon={<Pago />}
                     title={"Pagos"}
@@ -47,6 +58,7 @@ const Menu = () => {
                 />
                 <MenuSection text="RAFAM" cs="mt-10" />
                 <MenuButton
+                    path={path}
                     to={"/rafam/comercios"}
                     icon={<Store />}
                     title={"Comercios"}
@@ -55,6 +67,7 @@ const Menu = () => {
                     }
                 />
                 <MenuButton
+                    path={path}
                     to={"/rafam/inmuebles"}
                     icon={<Casa />}
                     title={"Inmuebles"}
@@ -63,6 +76,7 @@ const Menu = () => {
                     }
                 />
                 <MenuButton
+                    path={path}
                     to={"/rafam/rodados"}
                     icon={<Auto />}
                     title={"Rodados"}
@@ -70,18 +84,21 @@ const Menu = () => {
                 />
                 <MenuSection text="SALUD" cs="mt-10" />
                 <MenuButton
+                    path={path}
                     to={"/salud/emergencias"}
                     icon={<Corazon />}
                     title={"Emergencias"}
                     count={sistemas?.salud_emergencias?.length ?? null}
                 />{" "}
                 <MenuButton
+                    path={path}
                     to={"/salud/internacion"}
                     icon={<Inter />}
                     title={"Internación"}
                     count={sistemas?.salud_internacion?.length ?? null}
                 />
                 <MenuButton
+                    path={path}
                     to={"/salud/turnos"}
                     icon={<Turnosmed />}
                     title={"Turnos"}

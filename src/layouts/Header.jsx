@@ -148,9 +148,9 @@ const Header = () => {
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex rounded-xl">
-                    <div className="flex flex-row w-full border-2 border-azure-200 dark:border-azure-500 rounded-xl">
+                    <div className="flex flex-row w-full bg-azure-100 dark:bg-azure-800 rounded-xl">
                         <input
-                            className="py-0 px-2 w-full bg-white rounded-tl-xl rounded-bl-xl text-azure-600 dark:bg-azure-700 focus:outline-none text-sm dark:text-azure-100"
+                            className="py-0 px-2 w-full bg-azure-100 rounded-tl-xl rounded-bl-xl text-azure-600 dark:bg-azure-800 focus:outline-none text-sm dark:text-azure-100"
                             placeholder="Buscar por DNI"
                             name="dni"
                         />
