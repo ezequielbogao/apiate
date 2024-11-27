@@ -21,7 +21,9 @@ const MenuButton = (props) => {
             <Link
                 to={props.to}
                 className={`flex p-0 md:p-2 py-2 justify-center ${
-                    props.path === props.to ? "shadow-md dark:bg-azure-600" : ""
+                    props.path === props.to
+                        ? "bg-azure-100 dark:bg-azure-600"
+                        : ""
                 } md:justify-between md:items-center gap-3 transition-colors duration-300 ease-in-out hover:bg-azure-50 dark:hover:bg-azure-500 rounded-xl`}>
                 <div className="flex gap-2 align-middle items-center">
                     {props.icon}
