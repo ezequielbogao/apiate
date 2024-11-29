@@ -13,6 +13,7 @@ import Turnosmed from "./icons/Turnosmed";
 import MenuSection from "./MenuSection";
 import { useMenu } from "../../Context/MenuContext";
 import { useLocation } from "react-router-dom";
+import Email from "./icons/Email";
 
 const Menu = () => {
     const { sistemas, error, loading } = useMenu();
@@ -103,6 +104,13 @@ const Menu = () => {
                     icon={<Turnosmed />}
                     title={"Turnos"}
                     count={sistemas?.salud_turnos?.length ?? null}
+                />
+                <MenuSection text="GESTIÓN" cs="mt-10" />
+                <MenuButton
+                    path={path}
+                    to={"/gestion/campañas"}
+                    icon={<Email />}
+                    title={"Campañas"}
                 />
             </div>
         </div>
