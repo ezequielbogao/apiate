@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 import Content from "../components/Content";
 import Loading from "../components/Loading";
@@ -8,50 +8,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Campanas = () => {
-    const { sistemas, error, loading } = useMenu();
-
-    const TABLE_PAGOS = [
-        "Tipo",
-        "Modo de pago",
-        "Imponible",
-        "Importe",
-        "Fecha de pago",
-        "Estado",
-    ];
-
-    let totalPage = 0;
-    let paginatedPages = 0;
-    const itemsPerPage = 10;
-    const [currentPage, setcurrentPage] = useState(1);
-
-    if (sistemas && sistemas.pagos) {
-        totalPage = Math.ceil(sistemas.pagos.length / itemsPerPage);
-        paginatedPages = sistemas.pagos.slice(
-            (currentPage - 1) * itemsPerPage,
-            currentPage * itemsPerPage
-        );
-    }
-    const nextPage = () => {
-        if (currentPage < totalPage) {
-            setcurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) {
-            setcurrentPage(currentPage - 1);
-        }
-    };
+    const { sistemas, error, loading, setLoading, setError } = useMenu();
 
     const [file, setFile] = useState(null);
-    const [responseMessage, setResponseMessage] = useState("");
-
-    // Función para manejar la selección del archivo
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
 
     const handleSubmit = async (event) => {
+        setLoading(true);
+        setError(null);
+
         event.preventDefault();
         if (!file) {
             // setError('Por favor selecciona un archivo');
@@ -77,12 +44,20 @@ const Campanas = () => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", "listadoCampaña.xlsx");
+            link.setAttribute("download", "listadoContactos.xlsx");
             document.body.appendChild(link);
             link.click();
             toast.success("Archivo procesado y descargado");
-        } catch (err) {
-            console.error(err);
+            setLoading(false);
+        } catch (error) {
+            if (error.response) {
+                toast.error(`Error: no se pudo procesar el archivo`);
+            } else if (error.request) {
+                toast.error("No se pudo conectar con el servidor.");
+            } else {
+                toast.error("Hubo un error al realizar la solicitud.");
+            }
+            setLoading(false);
         }
     };
 
@@ -93,33 +68,30 @@ const Campanas = () => {
 
                 <div className="p-5">
                     {loading ? (
-                        <Loading title="Tablero" />
+                        <Loading title="contactos" />
                     ) : (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full ">
-                                    <span className="text-azure-300 font-light">
+                                    <span className="text-azure-500 font-normal">
                                         SUBIR ARCHIVO PARA CAMPAÑA
                                     </span>
 
-                                    <div className="text-azure-500 dark:text-azure-100 font-light text-sm mt-4">
+                                    <div className="text-azure-400 dark:text-azure-100 font-light text-sm mt-4">
                                         En esta sección, puedes cargar un
                                         archivo en formato Excel o CSV que
                                         contenga una columna llamada{" "}
                                         <span className=" text-azure-600 font-normal dark:text-blue-500 text-md">
                                             documento
                                         </span>{" "}
-                                        o{" "}
-                                        <span className=" text-azure-600 font-normal dark:text-blue-500 text-md">
-                                            dni
-                                        </span>
                                         . Este archivo será procesado para
                                         extraer la información de las personas
                                         que coincidan con los documentos
                                         proporcionados, junto con sus números de
-                                        teléfono. Esto te permitirá obtener
-                                        rápidamente una lista de contactos para
-                                        realizar campañas personalizadas.{" "}
+                                        teléfono. <br></br>Esto te permitirá
+                                        obtener rápidamente una lista de
+                                        contactos para realizar campañas
+                                        personalizadas.{" "}
                                         <p className="text-azure-600 font-normal dark:text-blue-500 text-md mt-4">
                                             Haz clic en el botón para
                                             seleccionar y cargar tu archivo y
@@ -131,6 +103,7 @@ const Campanas = () => {
                                             onSubmit={handleSubmit}
                                             className=" mt-5">
                                             <input
+                                                required
                                                 type="file"
                                                 className="form-control bg-azure-100 dark:bg-azure-400 dark:text-azure-100 p-2 rounded-lg text-xs font-light rounded-r-none"
                                                 id="file-upload"
