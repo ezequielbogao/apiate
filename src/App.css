@@ -188,3 +188,29 @@ p {
     background-size: 20px 20px;
     background-position: -5px -5px;
 } */
+
+/* Ocultar el input file original */
+.hidden {
+    display: none;
+}
+
+/* Estilos para el botón personalizado */
+.upload-btn {
+    background-color: #4caf50; /* Color de fondo */
+    border: none; /* Sin bordes */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambio de cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+}
+
+/* Agregar efectos al pasar el ratón */
+.upload-btn:hover {
+    background-color: #45a049; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+::-webkit-file-upload-button {
+    display: none;
+}
