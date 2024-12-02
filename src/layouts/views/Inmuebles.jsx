@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import Casa from "../components/icons/Casa";
 import ContentHeader from "../components/ContentHeader";
 import Errormsg from "../components/Errormsg";
+import Imponible from "../components/Imponible";
 
 const Inmuebles = () => {
     const { sistemas, error, loading } = useMenu();
@@ -56,31 +57,18 @@ const Inmuebles = () => {
                                             { NRO_INMUEBLE, DEUDA_INMUEBLE },
                                             index
                                         ) => (
-                                            <Link
+                                            <Imponible
                                                 to={`/rafam/inmueble/${NRO_INMUEBLE}`}
                                                 key={index}
-                                                className="bg-white shadow-sm hover:-translate-y-1 transition-transform ease-in dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                                                <div className=" text-azure-600">
-                                                    <div className="flex flex-col align-middle items-center justify-center">
-                                                        <Casa
-                                                            width="50"
-                                                            height="50"
-                                                        />
-                                                        <span className="text-azure-300 text-md font-medium mt-3">
-                                                            N° {NRO_INMUEBLE}
-                                                        </span>
-                                                        <span
-                                                            className={`${
-                                                                DEUDA_INMUEBLE !=
-                                                                "0.00"
-                                                                    ? "text-red-600 dark:text-red-400"
-                                                                    : "text-green-600 dark:text-green-400"
-                                                            }  text-lg font-medium`}>
-                                                            {DEUDA_INMUEBLE}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </Link>
+                                                nro={NRO_INMUEBLE}
+                                                deuda={DEUDA_INMUEBLE}
+                                                icon={
+                                                    <Casa
+                                                        width="50"
+                                                        height="50"
+                                                    />
+                                                }
+                                            />
                                         )
                                     )}
                                 </div>

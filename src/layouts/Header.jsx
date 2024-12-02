@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logo_black from "../assets/logo_black.svg";
-import logo_white from "../assets/logo_white.svg";
+import logo_black from "../assets/ate_logo_b.svg";
+import logo_white from "../assets/ate_logo_w.svg";
 import { useForm } from "react-hook-form";
 import { useMenu } from "../Context/MenuContext";
 import axios from "axios";
@@ -76,7 +76,7 @@ const Header = () => {
 
     return (
         <>
-            <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+            <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
                 <div className="flex align-middle items-center">
                     <a href="/">
                         <img

@@ -65,7 +65,7 @@ const Personal = () => {
     return (
         <Content>
             <div className="text-left w-full">
-                <div className="p-5 flex justify-between text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <div className="p-3 px-5  flex justify-between text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
                     <div className="flex flex-col text-left">
                         <span className="text-md text-azure-400 font-light">
                             Persona

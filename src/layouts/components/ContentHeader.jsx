@@ -6,7 +6,7 @@ const ContentHeader = (props) => {
         title: PropTypes.string,
     };
     return (
-        <div className="p-5 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+        <div className="p-3 px-5 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
             <div className="flex flex-col text-left">
                 <span className="text-md text-azure-400 font-light">
                     {props.label}

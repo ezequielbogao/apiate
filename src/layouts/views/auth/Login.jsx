@@ -1,4 +1,4 @@
-import logo_black from "../../../assets/logo_black.svg";
+import logo_black from "../../../assets/ate_logo_b.svg";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
