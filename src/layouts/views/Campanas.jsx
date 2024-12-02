@@ -101,20 +101,22 @@ const Campanas = () => {
                                     <div className="w-full flex justify-start">
                                         <form
                                             onSubmit={handleSubmit}
-                                            className=" mt-5">
+                                            className="flex flex-col md:flex-row mt-5">
                                             <input
                                                 required
                                                 type="file"
-                                                className="form-control bg-azure-100 dark:bg-azure-400 dark:text-azure-100 p-2 rounded-lg text-xs font-light rounded-r-none"
+                                                className="form-control bg-azure-100 dark:bg-azure-400 dark:text-azure-100 p-2 rounded-lg text-xs font-light md:rounded-r-none"
                                                 id="file-upload"
                                                 accept=".xlsx, .xls, .csv"
                                                 onChange={handleFileChange}
                                             />
-                                            <button
-                                                type="submit"
-                                                className="bg-azure-600 text-white text-xs font-light rounded-l-none focus:border-azure-600 hover:bg-azure-500 hover:outline-none hover:border-azure-600">
-                                                Subir archivo
-                                            </button>
+                                            <div className="flex justify-end">
+                                                <button
+                                                    type="submit"
+                                                    className="bg-azure-600 text-white text-xs font-light mt-1 md:mt-0 md:rounded-l-none focus:border-azure-600 hover:bg-azure-500 hover:outline-none hover:border-azure-600">
+                                                    Subir archivo
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
