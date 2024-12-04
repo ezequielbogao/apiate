@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 import Content from "../components/Content";
 import Loading from "../components/Loading";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Campanas = () => {
-    const { sistemas, error, loading, setLoading, setError } = useMenu();
+    const { error, loading, setLoading, setError } = useMenu();
 
     const [file, setFile] = useState(null);
     const handleFileChange = (event) => {

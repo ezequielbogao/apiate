@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-const Email = (props) => {
-    Email.propTypes = {
+const Phone = (props) => {
+    Phone.propTypes = {
         width: PropTypes.string,
         height: PropTypes.string,
         stroke: PropTypes.stroke,
@@ -15,15 +15,14 @@ const Email = (props) => {
             viewBox="0 0 25 25"
             fill="none"
             stroke="currentColor"
-            strokeWidth={props.stroke ? props.stroke : "1"}
+            strokeWidth={1}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-mail text-azure-600 dark:text-azure-100">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-phone text-azure-600 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-            <path d="M3 7l9 6l9 -6" />
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
         </svg>
     );
 };
 
-export default Email;
+export default Phone;
