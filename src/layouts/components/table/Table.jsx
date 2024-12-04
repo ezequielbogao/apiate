@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Paginate from "./Paginate";
 const Table = (props) => {
     Table.propTypes = {
-        children: PropTypes.object,
+        children: PropTypes.any,
         currentPage: PropTypes.number,
         prevPage: PropTypes.number,
         nextPage: PropTypes.number,

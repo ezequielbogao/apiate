@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 const Imponible = (props) => {
     Imponible.propTypes = {
         nro: PropTypes.number,
-        deuda: PropTypes.number,
+        deuda: PropTypes.string,
         icon: PropTypes.object,
-        key: PropTypes.string,
         to: PropTypes.string,
     };
     return (
         <Link
             to={props.to}
-            key={props.key}
             className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-700 rounded-xl mt-5 border-2 border-azure-100 dark:border-azure-700 p-5 hover:border-azure-300">
             <div className="text-azure-600">
                 <div className="flex flex-col align-middle items-center justify-center">

@@ -11,7 +11,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Personal = () => {
-    const { persona, setError, error, loading } = useMenu();
+    const { sistemas, persona, setError, error, loading } = useMenu();
     const [checksActive, setChecksActive] = useState(false);
     const [checks, setChecks] = useState(null);
     const [adicionales, setAdicionales] = useState(null);
@@ -123,6 +123,141 @@ const Personal = () => {
                     </div>
                 </div>
                 <div className="p-5">
+                    <div className="grid grid-cols-8 gap-5">
+                        <div className="col-span-8 md:col-span-2">
+                            <span>
+                                {" "}
+                                {loading ? (
+                                    <Loading title="datos personales" />
+                                ) : persona ? (
+                                    <div className=" text-azure-600 mb-10">
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                NOMBRE Y APELLIDO
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {persona.nombre}{" "}
+                                                {persona.apellido}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                DOCUMENTO
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {persona.documento}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                DIRECCIÓN
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {persona.calle}
+                                                {persona.altura}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    !error && (
+                                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                            NO HAY INFORMACIÓN PERSONAL
+                                            DISPONIBLE
+                                        </div>
+                                    )
+                                )}
+                                {error && <Errormsg />}
+                            </span>
+                            <div className="my-8 border-2 border-b-azure-100"></div>
+                            <span>
+                                {" "}
+                                {adicionales ? (
+                                    <div className="">
+                                        <span className="text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                            DATOS ADICIONALES
+                                        </span>
+                                        <div className="text-md text-orange-800 dark:text-orange-300 mb-4 font-light">
+                                            La información que se muestra a
+                                            continuación provienen de varios
+                                            sistemas. Es por esto, que algunos
+                                            datos pueden estar repetidos o
+                                            desorganizados.
+                                        </div>
+                                        <div className="text-azure-600 mb-10">
+                                            {Object.entries(adicionales).map(
+                                                ([key, value]) => (
+                                                    <div
+                                                        key={key}
+                                                        className="mb-5">
+                                                        <span className="text-azure-400 font-light text-sm">
+                                                            {key}:
+                                                        </span>
+                                                        <ul>
+                                                            {value.map(
+                                                                (
+                                                                    item,
+                                                                    index
+                                                                ) => (
+                                                                    <li
+                                                                        className="mx-3 text-azure-500 text-sm"
+                                                                        key={
+                                                                            index
+                                                                        }>
+                                                                        {item}
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    !error && (
+                                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                            NO HAY INFORMACIÓN ADICIONAL
+                                            DISPONIBLE
+                                        </div>
+                                    )
+                                )}
+                            </span>
+                        </div>
+                        <div className="col-span-8 md:col-span-6 bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className="min-w-max table-auto text-left w-full md:w-3/12">
+                                <span className="mb-5">SISTEMAS</span>
+                                {checks ? (
+                                    <>
+                                        <CheckItem
+                                            title="Autogestion"
+                                            check={checks.autogestion}
+                                        />
+                                        <CheckItem
+                                            title="Rafam"
+                                            check={checks.rafam}
+                                        />
+                                        <CheckItem
+                                            title="Salud"
+                                            check={checks.salud}
+                                        />
+                                        <CheckItem
+                                            title="Reclamos"
+                                            check={checks.reclamos}
+                                        />
+                                        <CheckItem
+                                            title="Citas"
+                                            check={checks.citas}
+                                        />
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="p-5">
                     {loading ? (
                         <Loading title="datos personales" />
                     ) : persona ? (
@@ -198,7 +333,7 @@ const Personal = () => {
                             </div>
                         </div>
                     )}
-                </div>
+                </div> */}
             </div>
         </Content>
     );

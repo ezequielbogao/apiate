@@ -101,7 +101,7 @@ const Campanas = () => {
                                     <div className="w-full flex justify-start">
                                         <form
                                             onSubmit={handleSubmit}
-                                            className="flex flex-col md:flex-row mt-5">
+                                            className="flex flex-col md:flex-row mt-5 w-full">
                                             <input
                                                 required
                                                 type="file"
