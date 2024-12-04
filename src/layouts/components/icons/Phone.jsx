@@ -4,7 +4,6 @@ const Phone = (props) => {
     Phone.propTypes = {
         width: PropTypes.string,
         height: PropTypes.string,
-        stroke: PropTypes.stroke,
     };
 
     return (

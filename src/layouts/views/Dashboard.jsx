@@ -14,8 +14,9 @@ import Dni from "../components/icons/Dni";
 import Phone from "../components/icons/Phone";
 
 const Dashboard = () => {
-    const { sistemas, error, loading, setLoading, setError } = useMenu();
     const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(null);
 
     const onLoad = async () => {
         setLoading(true);
@@ -27,7 +28,6 @@ const Dashboard = () => {
             );
 
             info = response.data.data;
-            toast.success("Data cargada con éxito");
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
@@ -36,12 +36,13 @@ const Dashboard = () => {
         } finally {
             setLoading(false);
             setData(info);
-            console.log(data);
         }
     };
 
     useEffect(() => {
-        if (!data) onLoad();
+        if (!data) {
+            onLoad();
+        }
     }, [data]);
 
     // const state = {
@@ -73,9 +74,9 @@ const Dashboard = () => {
                         <Loading title="Tablero" />
                     ) : data ? (
                         <>
-                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Location width={60} height={60} />
+                                    <Location width={"60"} height={"60"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Direcciones
@@ -86,7 +87,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Dni width={60} height={60} />
+                                    <Dni width={"60"} height={"60"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Documentos
@@ -97,7 +98,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Email width={60} height={60} />
+                                    <Email width={"60"} height={"60"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Emails
@@ -108,7 +109,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Phone width={60} height={60} />
+                                    <Phone width={"60"} height={"60"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Telefonos

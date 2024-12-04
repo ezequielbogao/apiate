@@ -4,7 +4,6 @@ const Email = (props) => {
     Email.propTypes = {
         width: PropTypes.string,
         height: PropTypes.string,
-        stroke: PropTypes.stroke,
     };
 
     return (
@@ -15,7 +14,7 @@ const Email = (props) => {
             viewBox="0 0 25 25"
             fill="none"
             stroke="currentColor"
-            strokeWidth={props.stroke ? props.stroke : "1"}
+            strokeWidth={1}
             strokeLinecap="round"
             strokeLinejoin="round"
             className="icon icon-tabler icons-tabler-outline icon-tabler-mail text-azure-600 dark:text-azure-100">
