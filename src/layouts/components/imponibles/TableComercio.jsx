@@ -13,11 +13,11 @@ const TableComercio = () => {
     const itemsPerPage = 8;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.rafam_imponibles.comercio) {
+    if (sistemas && sistemas.rafam_imponibles.comercios) {
         totalPage = Math.ceil(
-            sistemas.rafam_imponibles.comercio.length / itemsPerPage
+            sistemas.rafam_imponibles.comercios.length / itemsPerPage
         );
-        paginatedPages = sistemas.rafam_imponibles.comercio.slice(
+        paginatedPages = sistemas.rafam_imponibles.comercios.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );

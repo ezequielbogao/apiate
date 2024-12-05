@@ -104,13 +104,13 @@ const TableInmueble = () => {
                     </>
                 ) : (
                     <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                        NO HAY RODADOS DISPONIBLES
+                        NO HAY INMUEBLES DISPONIBLES
                     </div>
                 )
             ) : (
                 !error && (
                     <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                        NO HAY RODADOS DISPONIBLES
+                        NO HAY INMUEBLES DISPONIBLES
                     </div>
                 )
             )}
