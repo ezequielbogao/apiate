@@ -9,15 +9,10 @@ import Errormsg from "../components/Errormsg";
 
 import axios from "axios";
 import { toast } from "react-toastify";
-import Imponible from "../components/Imponible";
-import Auto from "../components/icons/Auto";
-import { Link } from "react-router-dom";
-import Casa from "../components/icons/Casa";
-import Store from "../components/icons/Store";
-import Td from "../components/table/Td";
-import Tr from "../components/table/Tr";
-import Table from "../components/table/Table";
-import Th from "../components/table/Th";
+
+import TableRodado from "../components/imponibles/TableRodado";
+import TableInmueble from "../components/imponibles/TableInmueble";
+import TableComercio from "../components/imponibles/TableComercio";
 
 const Personal = () => {
     const { sistemas, persona, setError, error, loading } = useMenu();
@@ -71,31 +66,6 @@ const Personal = () => {
             console.log(adicionales);
         }
     }, [persona]);
-
-    let totalPage = 0;
-    let paginatedPages = 0;
-    const itemsPerPage = 10;
-    const [currentPage, setcurrentPage] = useState(1);
-
-    if (sistemas && sistemas.citas) {
-        totalPage = Math.ceil(sistemas.citas.length / itemsPerPage);
-        paginatedPages = sistemas.citas.slice(
-            (currentPage - 1) * itemsPerPage,
-            currentPage * itemsPerPage
-        );
-    }
-
-    const nextPage = () => {
-        if (currentPage < totalPage) {
-            setcurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) {
-            setcurrentPage(currentPage - 1);
-        }
-    };
 
     return (
         <Content>
@@ -245,236 +215,30 @@ const Personal = () => {
                             </div>
                         </div>
                         <div className="col-span-8 md:col-span-6 bg-white dark:bg-azure-800 dark:rounded-xl border-azure-50 p-5 border-0 md:border-l-2 border-l-azure-100 dark:border-0">
-                            <div className="min-w-max table-auto text-left w-full md:w-3/12">
+                            <div className="min-w-max table-auto text-left w-full">
                                 <div>
-                                    {sistemas &&
-                                        sistemas.rafam_imponibles &&
-                                        sistemas.rafam_imponibles.rodados &&
-                                        (sistemas.rafam_imponibles.rodados
-                                            .length > 0 ? (
-                                            <>
-                                                <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                                    RODADOS
-                                                </span>
-                                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                                                    {sistemas.rafam_imponibles.rodados.map(
-                                                        (
-                                                            { NRO_RODADO },
-                                                            index
-                                                        ) => (
-                                                            <Link
-                                                                key={index}
-                                                                to={`/rafam/rodado/${NRO_RODADO}`}
-                                                                className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-700 p-2 hover:border-azure-300">
-                                                                <div className="text-azure-600">
-                                                                    <div className="flex flex-col align-middle items-center justify-center">
-                                                                        <span className="text-azure-300 text-md font-medium">
-                                                                            N°
-                                                                            {
-                                                                                NRO_RODADO
-                                                                            }
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                                                NO HAY RODADOS DISPONIBLES
-                                            </div>
-                                        ))}
-                                    {error && <Errormsg />}
+                                    {" "}
+                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                        RODADOS
+                                    </span>
+                                    {<TableRodado />}
                                 </div>
 
-                                <div className="mt-10">
-                                    {sistemas &&
-                                        sistemas.rafam_imponibles &&
-                                        sistemas.rafam_imponibles.inmuebles &&
-                                        (sistemas.rafam_imponibles.inmuebles
-                                            .length > 0 ? (
-                                            <>
-                                                <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                                    INMUEBLES
-                                                </span>
-                                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                                                    {sistemas.rafam_imponibles.inmuebles.map(
-                                                        (
-                                                            { NRO_INMUEBLE },
-                                                            index
-                                                        ) => (
-                                                            <Link
-                                                                key={index}
-                                                                to={`/rafam/inmueble/${NRO_INMUEBLE}`}
-                                                                className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-700 p-2 hover:border-azure-300">
-                                                                <div className="text-azure-600">
-                                                                    <div className="flex flex-col align-middle items-center justify-center">
-                                                                        <span className="text-azure-300 text-md font-medium">
-                                                                            N°
-                                                                            {
-                                                                                NRO_INMUEBLE
-                                                                            }
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                                                NO HAY RODADOS DISPONIBLES
-                                            </div>
-                                        ))}
-                                    {error && <Errormsg />}
+                                <div>
+                                    {" "}
+                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                        INMUEBLES
+                                    </span>
+                                    {<TableInmueble />}
                                 </div>
-
-                                <div className="mt-10">
-                                    {sistemas &&
-                                        sistemas.rafam_imponibles &&
-                                        sistemas.rafam_imponibles.comercios &&
-                                        (sistemas.rafam_imponibles.comercios
-                                            .length > 0 ? (
-                                            <>
-                                                <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                                    COMERCIOS
-                                                </span>
-                                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                                                    {sistemas.rafam_imponibles.comercios.map(
-                                                        (
-                                                            { NRO_COMERCIO },
-                                                            index
-                                                        ) => (
-                                                            <Link
-                                                                key={index}
-                                                                to={`/rafam/comercio/${NRO_COMERCIO}`}
-                                                                className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-700 p-2 hover:border-azure-300">
-                                                                <div className="text-azure-600">
-                                                                    <div className="flex flex-col align-middle items-center justify-center">
-                                                                        <span className="text-azure-300 text-md font-medium">
-                                                                            N°
-                                                                            {
-                                                                                NRO_COMERCIO
-                                                                            }
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                                                NO HAY RODADOS DISPONIBLES
-                                            </div>
-                                        ))}
-                                    {error && <Errormsg />}
+                                <div>
+                                    {" "}
+                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                        COMERCIOS
+                                    </span>
+                                    {<TableComercio />}
                                 </div>
                             </div>
-
-                            {/* <div className="p-5">
-                                {loading ? (
-                                    <Loading title="citas" />
-                                ) : sistemas && sistemas.citas ? (
-                                    <Table
-                                        currentPage={currentPage}
-                                        prevPage={prevPage}
-                                        nextPage={nextPage}
-                                        totalPage={totalPage}>
-                                        <thead>
-                                            <tr>
-                                                {[
-                                                    "Email",
-                                                    "Organización",
-                                                    "Teléfono",
-                                                    "Canal",
-                                                    "Fecha",
-                                                    "Estado",
-                                                ].map((head) => (
-                                                    <Th
-                                                        key={head}
-                                                        text={head}
-                                                    />
-                                                ))}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {sistemas.citas.length > 0 ? (
-                                                paginatedPages.map(
-                                                    (
-                                                        {
-                                                            mail,
-                                                            organizacion,
-                                                            telefono,
-                                                            canal,
-                                                            fecha_turno,
-                                                            estado_turno,
-                                                        },
-                                                        index
-                                                    ) => (
-                                                        <Tr key={index}>
-                                                            <Td
-                                                                content={mail}
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    organizacion
-                                                                }
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    telefono
-                                                                }
-                                                            />
-                                                            <Td
-                                                                content={canal}
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    fecha_turno
-                                                                }
-                                                            />
-                                                            <Td>
-                                                                <span
-                                                                    className={`font-normal text-sm ${
-                                                                        estado_turno ===
-                                                                        "Cancelada"
-                                                                            ? "text-red-500"
-                                                                            : "text-green-600"
-                                                                    }`}>
-                                                                    {
-                                                                        estado_turno
-                                                                    }
-                                                                </span>
-                                                            </Td>
-                                                        </Tr>
-                                                    )
-                                                )
-                                            ) : (
-                                                <tr>
-                                                    <td
-                                                        colSpan="6"
-                                                        className="p-4 text-center">
-                                                        No hay citas
-                                                        disponibles.
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </Table>
-                                ) : (
-                                    !error && (
-                                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                                            NO HAY CITAS DISPONIBLES
-                                        </div>
-                                    )
-                                )}
-                                {error && <Errormsg />}
-                            </div> */}
                         </div>
                     </div>
                 </div>
