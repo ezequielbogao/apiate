@@ -11,23 +11,9 @@ import Logout from "./components/icons/Logout";
 
 const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const {
-        persona,
-        setPersona,
-        sistemas,
-        setSistemas,
-        error,
-        setError,
-        loading,
-        setLoading,
-    } = useMenu();
+    const { setPersona, setSistemas, setError, setLoading } = useMenu();
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
+    const { handleSubmit } = useForm();
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);

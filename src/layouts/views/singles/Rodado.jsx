@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Errormsg from "../../components/Errormsg";
 
 const Rodado = () => {
-    const { sistemas, error, loading, setLoading, setError } = useMenu();
+    const { error, loading, setLoading, setError } = useMenu();
     const { rodado } = useParams();
     const [rod, setRod] = useState(null);
 

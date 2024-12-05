@@ -10,7 +10,7 @@ const TableComercio = () => {
 
     let totalPage = 0;
     let paginatedPages = 0;
-    const itemsPerPage = 8;
+    const itemsPerPage = 12;
     const [currentPage, setcurrentPage] = useState(1);
 
     if (sistemas && sistemas.rafam_imponibles.comercios) {
@@ -49,7 +49,7 @@ const TableComercio = () => {
                                 <Link
                                     key={index}
                                     to={`/rafam/comercio/${NRO_COMERCIO}`}
-                                    className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-700 p-2 hover:border-azure-300">
+                                    className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-900 p-2 hover:border-azure-300">
                                     <div className="text-azure-600">
                                         <div className="flex flex-col align-middle items-center justify-center">
                                             <span className="text-azure-300 text-md font-medium">

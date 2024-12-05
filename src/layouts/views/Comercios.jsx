@@ -3,7 +3,6 @@ import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
 import Loading from "../components/Loading";
 import Store from "../components/icons/Store";
-import { Link } from "react-router-dom";
 import ContentHeader from "../components/ContentHeader";
 import Errormsg from "../components/Errormsg";
 import Imponible from "../components/Imponible";

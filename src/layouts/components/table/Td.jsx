@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Td = (props) => {
     Td.propTypes = {
-        content: PropTypes.string,
+        content: PropTypes.any,
         children: PropTypes.object,
     };
     return props.children ? (

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 const Paginate = (props) => {
     Paginate.propTypes = {
-        currentPage: PropTypes.number,
-        prevPage: PropTypes.number,
-        nextPage: PropTypes.number,
-        totalPage: PropTypes.number,
+        currentPage: PropTypes.any,
+        prevPage: PropTypes.any,
+        nextPage: PropTypes.any,
+        totalPage: PropTypes.any,
     };
     return (
         <div className="flex justify-center items-center mt-4">

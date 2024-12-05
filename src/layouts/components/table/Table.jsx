@@ -3,10 +3,10 @@ import Paginate from "./Paginate";
 const Table = (props) => {
     Table.propTypes = {
         children: PropTypes.any,
-        currentPage: PropTypes.number,
-        prevPage: PropTypes.number,
-        nextPage: PropTypes.number,
-        totalPage: PropTypes.number,
+        currentPage: PropTypes.any,
+        prevPage: PropTypes.any,
+        nextPage: PropTypes.any,
+        totalPage: PropTypes.any,
     };
     return (
         <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl mt-5 border-2 border-azure-100 dark:border-azure-700">

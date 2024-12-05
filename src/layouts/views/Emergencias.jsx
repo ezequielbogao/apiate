@@ -33,14 +33,17 @@ const Emergencias = () => {
                                 ) => (
                                     <div
                                         key={index}
-                                        className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                                        <div className=" text-azure-600 mb-10">
+                                        className="grid grid-cols-12 gap-4 bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                                        <div className="col-span-12 md:col-span-6 lg:col-span-8 text-azure-600">
                                             <div className="flex justify-between">
-                                                <span className="text-azure-300 text-md font-medium">
+                                                <span className="text-blue-600 dark:text-blue-500 text-lg font-normal">
                                                     PACIENTE # {paciente}
                                                 </span>
                                                 <span className="text-azure-600 dark:text-azure-100 text-md font-normal">
-                                                    CÓDIGO # {pacoCodigo}
+                                                    <span className="text-azure-300">
+                                                        COD #
+                                                    </span>{" "}
+                                                    {pacoCodigo}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col mt-3">
@@ -48,24 +51,22 @@ const Emergencias = () => {
                                                     UBICACIÓN
                                                 </span>
                                                 <span className=" dark:text-azure-100 font-normal">
-                                                    {emerCalle} {emerAltura}
+                                                    {emerCalle &&
+                                                        emerCalle.toLowerCase()}{" "}
+                                                    {emerAltura &&
+                                                        emerAltura.toLowerCase()}
                                                 </span>
                                             </div>
-                                            <div className="flex flex-col mt-3">
-                                                <span className="text-azure-300 font-light">
-                                                    OBSERVACIONES
-                                                </span>
-                                                <p className=" dark:text-azure-100 font-normal">
-                                                    {observaciones}
-                                                </p>
-                                            </div>
+
                                             <div className="flex flex-col mt-3">
                                                 <span className="text-azure-300 font-light">
                                                     CÓDIGO Y DESCRIPCIÓN
                                                 </span>
                                                 <span className=" dark:text-azure-100 font-normal">
-                                                    {emecCodigo}{" "}
-                                                    {emecDescripcion}
+                                                    {emecCodigo}
+                                                    {" - "}
+                                                    {emecDescripcion &&
+                                                        emecDescripcion.toLowerCase()}
                                                 </span>
                                             </div>
                                             <div className="flex flex-col mt-3">
@@ -73,8 +74,22 @@ const Emergencias = () => {
                                                     COBERTURA
                                                 </span>
                                                 <span className=" dark:text-azure-100 font-normal">
-                                                    {cobeDescripcion}
+                                                    {cobeDescripcion &&
+                                                        cobeDescripcion.toLowerCase()}
                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+                                            <div className="bg-azure-50 dark:bg-azure-800 p-3 rounded-xl h-full">
+                                                <span className="text-azure-300 font-light px-2">
+                                                    OBSERVACIONES
+                                                </span>
+                                                <div className="flex flex-col mt-3">
+                                                    <span className="text-azure-500 dark:text-azure-100 font-normal px-2">
+                                                        {observaciones &&
+                                                            observaciones.toLowerCase()}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Inmueble = () => {
-    const { sistemas, error, loading, setLoading, setError } = useMenu();
+    const { error, loading, setLoading, setError } = useMenu();
     const { inmueble } = useParams();
     const [inm, setInm] = useState(null);
 

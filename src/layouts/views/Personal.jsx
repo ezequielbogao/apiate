@@ -44,7 +44,6 @@ const Personal = () => {
                 `http://localhost:5000/atenea/api/persona/${persona.documento}/adicionales`
             );
             getAdicionales = response.data.data;
-            console.log(response.data.data);
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
@@ -63,7 +62,6 @@ const Personal = () => {
         if (persona) {
             loadSystems();
             loadAdicionales();
-            console.log(adicionales);
         }
     }, [persona]);
 
@@ -162,7 +160,7 @@ const Personal = () => {
                                                 {persona.altura}
                                             </span>
                                         </div>
-                                        <div className="my-8 border-2 border-b-azure-100 dark:border-azure-700"></div>
+                                        <div className="my-5 border border-b-azure-100 dark:border-azure-700"></div>
                                     </div>
                                 )}
                                 {error && <Errormsg />}

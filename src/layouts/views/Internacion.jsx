@@ -1,6 +1,6 @@
 import Content from "../components/Content";
 import { useMenu } from "../../Context/MenuContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../components/Loading";
 import ContentHeader from "../components/ContentHeader";
 import Errormsg from "../components/Errormsg";
@@ -48,10 +48,6 @@ const Internacion = () => {
             setcurrentPage(currentPage - 1);
         }
     };
-
-    useEffect(() => {
-        console.log(paginatedPages);
-    }, [paginatedPages]);
 
     return (
         <Content>

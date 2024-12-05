@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useMenu } from "../../../Context/MenuContext";
 import Loading from "../Loading";
 import Th from "../table/Th";
@@ -84,10 +83,10 @@ const TableCitas = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="w-full flex justify-end p-4">
+                    <div className="w-full flex justify-end py-3">
                         <Link
                             to={"/citas"}
-                            className="text-azure-600 dark:text-azure-100 text-lg">
+                            className="text-white dark:text-azure-100 text-lg bg-azure-500 hover:bg-azure-600 dark:bg-azure-600 hover:dark:bg-azure-700 hover:text-white px-3 py-1 rounded-md">
                             Ver mas
                         </Link>
                     </div>
