@@ -148,9 +148,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <MenuProvider>
-            <RouterProvider router={router} />
-        </MenuProvider>
-    </StrictMode>
+    <MenuProvider>
+        <RouterProvider router={router} />
+    </MenuProvider>
 );

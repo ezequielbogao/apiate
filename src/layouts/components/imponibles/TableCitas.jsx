@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMenu } from "../../../Context/MenuContext";
 import Loading from "../Loading";
-import Table from "../table/Table";
 import Th from "../table/Th";
 import Tr from "../table/Tr";
 import Td from "../table/Td";
 import Errormsg from "../Errormsg";
 import { Link } from "react-router-dom";
 
-export const TableCitas = () => {
+const TableCitas = () => {
     const { sistemas, error, loading } = useMenu();
 
     const TABLE_CITAS = [
@@ -20,7 +19,6 @@ export const TableCitas = () => {
         "Estado",
     ];
 
-    // Si existen citas, seleccionamos solo las últimas 3.
     const citasUltimas =
         sistemas && sistemas.citas ? sistemas.citas.slice(-3) : [];
 
@@ -31,7 +29,7 @@ export const TableCitas = () => {
             ) : sistemas && sistemas.citas ? (
                 <>
                     {" "}
-                    <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl mt-5 border-2 border-azure-100 dark:border-azure-700">
+                    <div className="overflow-auto bg-white dark:bg-azure-800 rounded-xl mt-5">
                         <table className="w-full min-w-max table-auto text-left">
                             <thead>
                                 <tr>
@@ -105,3 +103,5 @@ export const TableCitas = () => {
         </>
     );
 };
+
+export default TableCitas;

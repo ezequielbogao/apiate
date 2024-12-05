@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 
 import Content from "../components/Content";
-import Loading from "../components/Loading";
 import CheckItem from "../components/CheckItem";
 import Systems from "../components/icons/Systems";
 import Errormsg from "../components/Errormsg";
@@ -13,10 +12,10 @@ import { toast } from "react-toastify";
 import TableRodado from "../components/imponibles/TableRodado";
 import TableInmueble from "../components/imponibles/TableInmueble";
 import TableComercio from "../components/imponibles/TableComercio";
-import { TableCitas } from "../components/imponibles/TableCitas";
+import TableCitas from "../components/imponibles/TableCitas";
 
 const Personal = () => {
-    const { sistemas, persona, setError, error, loading } = useMenu();
+    const { persona, setError, error } = useMenu();
     const [checksActive, setChecksActive] = useState(false);
     const [checks, setChecks] = useState(null);
     const [adicionales, setAdicionales] = useState(null);

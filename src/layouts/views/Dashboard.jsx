@@ -14,9 +14,10 @@ import Dni from "../components/icons/Dni";
 import Phone from "../components/icons/Phone";
 
 const Dashboard = () => {
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
+    const { dashboard, setDashboard } = useMenu();
 
     const onLoad = async () => {
         setLoading(true);
@@ -35,15 +36,15 @@ const Dashboard = () => {
             toast.error("Error");
         } finally {
             setLoading(false);
-            setData(info);
+            setDashboard(info);
         }
     };
 
     useEffect(() => {
-        if (!data) {
+        if (!dashboard) {
             onLoad();
         }
-    }, [data]);
+    }, [dashboard]);
 
     // const state = {
     //     options: {
@@ -72,7 +73,7 @@ const Dashboard = () => {
                 <div className="p-5">
                     {loading ? (
                         <Loading title="Tablero" />
-                    ) : data ? (
+                    ) : dashboard ? (
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
@@ -82,7 +83,7 @@ const Dashboard = () => {
                                             Direcciones
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {data.direcciones}
+                                            {dashboard.direcciones}
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +94,7 @@ const Dashboard = () => {
                                             Documentos
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {data.documentos}
+                                            {dashboard.documentos}
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +105,7 @@ const Dashboard = () => {
                                             Emails
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {data.mails}
+                                            {dashboard.mails}
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +116,7 @@ const Dashboard = () => {
                                             Telefonos
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {data.telefonos}
+                                            {dashboard.telefonos}
                                         </div>
                                     </div>
                                 </div>
