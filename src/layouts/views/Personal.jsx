@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import TableRodado from "../components/imponibles/TableRodado";
 import TableInmueble from "../components/imponibles/TableInmueble";
 import TableComercio from "../components/imponibles/TableComercio";
+import { TableCitas } from "../components/imponibles/TableCitas";
 
 const Personal = () => {
     const { sistemas, persona, setError, error, loading } = useMenu();
@@ -237,6 +238,13 @@ const Personal = () => {
                                         COMERCIOS
                                     </span>
                                     {<TableComercio />}
+                                </div>
+                                <div>
+                                    {" "}
+                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                        CITAS
+                                    </span>
+                                    {<TableCitas />}
                                 </div>
                             </div>
                         </div>
