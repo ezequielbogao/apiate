@@ -9,6 +9,7 @@ import Store from "./icons/Store";
 import Inter from "./icons/Inter";
 import Corazon from "./icons/Corazon";
 import Turnosmed from "./icons/Turnosmed";
+import Reclamo from "./icons/Reclamo";
 
 import MenuSection from "./MenuSection";
 import { useMenu } from "../../Context/MenuContext";
@@ -106,6 +107,12 @@ const Menu = () => {
                     count={sistemas?.salud_turnos?.length ?? null}
                 />
                 <MenuSection text="GESTIÓN" cs="mt-10" />
+                <MenuButton
+                    path={path}
+                    to={"/gestion/reclamos"}
+                    icon={<Reclamo />}
+                    title={"Reclamos"}
+                />
                 <MenuButton
                     path={path}
                     to={"/gestion/campañas"}

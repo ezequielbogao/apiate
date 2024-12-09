@@ -20,11 +20,12 @@ import Comercios from "./layouts/views/Comercios";
 import Comercio from "./layouts/views/singles/Comercio";
 import Dashboard from "./layouts/views/Dashboard";
 import Login from "./layouts/views/auth/Login";
+import Reclamos from "./layouts/views/Reclamos";
+import Campanas from "./layouts/views/Campanas";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
-import Campanas from "./layouts/views/Campanas";
 
 const router = createBrowserRouter([
     // Ruta de login sin Header ni Footer
@@ -134,6 +135,14 @@ const router = createBrowserRouter([
         element: (
             <MainLayout>
                 <Turnos />
+            </MainLayout>
+        ),
+    },
+    {
+        path: "/gestion/reclamos",
+        element: (
+            <MainLayout>
+                <Reclamos />
             </MainLayout>
         ),
     },

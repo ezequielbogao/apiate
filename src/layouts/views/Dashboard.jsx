@@ -77,46 +77,54 @@ const Dashboard = () => {
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Location width={"60"} height={"60"} />
+                                    <Location width={"40"} height={"40"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Direcciones
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.direcciones}
+                                            {dashboard.direcciones.toLocaleString(
+                                                "de-DE"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Dni width={"60"} height={"60"} />
+                                    <Dni width={"40"} height={"40"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Documentos
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.documentos}
+                                            {dashboard.documentos.toLocaleString(
+                                                "de-DE"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Email width={"60"} height={"60"} />
+                                    <Email width={"40"} height={"40"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Emails
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.mails}
+                                            {dashboard.mails.toLocaleString(
+                                                "de-DE"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Phone width={"60"} height={"60"} />
+                                    <Phone width={"40"} height={"40"} />
                                     <div className="flex flex-col">
                                         <div className="text-xl text-azure-300 font-light">
                                             Telefonos
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.telefonos}
+                                            {dashboard.telefonos.toLocaleString(
+                                                "de-DE"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
