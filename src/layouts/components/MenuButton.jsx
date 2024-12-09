@@ -36,7 +36,7 @@ const MenuButton = (props) => {
                                 className={`text-sm ${
                                     props.path === props.to
                                         ? "text-azure-700 font-bold dark:text-azure-100"
-                                        : " text-azure-700 dark:text-azure-100 font-light"
+                                        : " text-azure-800 dark:text-azure-100 font-medium"
                                 } `}>
                                 {props.title}
                             </span>

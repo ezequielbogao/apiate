@@ -26,6 +26,7 @@ import Campanas from "./layouts/views/Campanas";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
+import Maptest from "./layouts/components/Maptest";
 
 const router = createBrowserRouter([
     // Ruta de login sin Header ni Footer
@@ -151,6 +152,14 @@ const router = createBrowserRouter([
         element: (
             <MainLayout>
                 <Campanas />
+            </MainLayout>
+        ),
+    },
+    {
+        path: "/mapa",
+        element: (
+            <MainLayout>
+                <Maptest />
             </MainLayout>
         ),
     },
