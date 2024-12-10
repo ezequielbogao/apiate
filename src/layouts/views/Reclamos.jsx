@@ -12,7 +12,7 @@ import Table from "../components/table/Table";
 const Reclamos = () => {
     const { sistemas, error, loading } = useMenu();
 
-    const TABLE_CITAS = [
+    const TABLE_RECLAMOS = [
         "Número",
         "Documento",
         "Motivo",
@@ -64,13 +64,13 @@ const Reclamos = () => {
                             totalPage={totalPage}>
                             <thead>
                                 <tr>
-                                    {TABLE_CITAS.map((head) => (
+                                    {TABLE_RECLAMOS.map((head) => (
                                         <Th key={head} text={head} />
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
-                                {sistemas.citas.length > 0 ? (
+                                {sistemas.reclamos.length > 0 ? (
                                     paginatedPages.map(
                                         (
                                             {
