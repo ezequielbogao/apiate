@@ -52,7 +52,7 @@ const TableRodado = () => {
                                     className="bg-white shadow-sm hover:-translate-y-1 transition-all ease-in dark:bg-azure-600 rounded-xl mt-2 border-2 border-azure-100 dark:border-azure-900 p-2 hover:border-azure-300">
                                     <div className="text-azure-600">
                                         <div className="flex flex-col align-middle items-center justify-center">
-                                            <span className="text-azure-300 text-md font-medium">
+                                            <span className="text-azure-500 text-md font-medium">
                                                 N°
                                                 {NRO_RODADO}
                                             </span>

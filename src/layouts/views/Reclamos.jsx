@@ -8,6 +8,7 @@ import Th from "../components/table/Th";
 import Td from "../components/table/Td";
 import Tr from "../components/table/Tr";
 import Table from "../components/table/Table";
+import Location from "../components/icons/Location";
 
 const Reclamos = () => {
     const { sistemas, error, loading } = useMenu();
@@ -21,6 +22,7 @@ const Reclamos = () => {
         "Apellido",
         "Calle",
         "Altura",
+        "Lugar",
     ];
 
     let totalPage = 0;
@@ -94,6 +96,9 @@ const Reclamos = () => {
                                                 <Td content={APELLIDO} />
                                                 <Td content={CALLE} />
                                                 <Td content={ALTURACALLE} />
+                                                <Td>
+                                                    <Location />
+                                                </Td>
                                             </Tr>
                                         )
                                     )

@@ -127,49 +127,48 @@ const Personal = () => {
                 </div>
                 <div className="p-5">
                     <div className="grid grid-cols-8 gap-5">
-                        <div className="col-span-8 md:col-span-2 py-5">
-                            <div>
+                        <div className="col-span-12 py-3 flex">
+                            <div className="w-full md:w-4/12">
                                 {persona && (
                                     <div className=" text-azure-600 mb-10">
-                                        <span className="text-lg text-center text-azure-600 font-normal dark:text-azure-300">
+                                        <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
                                             DATOS PERSONALES
                                         </span>
                                         <div className="flex flex-col mt-3">
-                                            <span className="text-azure-300 dark:text-azure-400 font-light">
+                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
                                                 NOMBRE Y APELLIDO
                                             </span>
-                                            <span className=" dark:text-azure-100 font-medium">
+                                            <span className="text-sm dark:text-azure-100 font-medium">
                                                 {persona.nombre}{" "}
                                                 {persona.apellido}
                                             </span>
                                         </div>
                                         <div className="flex flex-col mt-3">
-                                            <span className="text-azure-300 dark:text-azure-400 font-light">
+                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
                                                 DOCUMENTO
                                             </span>
-                                            <span className=" dark:text-azure-100 font-medium">
+                                            <span className="text-sm dark:text-azure-100 font-medium">
                                                 {persona.documento}
                                             </span>
                                         </div>
                                         <div className="flex flex-col mt-3">
-                                            <span className="text-azure-300 dark:text-azure-400 font-light">
+                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
                                                 DIRECCIÓN
                                             </span>
-                                            <span className=" dark:text-azure-100 font-medium">
+                                            <span className="text-sm dark:text-azure-100 font-medium">
                                                 {persona.calle}
                                                 {persona.altura}
                                             </span>
                                         </div>
-                                        <div className="my-5 border border-b-azure-100 dark:border-azure-700"></div>
                                     </div>
                                 )}
                                 {error && <Errormsg />}
                             </div>
 
-                            <div>
+                            <div className="w-full md:w-8/12">
                                 {adicionales && (
                                     <div className="">
-                                        <span className="text-lg text-center text-azure-600 font-normal dark:text-azure-300">
+                                        <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
                                             DATOS ADICIONALES
                                         </span>
                                         <div className="text-md text-orange-800 dark:text-orange-300 mb-4 font-light">
@@ -212,33 +211,35 @@ const Personal = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="col-span-8 md:col-span-6 bg-white dark:bg-azure-800 dark:rounded-xl border-azure-50 p-5 border-0 md:border-l-2 border-l-azure-100 dark:border-0">
-                            <div className="min-w-max table-auto text-left w-full">
+                        <div className="col-span-12 bg-white dark:bg-azure-800 dark:rounded-xl">
+                            <span className="text-azure-600 mb-5">
+                                IMPONIBLES
+                            </span>
+                            <div className="table-auto text-left w-full">
                                 <div>
                                     {" "}
-                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                        RODADOS
+                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
+                                        Rodados
                                     </span>
                                     {<TableRodado />}
                                 </div>
 
                                 <div>
                                     {" "}
-                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                        INMUEBLES
+                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
+                                        Inmuebles
                                     </span>
                                     {<TableInmueble />}
                                 </div>
                                 <div>
                                     {" "}
-                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                        COMERCIOS
+                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
+                                        Comercios
                                     </span>
                                     {<TableComercio />}
                                 </div>
                                 <div>
-                                    {" "}
-                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                    <span className="text-azure-600 mb-5">
                                         CITAS
                                     </span>
                                     {<TableCitas />}

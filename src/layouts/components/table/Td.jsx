@@ -9,7 +9,7 @@ const Td = (props) => {
         <td className="p-3">{props.children}</td>
     ) : (
         <td className="p-3">
-            <span className="font-normal text-sm text-azure-700 dark:text-azure-200">
+            <span className="font-medium text-sm text-azure-500 dark:text-azure-200">
                 {props.content}
             </span>
         </td>
