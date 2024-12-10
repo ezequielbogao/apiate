@@ -28,7 +28,7 @@ const Dashboard = () => {
                 `http://localhost:5000/atenea/api/dashboard`
             );
 
-            info = response.data.data;
+            info = response.data.data[0];
         } catch (err) {
             setError(
                 err.response ? err.response.data.message : "Error desconocido"
