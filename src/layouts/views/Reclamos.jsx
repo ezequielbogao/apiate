@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMenu } from "../../Context/MenuContext";
 import Content from "../components/Content";
 import Loading from "../components/Loading";
@@ -8,9 +8,15 @@ import Th from "../components/table/Th";
 import Td from "../components/table/Td";
 import Tr from "../components/table/Tr";
 import Table from "../components/table/Table";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Maptest from "../components/Maptest";
 
 const Reclamos = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { persona, sistemas, error, loading, setError } = useMenu();
 
     const TABLE_RECLAMOS = [
         "Número",
@@ -82,6 +88,8 @@ const Reclamos = () => {
                                                 APELLIDO,
                                                 CALLE,
                                                 ALTURACALLE,
+                                                // latitud,
+                                                // longitud,
                                             },
                                             index
                                         ) => (
@@ -94,6 +102,15 @@ const Reclamos = () => {
                                                 <Td content={APELLIDO} />
                                                 <Td content={CALLE} />
                                                 <Td content={ALTURACALLE} />
+
+                                                {/* Mostrar un marcador en el mapa */}
+                                                {/* <Marker
+                                                    position={[
+                                                        latitud,
+                                                        longitud,
+                                                    ]}>
+                                                    <Popup>{`Reclamo #${NUMERO}`}</Popup>
+                                                </Marker> */}
                                             </Tr>
                                         )
                                     )
@@ -117,6 +134,7 @@ const Reclamos = () => {
                     )}
                     {error && <Errormsg />}
                 </div>
+                <div className="p-20">{<Maptest />}</div>
             </div>
         </Content>
     );
