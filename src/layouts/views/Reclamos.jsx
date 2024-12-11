@@ -8,7 +8,7 @@ import Th from "../components/table/Th";
 import Td from "../components/table/Td";
 import Tr from "../components/table/Tr";
 import Table from "../components/table/Table";
-import Location from "../components/icons/Location";
+import MapReclamos from "../components/MapReclamos";
 
 const Reclamos = () => {
     const { sistemas, error, loading } = useMenu();
@@ -84,6 +84,8 @@ const Reclamos = () => {
                                                 APELLIDO,
                                                 CALLE,
                                                 ALTURACALLE,
+                                                // latitud,
+                                                // longitud,
                                             },
                                             index
                                         ) => (
@@ -96,9 +98,6 @@ const Reclamos = () => {
                                                 <Td content={APELLIDO} />
                                                 <Td content={CALLE} />
                                                 <Td content={ALTURACALLE} />
-                                                <Td>
-                                                    <Location />
-                                                </Td>
                                             </Tr>
                                         )
                                     )
@@ -122,6 +121,7 @@ const Reclamos = () => {
                     )}
                     {error && <Errormsg />}
                 </div>
+                <div className="p-20">{<MapReclamos />}</div>
             </div>
         </Content>
     );

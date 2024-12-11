@@ -1,10 +1,8 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./App.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./layouts/Header";
-import Footer from "./layouts/Footer";
+
 import Citas from "./layouts/views/Citas";
 import Pagos from "./layouts/views/Pagos";
 import Personal from "./layouts/views/Personal";
@@ -23,10 +21,8 @@ import Login from "./layouts/views/auth/Login";
 import Reclamos from "./layouts/views/Reclamos";
 import Campanas from "./layouts/views/Campanas";
 
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
-import Maptest from "./layouts/components/Maptest";
 
 const router = createBrowserRouter([
     // Ruta de login sin Header ni Footer
@@ -152,14 +148,6 @@ const router = createBrowserRouter([
         element: (
             <MainLayout>
                 <Campanas />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/mapa",
-        element: (
-            <MainLayout>
-                <Maptest />
             </MainLayout>
         ),
     },

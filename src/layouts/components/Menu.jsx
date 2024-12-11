@@ -111,6 +111,7 @@ const Menu = () => {
                     path={path}
                     to={"/gestion/reclamos"}
                     icon={<Reclamo />}
+                    count={sistemas?.reclamos?.length ?? null}
                     title={"Reclamos"}
                 />
                 <MenuButton
