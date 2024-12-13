@@ -22,7 +22,6 @@ const Reclamos = () => {
         "Apellido",
         "Calle",
         "Altura",
-        "Lugar",
     ];
 
     let totalPage = 0;

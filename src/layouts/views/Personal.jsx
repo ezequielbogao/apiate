@@ -13,6 +13,7 @@ import TableRodado from "../components/imponibles/TableRodado";
 import TableInmueble from "../components/imponibles/TableInmueble";
 import TableComercio from "../components/imponibles/TableComercio";
 import TableCitas from "../components/imponibles/TableCitas";
+import { Link } from "react-router-dom";
 
 const Personal = () => {
     const { persona, setError, error } = useMenu();
@@ -127,124 +128,147 @@ const Personal = () => {
                 </div>
                 <div className="p-5">
                     <div className="grid grid-cols-8 gap-5">
-                        <div className="col-span-12 py-3 flex">
-                            <div className="w-full md:w-4/12">
-                                {persona && (
-                                    <div className=" text-azure-600 mb-10">
-                                        <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                            DATOS PERSONALES
-                                        </span>
-                                        <div className="flex flex-col mt-3">
-                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
-                                                NOMBRE Y APELLIDO
-                                            </span>
-                                            <span className="text-sm dark:text-azure-100 font-medium">
-                                                {persona.nombre}{" "}
-                                                {persona.apellido}
-                                            </span>
+                        <div className="col-span-12 py-3 flex flex-col">
+                            {persona && (
+                                <>
+                                    <div className="flex">
+                                        <div className="w-full md:w-4/12">
+                                            <div className=" text-azure-600 mb-10">
+                                                <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                                    DATOS PERSONALES
+                                                </span>
+                                                <div className="flex flex-col mt-3">
+                                                    <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
+                                                        NOMBRE Y APELLIDO
+                                                    </span>
+                                                    <span className="text-sm dark:text-azure-100 font-medium">
+                                                        {persona.nombre}{" "}
+                                                        {persona.apellido}
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-col mt-3">
+                                                    <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
+                                                        DOCUMENTO
+                                                    </span>
+                                                    <span className="text-sm dark:text-azure-100 font-medium">
+                                                        {persona.documento}
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-col mt-3">
+                                                    <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
+                                                        DIRECCIÓN
+                                                    </span>
+                                                    <span className="text-sm dark:text-azure-100 font-medium">
+                                                        {persona.calle}
+                                                        {persona.altura}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="flex flex-col mt-3">
-                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
-                                                DOCUMENTO
-                                            </span>
-                                            <span className="text-sm dark:text-azure-100 font-medium">
-                                                {persona.documento}
-                                            </span>
-                                        </div>
-                                        <div className="flex flex-col mt-3">
-                                            <span className="text-sm text-azure-300 dark:text-azure-400 font-light">
-                                                DIRECCIÓN
-                                            </span>
-                                            <span className="text-sm dark:text-azure-100 font-medium">
-                                                {persona.calle}
-                                                {persona.altura}
-                                            </span>
-                                        </div>
-                                    </div>
-                                )}
-                                {error && <Errormsg />}
-                            </div>
-
-                            <div className="w-full md:w-8/12">
-                                {adicionales && (
-                                    <div className="">
-                                        <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
-                                            DATOS ADICIONALES
-                                        </span>
-                                        <div className="text-md text-orange-800 dark:text-orange-300 mb-4 font-light">
-                                            La información que se muestra a
-                                            continuación provienen de varios
-                                            sistemas. Es por esto, que algunos
-                                            datos pueden estar repetidos o
-                                            desorganizados.
-                                        </div>
-                                        <div className="text-azure-600 mb-10">
-                                            {Object.entries(adicionales).map(
-                                                ([key, value]) => (
-                                                    <div
-                                                        key={key}
-                                                        className="mb-5">
-                                                        <span className="text-azure-400 dark:text-azure-400 font-light text-md">
-                                                            {key}:
-                                                        </span>
-                                                        <ul>
-                                                            {value.map(
-                                                                (
-                                                                    item,
-                                                                    index
-                                                                ) => (
-                                                                    <li
-                                                                        className="mx-3 text-azure-600 dark:text-azure-200 text-sm font-medium"
-                                                                        key={
-                                                                            index
-                                                                        }>
-                                                                        {item}
-                                                                    </li>
-                                                                )
-                                                            )}
-                                                        </ul>
+                                        <div className="w-full md:w-8/12">
+                                            {adicionales && (
+                                                <div className="">
+                                                    <span className="text-md text-center text-azure-600 font-normal dark:text-azure-300">
+                                                        DATOS ADICIONALES
+                                                    </span>
+                                                    <div className="text-md mt-3 text-orange-800 font-medium dark:text-orange-300 mb-4 bg-orange-100 p-5 rounded-xl">
+                                                        La información que se
+                                                        muestra a continuación
+                                                        provienen de varios
+                                                        sistemas.<br></br> Es
+                                                        por esto, que algunos
+                                                        datos pueden estar
+                                                        repetidos o
+                                                        desorganizados.
                                                     </div>
-                                                )
+                                                    <div className="text-azure-600 mb-10">
+                                                        {Object.entries(
+                                                            adicionales
+                                                        ).map(
+                                                            ([key, value]) => (
+                                                                <div
+                                                                    key={key}
+                                                                    className="mb-5">
+                                                                    <span className="text-azure-400 dark:text-azure-400 font-light text-md">
+                                                                        {key}:
+                                                                    </span>
+                                                                    <ul>
+                                                                        {value.map(
+                                                                            (
+                                                                                item,
+                                                                                index
+                                                                            ) => (
+                                                                                <li
+                                                                                    className="mx-3 text-azure-600 dark:text-azure-200 text-sm font-medium"
+                                                                                    key={
+                                                                                        index
+                                                                                    }>
+                                                                                    {
+                                                                                        item
+                                                                                    }
+                                                                                </li>
+                                                                            )
+                                                                        )}
+                                                                    </ul>
+                                                                </div>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </div>
                                             )}
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="col-span-12 bg-white dark:bg-azure-800 dark:rounded-xl">
-                            <span className="text-azure-600 mb-5">
-                                IMPONIBLES
-                            </span>
-                            <div className="table-auto text-left w-full">
-                                <div>
-                                    {" "}
-                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
-                                        Rodados
-                                    </span>
-                                    {<TableRodado />}
-                                </div>
+                                    <div className="col-span-12 bg-white dark:bg-azure-800 dark:rounded-xl p-5 flex flex-col">
+                                        {/* <span className="text-azure-600 mb-5">
+                                            IMPONIBLES
+                                        </span>
+                                        <span className="text-sm text-azure-400">
+                                            Buscá en esta sección los Rodados,
+                                            Inmuebles o Comercios. Si necesitás
+                                            más detalles, podés acceder a las
+                                            secciones específicas de{" "}
+                                            <Link
+                                                className="font-normal text-sm text-blue-700 hover:text-azure-600"
+                                                to={"/rafam/rodados"}>
+                                                rodados
+                                            </Link>
+                                            ,{" "}
+                                            <Link
+                                                className="font-normal text-sm text-blue-700 hover:text-azure-600"
+                                                to={"/rafam/inmuebles"}>
+                                                inmuebles
+                                            </Link>{" "}
+                                            o{" "}
+                                            <Link
+                                                className="font-normal text-sm text-blue-700 hover:text-azure-600"
+                                                to={"/rafam/comercios"}>
+                                                comercios
+                                            </Link>
+                                            .
+                                        </span> */}
+                                        <div className="table-auto text-left w-full">
+                                            {/* <div className="my-10">
+                                                {<TableRodado />}
+                                            </div>
 
-                                <div>
-                                    {" "}
-                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
-                                        Inmuebles
-                                    </span>
-                                    {<TableInmueble />}
-                                </div>
-                                <div>
-                                    {" "}
-                                    <span className="text-sm text-center text-azure-300 font-medium dark:text-azure-300">
-                                        Comercios
-                                    </span>
-                                    {<TableComercio />}
-                                </div>
-                                <div>
-                                    <span className="text-azure-600 mb-5">
-                                        CITAS
-                                    </span>
-                                    {<TableCitas />}
-                                </div>
-                            </div>
+                                            <div className="my-10">
+                                                {<TableInmueble />}
+                                            </div>
+
+                                            <div className="my-10">
+                                                {<TableComercio />}
+                                            </div> */}
+                                            {/* <div>
+                                                <span className="text-azure-600 mb-5">
+                                                    CITAS
+                                                </span>
+                                                {<TableCitas />}
+                                            </div> */}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                            {error && <Errormsg />}
                         </div>
                     </div>
                 </div>

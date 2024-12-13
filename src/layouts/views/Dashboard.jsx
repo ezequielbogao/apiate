@@ -12,6 +12,9 @@ import Location from "../components/icons/Location";
 import Email from "../components/icons/Email";
 import Dni from "../components/icons/Dni";
 import Phone from "../components/icons/Phone";
+import Auto from "../components/icons/Auto";
+import Store from "../components/icons/Store";
+import Casa from "../components/icons/Casa";
 
 const Dashboard = () => {
     const [error, setError] = useState(null);
@@ -103,6 +106,47 @@ const Dashboard = () => {
                                         </div>
                                         <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
                                             {dashboard.telefonos.toLocaleString(
+                                                "de-DE"
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                    <Auto width={"40"} height={"40"} />
+                                    <div className="flex flex-col">
+                                        <div className="text-xl text-azure-300 font-light">
+                                            RODADOS
+                                        </div>
+                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                            {dashboard.direcciones.toLocaleString(
+                                                "de-DE"
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                    <Store width={"40"} height={"40"} />
+                                    <div className="flex flex-col">
+                                        <div className="text-xl text-azure-300 font-light">
+                                            COMERICOS
+                                        </div>
+                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                            {dashboard.documentos.toLocaleString(
+                                                "de-DE"
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                    <Casa width={"40"} height={"40"} />
+                                    <div className="flex flex-col">
+                                        <div className="text-xl text-azure-300 font-light">
+                                            INMUEBLES
+                                        </div>
+                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                            {dashboard.mails.toLocaleString(
                                                 "de-DE"
                                             )}
                                         </div>

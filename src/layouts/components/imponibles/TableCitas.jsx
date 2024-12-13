@@ -86,7 +86,7 @@ const TableCitas = () => {
                     <div className="w-full flex justify-end py-3">
                         <Link
                             to={"/citas"}
-                            className="text-white dark:text-azure-100 text-lg bg-azure-500 hover:bg-azure-600 dark:bg-azure-600 hover:dark:bg-azure-700 hover:text-white px-3 py-1 rounded-md">
+                            className="text-white dark:text-azure-100 text-md bg-azure-500 hover:bg-azure-600 dark:bg-azure-600 hover:dark:bg-azure-700 hover:text-white px-3 py-1 rounded-md">
                             Ver mas
                         </Link>
                     </div>

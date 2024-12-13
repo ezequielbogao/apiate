@@ -17,7 +17,7 @@ const Store = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-building-store text-azure-800 dark:text-azure-100">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-building-store text-azure-600 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M3 21l18 0" />
             <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />

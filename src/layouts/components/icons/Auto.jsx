@@ -17,7 +17,7 @@ const Auto = (props) => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-car text-azure-800 dark:text-azure-100">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-car text-azure-600 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
             <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />

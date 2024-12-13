@@ -17,7 +17,7 @@ const Reclamo = (props) => {
             strokeWidth={1}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-device-landline-phone text-azure-800 dark:text-azure-100">
+            className="icon icon-tabler icons-tabler-outline icon-tabler-device-landline-phone text-azure-600 dark:text-azure-100">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M20 3h-2a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-14a2 2 0 0 0 -2 -2z" />
             <path d="M16 4h-11a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h11" />
