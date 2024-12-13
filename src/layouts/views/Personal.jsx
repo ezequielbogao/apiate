@@ -126,7 +126,7 @@ const Personal = () => {
                         )}
                     </div>
                 </div>
-                <div className="p-5">
+                <div className="p-5 md:p-10">
                     <div className="grid grid-cols-8 gap-5">
                         <div className="col-span-12 py-3 flex flex-col">
                             {persona && (

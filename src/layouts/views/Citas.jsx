@@ -51,7 +51,7 @@ const Citas = () => {
             <div className="text-left w-full">
                 <ContentHeader label="Conducir" title="CITAS" />
 
-                <div className="p-5">
+                <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="citas" />
                     ) : sistemas && sistemas.citas ? (

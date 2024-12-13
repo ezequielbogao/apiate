@@ -50,7 +50,7 @@ const Pagos = () => {
             <div className="text-left w-full">
                 <ContentHeader label="Autogestión" title="PAGOS" />
 
-                <div className="p-5">
+                <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="pagos" />
                     ) : sistemas && sistemas.pagos ? (

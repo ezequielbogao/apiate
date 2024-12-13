@@ -66,7 +66,7 @@ const Campanas = () => {
             <div className="text-left w-full">
                 <ContentHeader label="Gestión" title="CAMPAÑAS" />
 
-                <div className="p-5">
+                <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="contactos" />
                     ) : (

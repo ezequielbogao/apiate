@@ -12,7 +12,7 @@ const Emergencias = () => {
             <div className="text-left w-full">
                 <ContentHeader label="Salud" title="EMERGENCIAS" />
 
-                <div className="p-5">
+                <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="citas" />
                     ) : sistemas && sistemas.salud_emergencias ? (
