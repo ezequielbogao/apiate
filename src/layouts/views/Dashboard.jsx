@@ -5,7 +5,7 @@ import { useMenu } from "../../Context/MenuContext";
 import Loading from "../components/Loading";
 import ContentHeader from "../components/ContentHeader";
 
-// import Chart from "react-apexcharts";
+import Chart from "react-apexcharts";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Location from "../components/icons/Location";
@@ -16,6 +16,10 @@ import Auto from "../components/icons/Auto";
 import Store from "../components/icons/Store";
 import Casa from "../components/icons/Casa";
 import { Dialog } from "@material-tailwind/react";
+import MapDeudas from "../components/MapDeudas";
+import ReactApexChart from "react-apexcharts";
+import { setOptions } from "leaflet";
+import { ChartDeuda } from "../components/ChartDeuda";
 
 const Dashboard = () => {
     const [error, setError] = useState(null);
@@ -130,7 +134,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="flex flex-col mt-5">
                                             <div className="text-md text-azure-300 font-light">
-                                                Deudas
+                                                Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
                                                 {(837230).toLocaleString(
@@ -181,7 +185,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="flex flex-col mt-5">
                                             <div className="text-md text-azure-300 font-light">
-                                                Deudas
+                                                Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
                                                 {(2743892).toLocaleString(
@@ -248,7 +252,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="flex flex-col mt-5">
                                             <div className="text-md text-azure-300 font-light">
-                                                Deudas
+                                                Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
                                                 {(3612936182).toLocaleString(
@@ -300,15 +304,13 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                {/* <Chart
-                                    options={state.options}
-                                    series={state.series}
-                                    type="bar"
-                                    width={500}
-                                    height={320}
-                                /> */}
+                            <div className="mt-5 pt-4 flex flex-col">
+                                <span className="text-azure-600 text-md py-3">
+                                    MAPA DE COMERCIOS CON DEUDAS
+                                </span>
+                                <MapDeudas />
                             </div>
+                            <ChartDeuda />
                         </>
                     ) : (
                         <></>

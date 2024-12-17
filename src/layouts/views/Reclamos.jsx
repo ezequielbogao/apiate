@@ -120,7 +120,7 @@ const Reclamos = () => {
                     )}
                     {error && <Errormsg />}
                 </div>
-                <div className="p-20">{<MapReclamos />}</div>
+                <div className="p-10">{<MapReclamos />}</div>
             </div>
         </Content>
     );
