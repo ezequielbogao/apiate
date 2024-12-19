@@ -9,9 +9,7 @@ export const ChartDeuda = () => {
     const [rubroDeuda, setRubroDeuda] = useState([]);
     const [rubroCantidad, setRubroCantidad] = useState([]);
     const [series, setSeries] = useState([]);
-    const [options, setOptions] = useState({});
-
-    const optionss = {
+    const [options, setOptions] = useState({
         chart: {
             height: 350,
             type: "line",
@@ -29,7 +27,7 @@ export const ChartDeuda = () => {
             curve: "straight",
         },
         title: {
-            text: "Product Trends by Month",
+            text: "Deuda de comercios",
             align: "left",
         },
         grid: {
@@ -51,7 +49,7 @@ export const ChartDeuda = () => {
                 "Sep",
             ],
         },
-    };
+    });
 
     function formatMonto(monto) {
         if (monto >= 1000000000) {

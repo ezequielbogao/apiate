@@ -23,6 +23,7 @@ import Campanas from "./layouts/views/Campanas";
 
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
+import ComerciosRubros from "./layouts/views/ComerciosRubros";
 
 const router = createBrowserRouter([
     // Ruta de login sin Header ni Footer
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
         element: (
             <MainLayout>
                 <Comercio />
+            </MainLayout>
+        ),
+    },
+    {
+        path: "/rafam/comercios/:rubro",
+        element: (
+            <MainLayout>
+                <ComerciosRubros />
             </MainLayout>
         ),
     },

@@ -20,6 +20,12 @@ import MapDeudas from "../components/MapDeudas";
 import ReactApexChart from "react-apexcharts";
 import { setOptions } from "leaflet";
 import { ChartDeuda } from "../components/ChartDeuda";
+import Errormsg from "../components/Errormsg";
+import Table from "../components/table/Table";
+import Th from "../components/table/Th";
+import Tr from "../components/table/Tr";
+import Td from "../components/table/Td";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     const [error, setError] = useState(null);
@@ -27,6 +33,20 @@ const Dashboard = () => {
     const { dashboard, setDashboard } = useMenu();
     const [open, setOpen] = useState(false);
     const [modal, setModal] = useState("");
+    const [comerciosRubros, setComerciosRubros] = useState([]);
+
+    let totalPage = 0;
+    let paginatedPages = 0;
+    const itemsPerPage = 10;
+    const [currentPage, setcurrentPage] = useState(1);
+
+    const TABLE_RUBROS = [
+        "Rubro",
+        "Descripción",
+        "Cantidad",
+        "Deuda",
+        "Opciones",
+    ];
 
     const onLoad = async () => {
         setLoading(true);
@@ -49,17 +69,53 @@ const Dashboard = () => {
         }
     };
 
-    const openDetail = (imponible) => {
-        setOpen(!open);
-        setModal(imponible);
-    };
-    const handleOpen = () => setOpen(!open);
-
     useEffect(() => {
         if (!dashboard) {
             onLoad();
         }
     }, [dashboard]);
+
+    const getRubros = async () => {
+        let rubros = [];
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/rafam/comercios/rubros`
+            );
+            rubros = response.data.data;
+            console.log(rubros);
+            setComerciosRubros(rubros);
+        } catch (err) {
+            console.log(err);
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        }
+    };
+
+    if (comerciosRubros) {
+        totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);
+        paginatedPages = comerciosRubros.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+        );
+    }
+
+    const nextPage = () => {
+        if (currentPage < totalPage) {
+            setcurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setcurrentPage(currentPage - 1);
+        }
+    };
+
+    useEffect(() => {
+        getRubros();
+    }, []);
 
     return (
         <Content>
@@ -141,39 +197,6 @@ const Dashboard = () => {
                                                     "de-DE"
                                                 )}
                                             </div>
-                                            <div className="flex justify-end mt-3">
-                                                <button
-                                                    className="py-0 border-0 bg-azure-50 hover:bg-blue-100 focus:outline-none"
-                                                    onClick={() =>
-                                                        openDetail("rodados")
-                                                    }>
-                                                    Detalle
-                                                </button>
-                                            </div>
-                                            <Dialog
-                                                open={
-                                                    open && modal == "rodados"
-                                                }
-                                                handler={handleOpen}>
-                                                <div className="flex flex-col p-5">
-                                                    <div className="text-sm text-azure-300 font-light">
-                                                        Autos
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(532134).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Motos
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(305096).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </Dialog>
                                         </div>
                                     </div>
                                 </div>
@@ -192,55 +215,6 @@ const Dashboard = () => {
                                                     "de-DE"
                                                 )}
                                             </div>
-                                            <div className="flex justify-end mt-3">
-                                                <button
-                                                    className="py-0 border-0 bg-azure-50 hover:bg-blue-100 focus:outline-none"
-                                                    onClick={() =>
-                                                        openDetail("inmuebles")
-                                                    }>
-                                                    Detalle
-                                                </button>
-                                            </div>
-                                            <Dialog
-                                                open={
-                                                    open && modal == "inmuebles"
-                                                }
-                                                handler={handleOpen}>
-                                                <div className="flex flex-col p-5">
-                                                    <div className="text-sm text-azure-300 font-light">
-                                                        Recurso X
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(345345).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Recurso X
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(7484645).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Recurso X
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(215661).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Recurso X
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(214123).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </Dialog>
                                         </div>
                                     </div>
                                 </div>
@@ -259,58 +233,110 @@ const Dashboard = () => {
                                                     "de-DE"
                                                 )}
                                             </div>
-                                            <div className="flex justify-end mt-3">
-                                                <button
-                                                    className="py-0 border-0 bg-azure-50 hover:bg-blue-100 focus:outline-none"
-                                                    onClick={() =>
-                                                        openDetail("comercios")
-                                                    }>
-                                                    Detalle
-                                                </button>
-                                            </div>
-                                            <Dialog
-                                                open={
-                                                    open && modal == "comercios"
-                                                }
-                                                handler={handleOpen}>
-                                                <div className="flex flex-col p-5">
-                                                    <div className="text-sm text-azure-300 font-light">
-                                                        Autos
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(754645).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Motos
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(412512).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                    <div className="text-sm text-azure-300 font-light mt-2">
-                                                        Motos
-                                                    </div>
-                                                    <div className="text-md font-medium text-red-400 ">
-                                                        {(1234).toLocaleString(
-                                                            "de-DE"
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </Dialog>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-5 pt-4 flex flex-col">
+                            <div className="">
+                                {loading ? (
+                                    <Loading title="citas" />
+                                ) : comerciosRubros ? (
+                                    <Table
+                                        currentPage={currentPage}
+                                        prevPage={prevPage}
+                                        nextPage={nextPage}
+                                        totalPage={totalPage}>
+                                        <thead>
+                                            <tr>
+                                                {TABLE_RUBROS.map((head) => (
+                                                    <Th
+                                                        key={head}
+                                                        text={head}
+                                                    />
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {comerciosRubros.length > 0 ? (
+                                                paginatedPages.map(
+                                                    (
+                                                        {
+                                                            rubro,
+                                                            descripcion,
+                                                            cantidad,
+                                                            deuda,
+                                                        },
+                                                        index
+                                                    ) => (
+                                                        <Tr key={index}>
+                                                            <Td
+                                                                content={rubro}
+                                                            />
+                                                            <Td
+                                                                content={
+                                                                    descripcion
+                                                                }
+                                                            />
+                                                            <Td
+                                                                content={
+                                                                    cantidad
+                                                                }
+                                                            />
+                                                            <Td
+                                                                content={deuda}
+                                                            />
+                                                            <Td>
+                                                                <Link
+                                                                    to={`/rafam/comercios/${rubro}`}
+                                                                    className="px-5 py-2 rounded-md border-0 focus:outline-none bg-azure-300 dark:bg-azure-600 dark:hover:bg-azure-500 hover:bg-azure-400 text-white hover:text-white transition-colors">
+                                                                    Ver
+                                                                </Link>
+                                                            </Td>
+                                                        </Tr>
+                                                    )
+                                                )
+                                            ) : (
+                                                <tr>
+                                                    <td
+                                                        colSpan="6"
+                                                        className="p-4 text-center">
+                                                        No hay información
+                                                        disponibles.
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </Table>
+                                ) : (
+                                    !error && (
+                                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                            NO HAY INFORMACIÓN DISPONIBLES
+                                        </div>
+                                    )
+                                )}
+                                {error && <Errormsg />}
+                            </div>
+                            {/* <div className="mt-5 pt-4 flex flex-col">
                                 <span className="text-azure-600 text-md py-3">
                                     MAPA DE COMERCIOS CON DEUDAS
                                 </span>
                                 <MapDeudas />
-                            </div>
-                            <ChartDeuda />
+                            </div> */}
+                            {/* <>
+                                {chartOnload && (
+                                    <div className="mt-10">
+                                        <div id="chart">
+                                            <ReactApexChart
+                                                options={options}
+                                                series={series}
+                                                type="line"
+                                                height={350}
+                                            />
+                                        </div>
+                                        <div id="html-dist"></div>
+                                    </div>
+                                )}
+                            </> */}
                         </>
                     ) : (
                         <></>
