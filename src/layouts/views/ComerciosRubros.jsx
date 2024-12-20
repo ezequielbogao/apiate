@@ -12,10 +12,12 @@ import Tr from "../components/table/Tr";
 import Table from "../components/table/Table";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Rightarrow from "../components/icons/Rightarrow";
 
 const ComerciosRubros = () => {
     const { sistemas, error, loading } = useMenu();
-    const TABLE_RUBROS = ["Comercio", "Rubro", "Descripción", "Deuda"];
+    const TABLE_RUBROS = ["N° Comercio", "Rubro", "Descripción", "Deuda", ""];
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -41,7 +43,7 @@ const ComerciosRubros = () => {
 
     useEffect(() => {
         getImponibleByRubro();
-    }, []);
+    }, [comerciosRubros]);
 
     if (comerciosRubros) {
         totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);
@@ -66,7 +68,15 @@ const ComerciosRubros = () => {
     return (
         <Content>
             <div className="text-left w-full">
-                <ContentHeader label="Rafam" title="COMERCIOS" />
+                <ContentHeader
+                    label="Rafam"
+                    title={`COMERCIOS`}
+                    subtitle={`${
+                        comerciosRubros && comerciosRubros.length > 0
+                            ? comerciosRubros[0].descripcion
+                            : ""
+                    }`}
+                />
 
                 <div className="p-5 md:p-10">
                     {loading ? (
@@ -100,7 +110,24 @@ const ComerciosRubros = () => {
                                                 <Td content={comercio} />
                                                 <Td content={rubro} />
                                                 <Td content={descripcion} />
-                                                <Td content={deuda} />
+                                                <Td
+                                                    content={
+                                                        "$ " +
+                                                        deuda.toLocaleString(
+                                                            "de-DE"
+                                                        )
+                                                    }
+                                                />
+                                                <Td>
+                                                    <Link
+                                                        className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
+                                                        to={`/rafam/comercio/${comercio}`}>
+                                                        <Rightarrow
+                                                            width={"25"}
+                                                            height={"25"}
+                                                        />
+                                                    </Link>
+                                                </Td>
                                             </Tr>
                                         )
                                     )

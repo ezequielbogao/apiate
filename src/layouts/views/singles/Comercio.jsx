@@ -36,6 +36,7 @@ const Comercio = () => {
 
     useEffect(() => {
         if (comercio && !com) loadData(comercio);
+        // console.log(comercio);
     }, [comercio]);
     return (
         <Content>
@@ -74,7 +75,7 @@ const Comercio = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            DP_CALLE
+                                            DIRECCIÓN
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {com.DP_CALLE ?? "-"}
@@ -82,7 +83,7 @@ const Comercio = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            DP_NRO
+                                            ALTURA
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {com.DP_NRO ?? "-"}
@@ -90,7 +91,7 @@ const Comercio = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            FECHA_APERTURA
+                                            FECHA DE APERTURA
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {com.FECHA_APERTURA ?? "-"}
@@ -108,7 +109,7 @@ const Comercio = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            NRO_COMERCIO
+                                            NRO COMERCIO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {com.NRO_COMERCIO ?? "-"}
@@ -116,7 +117,7 @@ const Comercio = () => {
                                     </div>
                                     <div className="flex flex-col mt-3">
                                         <span className="text-azure-300 font-light">
-                                            RESP_PAGO
+                                            RESPONSABLE PAGO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
                                             {com.RESP_PAGO ?? "-"}

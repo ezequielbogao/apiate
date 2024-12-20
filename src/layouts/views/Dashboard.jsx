@@ -26,6 +26,8 @@ import Th from "../components/table/Th";
 import Tr from "../components/table/Tr";
 import Td from "../components/table/Td";
 import { Link } from "react-router-dom";
+import Ojos from "../components/icons/Ojos";
+import Rightarrow from "../components/icons/Rightarrow";
 
 const Dashboard = () => {
     const [error, setError] = useState(null);
@@ -40,13 +42,7 @@ const Dashboard = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
 
-    const TABLE_RUBROS = [
-        "Rubro",
-        "Descripción",
-        "Cantidad",
-        "Deuda",
-        "Opciones",
-    ];
+    const TABLE_RUBROS = ["Rubro", "Descripción", "Cantidad", "Deuda", ""];
 
     const onLoad = async () => {
         setLoading(true);
@@ -193,6 +189,7 @@ const Dashboard = () => {
                                                 Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
+                                                ${" "}
                                                 {(837230).toLocaleString(
                                                     "de-DE"
                                                 )}
@@ -211,6 +208,7 @@ const Dashboard = () => {
                                                 Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
+                                                ${" "}
                                                 {(2743892).toLocaleString(
                                                     "de-DE"
                                                 )}
@@ -229,6 +227,7 @@ const Dashboard = () => {
                                                 Deuda
                                             </div>
                                             <div className="text-4xl font-medium text-red-400 ">
+                                                ${" "}
                                                 {(3612936182).toLocaleString(
                                                     "de-DE"
                                                 )}
@@ -283,13 +282,25 @@ const Dashboard = () => {
                                                                 }
                                                             />
                                                             <Td
-                                                                content={deuda}
+                                                                content={
+                                                                    "$ " +
+                                                                    deuda.toLocaleString(
+                                                                        "de-DE"
+                                                                    )
+                                                                }
                                                             />
                                                             <Td>
                                                                 <Link
-                                                                    to={`/rafam/comercios/${rubro}`}
-                                                                    className="px-5 py-2 rounded-md border-0 focus:outline-none bg-azure-300 dark:bg-azure-600 dark:hover:bg-azure-500 hover:bg-azure-400 text-white hover:text-white transition-colors">
-                                                                    Ver
+                                                                    className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
+                                                                    to={`/rafam/comercios/${rubro}`}>
+                                                                    <Rightarrow
+                                                                        width={
+                                                                            "25"
+                                                                        }
+                                                                        height={
+                                                                            "25"
+                                                                        }
+                                                                    />
                                                                 </Link>
                                                             </Td>
                                                         </Tr>
