@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo_black from "../assets/ate_logo_b.svg";
 import logo_white from "../assets/ate_logo_w.svg";
 import { useForm } from "react-hook-form";
-import { useMenu } from "../Context/MenuContext";
+import { useMenu } from "@ctx/MenuContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useMenu } from "../../../Context/MenuContext";
-import Loading from "../../components/Loading";
-import Errormsg from "../../components/Errormsg";
+import { useMenu } from "@ctx/MenuContext";
+import Loading from "@cpt/Loading";
+import Errormsg from "@cpt/Errormsg";
 
 import { Link } from "react-router-dom";
 import Paginate from "../table/Paginate";

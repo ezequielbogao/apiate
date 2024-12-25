@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { useMenu } from "../../Context/MenuContext";
+import { useMenu } from "@ctx/MenuContext";
 
-import Content from "../components/Content";
-import CheckItem from "../components/CheckItem";
-import Systems from "../components/icons/Systems";
-import Errormsg from "../components/Errormsg";
+import Content from "@cpt/Content";
+import CheckItem from "@cpt/CheckItem";
+import Systems from "@icons/Systems";
+import Errormsg from "@cpt/Errormsg";
 
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import TableRodado from "../components/imponibles/TableRodado";
-import TableInmueble from "../components/imponibles/TableInmueble";
-import TableComercio from "../components/imponibles/TableComercio";
-import TableCitas from "../components/imponibles/TableCitas";
+import TableRodado from "@cpt/imponibles/TableRodado";
+import TableInmueble from "@cpt/imponibles/TableInmueble";
+import TableComercio from "@cpt/imponibles/TableComercio";
+import TableCitas from "@cpt/imponibles/TableCitas";
 import { Link } from "react-router-dom";
+import { getAdicionales, getSystems } from "../../services/personaService";
 
 const Personal = () => {
     const { persona, setError, error } = useMenu();
@@ -22,36 +23,22 @@ const Personal = () => {
     const [adicionales, setAdicionales] = useState(null);
 
     const loadSystems = async () => {
-        let getChecks = null;
         try {
-            const response = await axios.get(
-                `http://localhost:5000/atenea/api/persona/${persona.documento}/sistemas`
-            );
-            getChecks = response.data.data[0];
+            const data = await getSystems(persona.documento);
+            setChecks(data);
         } catch (err) {
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
+            setError(err.message);
             toast.error("Error");
-        } finally {
-            setChecks(getChecks);
         }
     };
 
     const loadAdicionales = async () => {
-        let getAdicionales = null;
         try {
-            const response = await axios.get(
-                `http://localhost:5000/atenea/api/persona/${persona.documento}/adicionales`
-            );
-            getAdicionales = response.data.data;
+            const data = await getAdicionales(persona.documento);
+            setAdicionales(data);
         } catch (err) {
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
+            setError(err.message);
             toast.error("Error");
-        } finally {
-            setAdicionales(getAdicionales);
         }
     };
 
@@ -127,7 +114,7 @@ const Personal = () => {
                     </div>
                 </div>
                 <div className="p-5 md:p-10">
-                    <div className="grid grid-cols-8 gap-5">
+                    <div className="grid grid-cols-8 gap-5 border-2 rounded-lg p-3">
                         <div className="col-span-12 py-3 flex flex-col">
                             {persona && (
                                 <>

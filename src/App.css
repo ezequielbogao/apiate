@@ -214,3 +214,7 @@ p {
 ::-webkit-file-upload-button {
     display: none;
 }
+
+.accordion-menu .ml-4 {
+    display: none;
+}

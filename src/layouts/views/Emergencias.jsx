@@ -1,8 +1,8 @@
-import Content from "../components/Content";
-import { useMenu } from "../../Context/MenuContext";
-import Loading from "../components/Loading";
-import ContentHeader from "../components/ContentHeader";
-import Errormsg from "../components/Errormsg";
+import Content from "@cpt/Content";
+import { useMenu } from "@ctx/MenuContext";
+import Loading from "@cpt/Loading";
+import ContentHeader from "@cpt/ContentHeader";
+import Errormsg from "@cpt/Errormsg";
 
 const Emergencias = () => {
     const { sistemas, error, loading } = useMenu();

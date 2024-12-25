@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useMenu } from "../../Context/MenuContext";
-import Content from "../components/Content";
-import Loading from "../components/Loading";
-import ContentHeader from "../components/ContentHeader";
-import Errormsg from "../components/Errormsg";
-import axios from "axios";
+import { useMenu } from "@ctx/MenuContext";
+import Content from "@cpt/Content";
+import Loading from "@cpt/Loading";
+import ContentHeader from "@cpt/ContentHeader";
+import Errormsg from "@cpt/Errormsg";
 import { toast } from "react-toastify";
+import { setCampanasData } from "../../services/campanasService";
 
 const Campanas = () => {
     const { error, loading, setLoading, setError } = useMenu();
@@ -29,16 +29,7 @@ const Campanas = () => {
         formData.append("file", file);
 
         try {
-            const response = await axios.post(
-                "http://localhost:5000/atenea/api/campania/data",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                    responseType: "blob",
-                }
-            );
+            const response = setCampanasData(formData);
 
             // Si la respuesta es un archivo lo descargamos
             const url = window.URL.createObjectURL(new Blob([response.data]));

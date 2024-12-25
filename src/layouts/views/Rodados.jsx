@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Content from "../components/Content";
-import { useMenu } from "../../Context/MenuContext";
-import Loading from "../components/Loading";
-import Auto from "../components/icons/Auto";
-import ContentHeader from "../components/ContentHeader";
-import Errormsg from "../components/Errormsg";
-import Imponible from "../components/Imponible";
+import Content from "@cpt/Content";
+import { useMenu } from "@ctx/MenuContext";
+import Loading from "@cpt/Loading";
+import Auto from "@icons/Auto";
+import ContentHeader from "@cpt/ContentHeader";
+import Errormsg from "@cpt/Errormsg";
+import Imponible from "@cpt/Imponible";
 
 const Rodados = () => {
     const { sistemas, error, loading } = useMenu();

@@ -3,167 +3,117 @@ import "./App.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Citas from "./layouts/views/Citas";
-import Pagos from "./layouts/views/Pagos";
-import Personal from "./layouts/views/Personal";
+import Citas from "@views/Citas";
+import Pagos from "@views/Pagos";
+import Personal from "@views/Personal";
 import { MenuProvider } from "./Context/MenuContext";
-import Emergencias from "./layouts/views/Emergencias";
-import Internacion from "./layouts/views/Internacion";
-import Turnos from "./layouts/views/Turnos";
-import Inmuebles from "./layouts/views/Inmuebles";
-import Inmueble from "./layouts/views/singles/Inmueble";
-import Rodados from "./layouts/views/Rodados";
-import Rodado from "./layouts/views/singles/Rodado";
-import Comercios from "./layouts/views/Comercios";
-import Comercio from "./layouts/views/singles/Comercio";
-import Dashboard from "./layouts/views/Dashboard";
-import Login from "./layouts/views/auth/Login";
-import Reclamos from "./layouts/views/Reclamos";
-import Campanas from "./layouts/views/Campanas";
+import Emergencias from "@views/Emergencias";
+import Internacion from "@views/Internacion";
+import Turnos from "@views/Turnos";
+import Inmuebles from "@views/Inmuebles";
+import Inmueble from "@views/singles/Inmueble";
+import Rodados from "@views/Rodados";
+import Rodado from "@views/singles/Rodado";
+import Comercios from "@views/Comercios";
+import Comercio from "@views/singles/Comercio";
+import Dashboard from "@views/Dashboard";
+import Login from "@views/auth/Login";
+import Reclamos from "@views/Reclamos";
+import Campanas from "@views/Campanas";
 
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
-import ComerciosRubros from "./layouts/views/ComerciosRubros";
+import ComerciosRubros from "@views/ComerciosRubros";
+import Cartilla from "@views/Cartilla";
+import Buscar from "@views/cartilla/Buscar";
 
 const router = createBrowserRouter([
-    // Ruta de login sin Header ni Footer
     { path: "/login", element: <Login /> },
-
-    // Ruta principal con Layout con Header y Footer
     {
         path: "/",
-        element: (
-            <MainLayout>
-                <Dashboard />
-            </MainLayout>
-        ),
-    },
+        element: <MainLayout />,
+        children: [
+            {
+                path: "/",
+                element: <Dashboard />,
+            },
 
-    // Rutas con Layout que incluye Header y Footer
-    {
-        path: "/citas",
-        element: (
-            <MainLayout>
-                <Citas />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/pagos",
-        element: (
-            <MainLayout>
-                <Pagos />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/personal",
-        element: (
-            <MainLayout>
-                <Personal />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/comercios",
-        element: (
-            <MainLayout>
-                <Comercios />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/comercio/:comercio",
-        element: (
-            <MainLayout>
-                <Comercio />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/comercios/:rubro",
-        element: (
-            <MainLayout>
-                <ComerciosRubros />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/inmuebles",
-        element: (
-            <MainLayout>
-                <Inmuebles />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/inmueble/:inmueble",
-        element: (
-            <MainLayout>
-                <Inmueble />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/rodados",
-        element: (
-            <MainLayout>
-                <Rodados />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/rafam/rodado/:rodado",
-        element: (
-            <MainLayout>
-                <Rodado />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/salud/emergencias",
-        element: (
-            <MainLayout>
-                <Emergencias />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/salud/internacion",
-        element: (
-            <MainLayout>
-                <Internacion />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/salud/turnos",
-        element: (
-            <MainLayout>
-                <Turnos />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/gestion/reclamos",
-        element: (
-            <MainLayout>
-                <Reclamos />
-            </MainLayout>
-        ),
-    },
-    {
-        path: "/gestion/campañas",
-        element: (
-            <MainLayout>
-                <Campanas />
-            </MainLayout>
-        ),
+            {
+                path: "/citas",
+                element: <Citas />,
+            },
+            {
+                path: "/pagos",
+                element: <Pagos />,
+            },
+            {
+                path: "/personal",
+                element: <Personal />,
+            },
+            {
+                path: "/rafam/comercios",
+                element: <Comercios />,
+            },
+            {
+                path: "/rafam/comercio/:comercio",
+                element: <Comercio />,
+            },
+            {
+                path: "/rafam/comercios/:rubro",
+                element: <ComerciosRubros />,
+            },
+            {
+                path: "/rafam/inmuebles",
+                element: <Inmuebles />,
+            },
+            {
+                path: "/rafam/inmueble/:inmueble",
+                element: <Inmueble />,
+            },
+            {
+                path: "/rafam/rodados",
+                element: <Rodados />,
+            },
+            {
+                path: "/rafam/rodado/:rodado",
+                element: <Rodado />,
+            },
+            {
+                path: "/salud/emergencias",
+                element: <Emergencias />,
+            },
+            {
+                path: "/salud/cartilla",
+                element: <Cartilla />,
+            },
+            {
+                path: "/salud/cartilla/buscar",
+                element: <Buscar />,
+            },
+            {
+                path: "/salud/internacion",
+                element: <Internacion />,
+            },
+            {
+                path: "/salud/turnos",
+                element: <Turnos />,
+            },
+            {
+                path: "/gestion/reclamos",
+                element: <Reclamos />,
+            },
+            {
+                path: "/gestion/campañas",
+                element: <Campanas />,
+            },
+        ],
     },
 ]);
 
 createRoot(document.getElementById("root")).render(
     <MenuProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+            <MainLayout />
+        </RouterProvider>
     </MenuProvider>
 );

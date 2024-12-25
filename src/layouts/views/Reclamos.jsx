@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useMenu } from "../../Context/MenuContext";
-import Content from "../components/Content";
-import Loading from "../components/Loading";
-import ContentHeader from "../components/ContentHeader";
-import Errormsg from "../components/Errormsg";
-import Th from "../components/table/Th";
-import Td from "../components/table/Td";
-import Tr from "../components/table/Tr";
-import Table from "../components/table/Table";
-import MapReclamos from "../components/MapReclamos";
+import { useMenu } from "@ctx/MenuContext";
+import Content from "@cpt/Content";
+import Loading from "@cpt/Loading";
+import ContentHeader from "@cpt/ContentHeader";
+import Errormsg from "@cpt/Errormsg";
+import Th from "@cpt/table/Th";
+import Td from "@cpt/table/Td";
+import Tr from "@cpt/table/Tr";
+import Table from "@cpt/table/Table";
+import MapReclamos from "@cpt/MapReclamos";
 
 const Reclamos = () => {
     const { sistemas, error, loading } = useMenu();

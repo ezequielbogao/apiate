@@ -1,4 +1,4 @@
-import { useMenu } from "../../../Context/MenuContext";
+import { useMenu } from "@ctx/MenuContext";
 import Loading from "../Loading";
 import Th from "../table/Th";
 import Tr from "../table/Tr";

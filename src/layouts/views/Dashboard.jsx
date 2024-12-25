@@ -1,33 +1,33 @@
 import { useEffect, useState } from "react";
-import Content from "../components/Content";
-import { useMenu } from "../../Context/MenuContext";
+import Content from "@cpt/Content";
+import { useMenu } from "@ctx/MenuContext";
 
-import Loading from "../components/Loading";
-import ContentHeader from "../components/ContentHeader";
+import Loading from "@cpt/Loading";
+import ContentHeader from "@cpt/ContentHeader";
 
 import Chart from "react-apexcharts";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Location from "../components/icons/Location";
-import Email from "../components/icons/Email";
-import Dni from "../components/icons/Dni";
-import Phone from "../components/icons/Phone";
-import Auto from "../components/icons/Auto";
-import Store from "../components/icons/Store";
-import Casa from "../components/icons/Casa";
+import Location from "@icons/Location";
+import Email from "@icons/Email";
+import Dni from "@icons/Dni";
+import Phone from "@icons/Phone";
+import Auto from "@icons/Auto";
+import Store from "@icons/Store";
+import Casa from "@icons/Casa";
 import { Dialog } from "@material-tailwind/react";
-import MapDeudas from "../components/MapDeudas";
+import MapDeudas from "@cpt/MapDeudas";
 import ReactApexChart from "react-apexcharts";
 import { setOptions } from "leaflet";
-import { ChartDeuda } from "../components/ChartDeuda";
-import Errormsg from "../components/Errormsg";
-import Table from "../components/table/Table";
-import Th from "../components/table/Th";
-import Tr from "../components/table/Tr";
-import Td from "../components/table/Td";
+import { ChartDeuda } from "@cpt/ChartDeuda";
+import Errormsg from "@cpt/Errormsg";
+import Table from "@cpt/table/Table";
+import Th from "@cpt/table/Th";
+import Tr from "@cpt/table/Tr";
+import Td from "@cpt/table/Td";
 import { Link } from "react-router-dom";
-import Ojos from "../components/icons/Ojos";
-import Rightarrow from "../components/icons/Rightarrow";
+import Ojos from "@icons/Ojos";
+import Rightarrow from "@icons/Rightarrow";
 
 const Dashboard = () => {
     const [error, setError] = useState(null);

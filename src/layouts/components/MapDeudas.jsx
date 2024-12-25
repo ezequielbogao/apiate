@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 // import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useMenu } from "../../Context/MenuContext";
+import { useMenu } from "@ctx/MenuContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 

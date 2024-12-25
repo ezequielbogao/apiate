@@ -7,7 +7,7 @@ const Content = ({ children }) => {
     };
     return (
         <div className="w-full flex h-full min-h-screen bg-white dark:bg-azure-900">
-            <Menu />
+            {/* <Menu /> */}
             {children}
         </div>
     );
