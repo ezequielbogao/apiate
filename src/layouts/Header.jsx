@@ -134,17 +134,18 @@ const Header = () => {
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex rounded-xl">
-                    <div className="flex flex-row w-full bg-azure-100 dark:bg-azure-800 rounded-xl">
-                        <input
-                            className="py-0 px-2 w-full bg-azure-100 rounded-tl-xl rounded-bl-xl text-azure-600 dark:bg-azure-800 focus:outline-none text-sm dark:text-azure-100"
-                            placeholder="Buscar por DNI"
-                            name="dni"
-                        />
-
+                    <input
+                        required
+                        type="text"
+                        className="form-control focus:outline-none bg-azure-100 dark:bg-azure-500 dark:text-azure-100 p-2  text-xs font-light rounded-tl-xl rounded-bl-xl"
+                        placeholder="Buscar por DNI"
+                        name="dni"
+                    />
+                    <div className="flex justify-end">
                         <button
                             type="submit"
-                            className="transition-colors rounded-xl text-azure-700  hover:text-green-300 bg-transparent hover:dark:text-green-500 dark:text-azure-50 border-none focus:outline-none">
-                            <Lupa />
+                            className="bg-azure-600 text-white text-xs font-light  md:mt-0 rounded-tl-none rounded-bl-none rounded-tr-xl rounded-br-xl focus:border-azure-600 hover:bg-azure-500 hover:outline-none hover:border-azure-600">
+                            <Lupa width={"20"} />
                         </button>
                     </div>
                 </form>

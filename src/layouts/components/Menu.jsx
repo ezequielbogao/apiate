@@ -25,7 +25,7 @@ const Menu = () => {
     return (
         <div className="w-2/12 justify-between md:px-5 border-r-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700 pb-32">
             <div className="flex flex-col mt-5">
-                <MenuSection text="HOME">
+                <MenuSection text="HOME" textsm="HM">
                     <MenuButton
                         path={path}
                         to={"/"}
@@ -33,7 +33,7 @@ const Menu = () => {
                         title={"Dashboard"}
                     />
                 </MenuSection>
-                <MenuSection text="PERSONA" cs="mt-10">
+                <MenuSection text="PERSONA" textsm="PS" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/personal"}
@@ -41,7 +41,7 @@ const Menu = () => {
                         title={"Información"}
                     />
                 </MenuSection>
-                <MenuSection text="CONDUCIR" cs="mt-10">
+                <MenuSection text="CONDUCIR" textsm="CD" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/citas"}
@@ -51,7 +51,7 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="AUTOGESTIÓN" cs="mt-10">
+                <MenuSection text="AUTOGESTIÓN" textsm="AG" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/pagos"}
@@ -65,7 +65,7 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="RAFAM" cs="mt-10">
+                <MenuSection text="RAFAM" textsm="RF" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/rafam/comercios"}
@@ -97,7 +97,7 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="SALUD" cs="mt-10">
+                <MenuSection text="SALUD" textsm="SL" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/salud/emergencias"}
@@ -127,7 +127,7 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="GESTIÓN" cs="mt-10">
+                <MenuSection text="GESTIÓN" textsm="GT" cs="mt-10">
                     <MenuButton
                         path={path}
                         to={"/gestion/reclamos"}

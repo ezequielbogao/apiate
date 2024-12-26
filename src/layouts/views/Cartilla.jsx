@@ -18,6 +18,10 @@ const Cartilla = () => {
         setFormSelected(e);
     };
 
+    const style = {
+        button: "p-5 shadow-md border-2 border-azure-500 text-azure-500 dark:text-azure-100 dark:border-azure-600 dark:hover:bg-azure-500 dark:hover:border-azure-500 bg-white dark:bg-azure-600 hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none",
+    };
+
     return (
         <Content>
             <div className="text-left w-full">
@@ -27,7 +31,7 @@ const Cartilla = () => {
                     {loading ? (
                         <Loading title="cartilla médica" />
                     ) : (
-                        <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                        <div className="bg-white dark:bg-azure-700 p-5 rounded-xl">
                             <span className="text-azure-400 font-light text-md">
                                 Consultá y accedé a toda la información sobre
                                 los servicios médicos disponibles, incluyendo
@@ -41,22 +45,22 @@ const Cartilla = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
                                     <button
                                         onClick={() => changeForm(1)}
-                                        className="p-5 shadow-md border-2 border-azure-500 text-azure-500 bg-white hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none">
+                                        className={style.button}>
                                         SERVICIO MÉDICO
                                     </button>
                                     <button
                                         onClick={() => changeForm(2)}
-                                        className="p-5 shadow-md border-2 border-azure-500 text-azure-500 bg-white hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none">
+                                        className={style.button}>
                                         PROFESIONAL
                                     </button>
                                     <button
                                         onClick={() => changeForm(3)}
-                                        className="p-5 shadow-md border-2 border-azure-500 text-azure-500 bg-white hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none">
+                                        className={style.button}>
                                         CENTRO SALUD
                                     </button>
                                     <button
                                         onClick={() => changeForm(4)}
-                                        className="p-5 shadow-md border-2 border-azure-500 text-azure-500 bg-white hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none">
+                                        className={style.button}>
                                         CERCANÍA
                                     </button>
                                 </div>
