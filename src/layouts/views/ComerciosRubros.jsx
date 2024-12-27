@@ -12,7 +12,7 @@ import Tr from "@cpt/table/Tr";
 import Table from "@cpt/table/Table";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Rightarrow from "@icons/Rightarrow";
 
 const ComerciosRubros = () => {
@@ -24,11 +24,14 @@ const ComerciosRubros = () => {
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
     const [comerciosRubros, setComerciosRubros] = useState([]);
+    const { rubro } = useParams();
 
     const getImponibleByRubro = async (rubro) => {
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/comercios/rubros/${rubro}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/rafam/comercios/rubros/${rubro}`
             );
 
             setComerciosRubros(response.data.data);
@@ -42,8 +45,8 @@ const ComerciosRubros = () => {
     };
 
     useEffect(() => {
-        getImponibleByRubro();
-    }, [comerciosRubros]);
+        getImponibleByRubro(rubro);
+    }, []);
 
     if (comerciosRubros) {
         totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);

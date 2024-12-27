@@ -19,7 +19,9 @@ const Comercio = () => {
         let getCom = null;
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/comercio/${comercio}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/rafam/comercio/${comercio}`
             );
             getCom = response.data.data[0];
             console.log(getCom);

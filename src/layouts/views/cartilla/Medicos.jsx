@@ -28,7 +28,9 @@ const Medicos = () => {
         let meds = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/salud/cartilla/medicos/${especialidad}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/salud/cartilla/medicos/${especialidad}`
             );
             // medicos = response.data.data;
             // console.log(response.data.data[0]);

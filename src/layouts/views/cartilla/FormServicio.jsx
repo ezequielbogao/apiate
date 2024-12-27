@@ -34,7 +34,9 @@ export const FormServicio = () => {
         let serv = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/salud/cartilla/servicios`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/salud/cartilla/servicios`
             );
             serv = response.data.data;
             setServicios(serv);
@@ -83,6 +85,12 @@ export const FormServicio = () => {
             toast.error("Error");
         }
     };
+
+    useEffect(() => {
+        if (especialidades && especialidades.length > 0) {
+            setSelectedCodEsp(especialidades[0].espeCodigo);
+        }
+    }, [especialidades]);
 
     useEffect(() => {
         getServicios();

@@ -19,7 +19,9 @@ const Inmueble = () => {
         let getImn = null;
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/inmueble/${inmueble}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/rafam/inmueble/${inmueble}`
             );
             getImn = response.data.data[0];
             console.log(getImn);

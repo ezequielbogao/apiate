@@ -45,7 +45,7 @@ const Header = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/persona/${dni}`
+                `${import.meta.env.VITE_API_URL}/atenea/api/persona/${dni}`
             );
             setPersona(response.data.data.datos_personales.persona[0]);
             setSistemas(response.data.data.sistemas);

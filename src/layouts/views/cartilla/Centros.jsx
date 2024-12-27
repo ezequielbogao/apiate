@@ -22,7 +22,9 @@ const Centros = () => {
     const getCentros = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/salud/cartilla/centros/${especialidad}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/salud/cartilla/centros/${especialidad}`
             );
             setCentros(response.data.data[0].centros);
         } catch (err) {

@@ -51,7 +51,7 @@ const Dashboard = () => {
         let info = null;
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/dashboard`
+                `${import.meta.env.VITE_API_URL}/atenea/api/dashboard`
             );
 
             info = response.data.data[0];
@@ -76,7 +76,9 @@ const Dashboard = () => {
         let rubros = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/comercios/rubros`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/rafam/comercios/rubros`
             );
             rubros = response.data.data;
             console.log(rubros);
@@ -94,7 +96,9 @@ const Dashboard = () => {
         let deuda = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/recursos/deuda`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/rafam/recursos/deuda`
             );
             deuda = response.data.data;
             setDeuda(deuda);
