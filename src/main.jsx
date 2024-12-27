@@ -25,7 +25,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
 import ComerciosRubros from "@views/ComerciosRubros";
 import Cartilla from "@views/Cartilla";
-import Buscar from "@views/cartilla/Buscar";
+import Medicos from "@views/cartilla/Medicos";
+import Centros from "./layouts/views/cartilla/Centros";
 
 const router = createBrowserRouter([
     { path: "/login", element: <Login /> },
@@ -87,8 +88,12 @@ const router = createBrowserRouter([
                 element: <Cartilla />,
             },
             {
-                path: "/salud/cartilla/buscar",
-                element: <Buscar />,
+                path: "/salud/cartilla/medicos/:especialidad",
+                element: <Medicos />,
+            },
+            {
+                path: "/salud/cartilla/centros/:especialidad",
+                element: <Centros />,
             },
             {
                 path: "/salud/internacion",

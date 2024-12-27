@@ -42,7 +42,7 @@ const Cartilla = () => {
                             </span>
                             <div className="mt-5 flex flex-col">
                                 <span>Buscar por :</span>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
+                                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
                                     <button
                                         onClick={() => changeForm(1)}
                                         className={style.button}>
@@ -63,10 +63,9 @@ const Cartilla = () => {
                                         className={style.button}>
                                         CERCANÍA
                                     </button>
-                                </div>
+                                </div> */}
                                 <div className="my-5 flex justify-center">
-                                    {formSelected == 1 && <FormServicio />}
-                                    {formSelected == 2 && <FormProfesional />}
+                                    <FormServicio />
                                 </div>
                             </div>
                         </div>

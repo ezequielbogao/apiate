@@ -36,6 +36,7 @@ const Dashboard = () => {
     const [open, setOpen] = useState(false);
     const [modal, setModal] = useState("");
     const [comerciosRubros, setComerciosRubros] = useState([]);
+    const [deuda, setDeuda] = useState([]);
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -89,6 +90,23 @@ const Dashboard = () => {
         }
     };
 
+    const getDeuda = async () => {
+        let deuda = [];
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/atenea/api/rafam/recursos/deuda`
+            );
+            deuda = response.data.data;
+            setDeuda(deuda);
+        } catch (err) {
+            console.log(err);
+            setError(
+                err.response ? err.response.data.message : "Error desconocido"
+            );
+            toast.error("Error");
+        }
+    };
+
     if (comerciosRubros) {
         totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);
         paginatedPages = comerciosRubros.slice(
@@ -110,8 +128,16 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
+        getDeuda();
         getRubros();
     }, []);
+
+    const recursos = {
+        20: "COMERCIOS",
+        10: "INMUEBLES",
+        60: "AUTO",
+        30: "MOTO",
+    };
 
     return (
         <Content>
@@ -178,7 +204,36 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
-                                <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
+                                {deuda &&
+                                    deuda.map(({ recurso, deuda }) => (
+                                        <>
+                                            <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
+                                                <Auto
+                                                    width={"40"}
+                                                    height={"40"}
+                                                />
+                                                <div className="flex flex-col w-full">
+                                                    <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
+                                                        {recursos[recurso]}
+                                                    </div>
+                                                    <div className="flex flex-col mt-5">
+                                                        <div className="text-md text-azure-300 font-light">
+                                                            Deuda
+                                                        </div>
+                                                        <div className="text-4xl font-medium text-red-400 flex flex-flow">
+                                                            <span className="me-3">
+                                                                $
+                                                            </span>
+                                                            {deuda.toLocaleString(
+                                                                "de-DE"
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ))}
+                                {/* <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
                                     <Auto width={"40"} height={"40"} />
                                     <div className="flex flex-col w-full">
                                         <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
@@ -234,7 +289,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="">
                                 {loading ? (

@@ -28,7 +28,7 @@ const MenuSection = (props) => {
     };
 
     return (
-        <Accordion open={open === 1}>
+        <Accordion open={open === 1} className="accordion-menu">
             <AccordionHeader
                 onClick={() => handleOpen(1)}
                 className={`text-azure-300 py-0 flex justify-between w-full bg-transparent rounded-sm font-light text-center md:text-left ${props.cs} text-xs shadow-none border-0 hover:text-azure-500 focus:outline-none`}>
