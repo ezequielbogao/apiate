@@ -32,7 +32,9 @@ const Medicos = () => {
             );
             // medicos = response.data.data;
             // console.log(response.data.data[0]);
-            setMedicos(response.data.data[0].medicos);
+            if (response.data.data) {
+                setMedicos(response.data.data[0].medicos);
+            }
         } catch (err) {
             console.log(err);
             setError(
