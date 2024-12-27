@@ -71,8 +71,8 @@ export const FormServicio = () => {
             const response = await axios.get(
                 `http://localhost:5000/atenea/api/salud/cartilla/servicios/${cod}`
             );
-            esp = response.data.data;
-            console.log(esp);
+            esp = response.data.data[0].esp;
+
             setEspecialidades(esp);
             // console.log(esp);
         } catch (err) {
