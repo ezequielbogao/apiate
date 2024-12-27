@@ -72,6 +72,7 @@ export const FormServicio = () => {
                 `http://localhost:5000/atenea/api/salud/cartilla/servicios/${cod}`
             );
             esp = response.data.data;
+            console.log(esp);
             setEspecialidades(esp);
             // console.log(esp);
         } catch (err) {
