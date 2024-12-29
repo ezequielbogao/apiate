@@ -29,6 +29,9 @@ import { Link } from "react-router-dom";
 import Ojos from "@icons/Ojos";
 import Rightarrow from "@icons/Rightarrow";
 
+import { formatNumber } from "../../services/helpers"; // Importa funciones de numberUtils
+import { Moto } from "../components/icons/Moto";
+
 const Dashboard = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
@@ -207,15 +210,35 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-10">
                                 {deuda &&
                                     deuda.map(({ recurso, deuda }) => (
                                         <>
                                             <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                                <Auto
-                                                    width={"40"}
-                                                    height={"40"}
-                                                />
+                                                {recurso === 20 ? (
+                                                    <Store
+                                                        width="40"
+                                                        height="40"
+                                                    />
+                                                ) : recurso === 10 ? (
+                                                    <Casa
+                                                        width="40"
+                                                        height="40"
+                                                    />
+                                                ) : recurso === 60 ? (
+                                                    <Auto
+                                                        width="40"
+                                                        height="40"
+                                                    />
+                                                ) : recurso === 30 ? (
+                                                    <Moto
+                                                        width="40"
+                                                        height="40"
+                                                    />
+                                                ) : (
+                                                    ""
+                                                )}
+
                                                 <div className="flex flex-col w-full">
                                                     <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
                                                         {recursos[recurso]}
@@ -228,9 +251,14 @@ const Dashboard = () => {
                                                             <span className="me-3">
                                                                 $
                                                             </span>
-                                                            {deuda.toLocaleString(
-                                                                "de-DE"
+                                                            {formatNumber(
+                                                                deuda
                                                             )}
+                                                            {/* {formatNumber(
+                                                                deuda.toLocaleString(
+                                                                    "de-DE"
+                                                                )
+                                                            )} */}
                                                         </div>
                                                     </div>
                                                 </div>

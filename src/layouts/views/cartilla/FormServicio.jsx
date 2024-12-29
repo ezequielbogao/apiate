@@ -34,9 +34,7 @@ export const FormServicio = () => {
         let serv = [];
         try {
             const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/salud/cartilla/servicios`
+                `${import.meta.env.VITE_API_URL}/atenea/api/salud/servicios`
             );
             serv = response.data.data;
             setServicios(serv);
@@ -71,7 +69,9 @@ export const FormServicio = () => {
         let esp = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/salud/cartilla/servicios/${cod}`
+                `${
+                    import.meta.env.VITE_API_URL
+                }/atenea/api/salud/servicios/${cod}`
             );
             esp = response.data.data[0].esp;
 

@@ -30,7 +30,7 @@ const Medicos = () => {
             const response = await axios.get(
                 `${
                     import.meta.env.VITE_API_URL
-                }/atenea/api/salud/cartilla/medicos/${especialidad}`
+                }/atenea/api/salud/medicos/${especialidad}`
             );
             // medicos = response.data.data;
             // console.log(response.data.data[0]);

@@ -133,7 +133,7 @@ const Header = () => {
             <div className="block md:flex px-5 align-middle items-end justify-end py-2 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="flex rounded-xl">
+                    className="flex rounded-xl justify-end">
                     <input
                         required
                         type="text"
