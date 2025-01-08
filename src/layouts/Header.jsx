@@ -47,7 +47,7 @@ const Header = () => {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_URL}/atenea/api/persona/${dni}`
             );
-            setPersona(response.data.data.datos_personales.persona[0]);
+            setPersona(response.data.data.datos_personales);
             setSistemas(response.data.data.sistemas);
             toast.success("Persona con DNI " + dni + " encontrada con exito!");
         } catch (err) {

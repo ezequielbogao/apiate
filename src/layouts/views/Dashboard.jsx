@@ -84,7 +84,6 @@ const Dashboard = () => {
                 }/atenea/api/rafam/comercios/rubros`
             );
             rubros = response.data.data;
-            console.log(rubros);
             setComerciosRubros(rubros);
         } catch (err) {
             console.log(err);
@@ -213,7 +212,7 @@ const Dashboard = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-10">
                                 {deuda &&
                                     deuda.map(({ recurso, deuda }) => (
-                                        <>
+                                        <div key={recurso}>
                                             <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
                                                 {recurso === 20 ? (
                                                     <Store
@@ -263,7 +262,7 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </>
+                                        </div>
                                     ))}
                                 {/* <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
                                     <Auto width={"40"} height={"40"} />

@@ -100,7 +100,7 @@ export const FormServicio = () => {
         <form
             onSubmit={handleSubmit}
             className="flex flex-col mt-5 border-2 border-azure-200 dark:border-azure-600 rounded-md p-5 w-full">
-            <span className="text-azure-400 mb-2">POR SERVICIO MÉDICO</span>
+            {/* <span className="text-azure-400 mb-2">POR SERVICIO MÉDICO</span> */}
             <div className="flex flex-col mb-3 w-full">
                 <label className="mb-1 text-azure-500 text-md font-light">
                     Buscar por Médico o Centro de Salud
@@ -121,6 +121,7 @@ export const FormServicio = () => {
                     className={style.input}
                     onChange={handleSelSer}
                     value={selectedCodSer}>
+                    <option value={""}>Seleccionar opción</option>
                     {servicios.map(({ codigo, servicio }) => (
                         <option key={codigo} value={codigo}>
                             {servicio}
@@ -137,6 +138,7 @@ export const FormServicio = () => {
                         className={style.input}
                         onChange={handleSelEsp}
                         value={selectedCodEsp}>
+                        <option>Seleccionar opción</option>
                         {especialidades.map(({ espeCodigo, especialidad }) => (
                             <option key={espeCodigo} value={espeCodigo}>
                                 {especialidad}

@@ -17,7 +17,9 @@ const MapReclamos = () => {
         let locs = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/callejero/${persona.documento}`
+                `${import.meta.env.VITE_API_URL}/atenea/api/callejero/${
+                    persona.documento
+                }`
             );
             locs = response.data.data;
             setLocations(locs);

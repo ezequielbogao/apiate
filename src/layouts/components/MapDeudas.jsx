@@ -17,7 +17,7 @@ const MapDeudas = () => {
         let locs = [];
         try {
             const response = await axios.get(
-                `http://localhost:5000/atenea/api/rafam/comercios/deudas`
+                `${import.meta.env.VITE_API_URL}/rafam/comercios/deudas`
             );
             locs = response.data.data;
             let cord = locs.map((e) => {

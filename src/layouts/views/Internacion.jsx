@@ -71,7 +71,7 @@ const Internacion = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {sistemas.salud_internacion.length > 0 ? (
+                                {sistemas.salud_internacion.length > 0 &&
                                     paginatedPages.map(
                                         (
                                             {
@@ -103,16 +103,7 @@ const Internacion = () => {
                                                 <Td content={ubicDescripcion} />
                                             </Tr>
                                         )
-                                    )
-                                ) : (
-                                    <tr>
-                                        <td
-                                            colSpan="6"
-                                            className="p-4 text-center">
-                                            No hay internaciones disponibles.
-                                        </td>
-                                    </tr>
-                                )}
+                                    )}
                             </tbody>
                         </Table>
                     ) : (

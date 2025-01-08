@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/atenea/api/persona";
-
 export const getSystems = async (documento) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/${documento}/sistemas`);
+		const response = await axios.get(`${import.meta.env.VITE_API_URL}/atenea/api/persona/${documento}/sistemas`);
 		return response.data.data[0];
 	} catch (err) {
 		throw new Error(
@@ -15,7 +13,7 @@ export const getSystems = async (documento) => {
 
 export const getAdicionales = async (documento) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/${documento}/adicionales`);
+		const response = await axios.get(`${import.meta.env.VITE_API_URL}/atenea/api/persona/${documento}/adicionales`);
 		return response.data.data;
 	} catch (err) {
 		throw new Error(

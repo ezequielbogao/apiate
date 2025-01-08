@@ -31,7 +31,7 @@ const Cartilla = () => {
                     {loading ? (
                         <Loading title="cartilla médica" />
                     ) : (
-                        <div className="bg-white dark:bg-azure-700 p-5 rounded-xl">
+                        <div className="bg-white dark:bg-azure-700 rounded-xl">
                             <span className="text-azure-400 font-light text-md">
                                 Consultá y accedé a toda la información sobre
                                 los servicios médicos disponibles, incluyendo
@@ -41,29 +41,6 @@ const Cartilla = () => {
                                 detalles importantes.
                             </span>
                             <div className="mt-5 flex flex-col">
-                                <span>Buscar por :</span>
-                                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
-                                    <button
-                                        onClick={() => changeForm(1)}
-                                        className={style.button}>
-                                        SERVICIO MÉDICO
-                                    </button>
-                                    <button
-                                        onClick={() => changeForm(2)}
-                                        className={style.button}>
-                                        PROFESIONAL
-                                    </button>
-                                    <button
-                                        onClick={() => changeForm(3)}
-                                        className={style.button}>
-                                        CENTRO SALUD
-                                    </button>
-                                    <button
-                                        onClick={() => changeForm(4)}
-                                        className={style.button}>
-                                        CERCANÍA
-                                    </button>
-                                </div> */}
                                 <div className="my-5 flex justify-center">
                                     <FormServicio />
                                 </div>

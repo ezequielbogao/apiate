@@ -13,6 +13,7 @@ import { Link, useParams } from "react-router-dom";
 import Leftarrow from "@icons/Leftarrow";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Hospital from "../../components/icons/Hospital";
 
 const Centros = () => {
     const { error, loading, setLoading, setError } = useMenu();
@@ -24,7 +25,7 @@ const Centros = () => {
             const response = await axios.get(
                 `${
                     import.meta.env.VITE_API_URL
-                }/atenea/api/salud/cartilla/centros/${especialidad}`
+                }/atenea/api/salud/centros/${especialidad}`
             );
             setCentros(response.data.data[0].centros);
         } catch (err) {
@@ -69,7 +70,7 @@ const Centros = () => {
                                         <Leftarrow width={"30"} height={"30"} />
                                     </Link>
                                 </div>
-                                <div className="flex flex-col gap-4">
+                                <div className="grid grid-cols-1 gap-4">
                                     {centros &&
                                         centros.map(
                                             ({
@@ -80,21 +81,25 @@ const Centros = () => {
                                                 cp,
                                                 telefono,
                                             }) => (
-                                                <>
-                                                    <Link
-                                                        key={ubicCodigo}
-                                                        className={style.item}>
-                                                        <span className="text-azure-600 font-bold text-lg my-2">
+                                                <div
+                                                    key={ubicCodigo}
+                                                    className="flex gap-5 bg-azure-50  dark:bg-azure-600 rounded-xl  mt-5 p-5 dark:border-2 dark:border-azure-600">
+                                                    <Hospital
+                                                        width={"50"}
+                                                        height={"50"}
+                                                    />
+                                                    <div className="flex flex-col">
+                                                        <div className="text-3xl flex flex-col font-medium text-azure-600 dark:text-azure-200">
                                                             {ubicacion}
-                                                        </span>
-                                                        <span className="text-azure-600 font-bold text-2xl my-2">
+                                                        </div>
+                                                        <div className="text-xl text-azure-500 font-light dark:text-azure-300">
                                                             {calle} {nro}
-                                                        </span>
-                                                        <span className="text-azure-600 font-bold text-2xl my-2">
-                                                            {cp} {telefono}
-                                                        </span>
-                                                    </Link>
-                                                </>
+                                                        </div>
+                                                        <div className="text-xl text-azure-500 font-light dark:text-azure-300">
+                                                            {telefono}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             )
                                         )}
                                 </div>

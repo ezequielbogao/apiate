@@ -13,6 +13,7 @@ import { Link, useParams } from "react-router-dom";
 import Leftarrow from "@icons/Leftarrow";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Stetho from "../../components/icons/Stetho";
 
 const Medicos = () => {
     const { error, loading, setLoading, setError } = useMenu();
@@ -88,19 +89,33 @@ const Medicos = () => {
                                                 medNombre,
                                                 medApellido,
                                             }) => (
-                                                <>
-                                                    <Link
-                                                        key={mediCodigo}
-                                                        onClick={() =>
-                                                            changeForm(1)
-                                                        }
-                                                        className={style.item}>
-                                                        <span className="text-azure-600 font-bold text-2xl my-2">
+                                                <div
+                                                    key={mediCodigo}
+                                                    className="flex gap-5 bg-azure-50  dark:bg-azure-600 rounded-xl  mt-5 p-5 dark:border-2 dark:border-azure-600">
+                                                    <Stetho
+                                                        width={"50"}
+                                                        height={"50"}
+                                                    />
+                                                    <div className="flex flex-col">
+                                                        <div className="text-3xl flex flex-col font-medium text-azure-600 dark:text-azure-200">
                                                             {medNombre}{" "}
                                                             {medApellido}
-                                                        </span>
-                                                    </Link>
-                                                </>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                // <>
+                                                //     <Link
+                                                //         key={mediCodigo}
+                                                //         onClick={() =>
+                                                //             changeForm(1)
+                                                //         }
+                                                //         className={style.item}>
+                                                //         <span className="text-azure-600 font-bold text-2xl my-2">
+                                                //             {medNombre}{" "}
+                                                //             {medApellido}
+                                                //         </span>
+                                                //     </Link>
+                                                // </>
                                             )
                                         )}
                                 </div>

@@ -69,7 +69,7 @@ const Turnos = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {sistemas.salud_turnos.length > 0 ? (
+                                {sistemas.salud_turnos.length > 0 &&
                                     paginatedPages.map(
                                         (
                                             {
@@ -93,16 +93,7 @@ const Turnos = () => {
                                                 <Td content={salida} />
                                             </Tr>
                                         )
-                                    )
-                                ) : (
-                                    <tr>
-                                        <td
-                                            colSpan="6"
-                                            className="p-4 text-center">
-                                            No hay citas disponibles.
-                                        </td>
-                                    </tr>
-                                )}
+                                    )}
                             </tbody>
                         </Table>
                     ) : (
