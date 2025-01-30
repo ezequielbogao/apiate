@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Content from "@cpt/Content";
 import { useMenu } from "@ctx/MenuContext";
 import Loading from "@cpt/Loading";
@@ -15,11 +15,12 @@ const Rodados = () => {
     const itemsPerPage = 8;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.rafam_imponibles.rodados) {
-        totalPage = Math.ceil(
-            sistemas.rafam_imponibles.rodados.length / itemsPerPage
+    if (sistemas && sistemas.rafam_imponibles_deuda) {
+        let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
+            (item) => item.IMPONIBLES
         );
-        paginatedPages = sistemas.rafam_imponibles.rodados.slice(
+        totalPage = Math.ceil(imponibles.length / itemsPerPage);
+        paginatedPages = imponibles.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -45,30 +46,26 @@ const Rodados = () => {
                 <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="rodados" />
-                    ) : sistemas &&
-                      sistemas.rafam_imponibles &&
-                      sistemas.rafam_imponibles.rodados ? (
+                    ) : sistemas && sistemas.rafam_imponibles_deuda ? (
                         paginatedPages.length > 0 ? (
                             <>
                                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {paginatedPages.map(
-                                        (
-                                            { NRO_RODADO, DEUDA_RODADO },
-                                            index
-                                        ) => (
-                                            <Imponible
-                                                to={`/rafam/rodado/${NRO_RODADO}`}
-                                                key={index}
-                                                nro={NRO_RODADO}
-                                                deuda={DEUDA_RODADO}
-                                                icon={
-                                                    <Auto
-                                                        width="50"
-                                                        height="50"
-                                                    />
-                                                }
-                                            />
-                                        )
+                                        ({ NRO_RODADO, DEUDA_RODADO }, index) =>
+                                            NRO_RODADO && (
+                                                <Imponible
+                                                    to={`/rafam/rodado/${NRO_RODADO}`}
+                                                    key={index}
+                                                    nro={NRO_RODADO}
+                                                    deuda={DEUDA_RODADO}
+                                                    icon={
+                                                        <Auto
+                                                            width="50"
+                                                            height="50"
+                                                        />
+                                                    }
+                                                />
+                                            )
                                     )}
                                 </div>
                                 <div className="flex justify-center items-center mt-4">

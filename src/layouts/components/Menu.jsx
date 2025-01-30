@@ -72,8 +72,12 @@ const Menu = () => {
                         icon={<Store />}
                         title={"Comercios"}
                         count={
-                            sistemas?.rafam_imponibles?.comercios?.length ??
-                            null
+                            sistemas.rafam_imponibles_deuda
+                                .flatMap((item) => item.IMPONIBLES)
+                                .filter(
+                                    (imponible) =>
+                                        imponible.NRO_COMERCIO !== null
+                                ).length ?? null
                         }
                     />
                     <MenuButton
@@ -82,8 +86,12 @@ const Menu = () => {
                         icon={<Casa />}
                         title={"Inmuebles"}
                         count={
-                            sistemas?.rafam_imponibles?.inmuebles?.length ??
-                            null
+                            sistemas.rafam_imponibles_deuda
+                                .flatMap((item) => item.IMPONIBLES)
+                                .filter(
+                                    (imponible) =>
+                                        imponible.NRO_INMUEBLE !== null
+                                ).length ?? null
                         }
                     />
                     <MenuButton
@@ -92,7 +100,11 @@ const Menu = () => {
                         icon={<Auto />}
                         title={"Rodados"}
                         count={
-                            sistemas?.rafam_imponibles?.rodados?.length ?? null
+                            sistemas.rafam_imponibles_deuda
+                                .flatMap((item) => item.IMPONIBLES)
+                                .filter(
+                                    (imponible) => imponible.NRO_RODADO !== null
+                                ).length ?? null
                         }
                     />
                 </MenuSection>

@@ -15,11 +15,12 @@ const Comercios = () => {
     const itemsPerPage = 8;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.rafam_imponibles.comercios) {
-        totalPage = Math.ceil(
-            sistemas.rafam_imponibles.comercios.length / itemsPerPage
+    if (sistemas && sistemas.rafam_imponibles_deuda) {
+        let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
+            (item) => item.IMPONIBLES
         );
-        paginatedPages = sistemas.rafam_imponibles.comercios.slice(
+        totalPage = Math.ceil(imponibles.length / itemsPerPage);
+        paginatedPages = imponibles.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -43,31 +44,30 @@ const Comercios = () => {
 
                 <div className="p-5 md:p-10">
                     {loading ? (
-                        <Loading title="rodados" />
-                    ) : sistemas &&
-                      sistemas.rafam_imponibles &&
-                      sistemas.rafam_imponibles.comercios ? (
-                        sistemas.rafam_imponibles.comercios.length > 0 ? (
+                        <Loading title="comercios" />
+                    ) : sistemas && sistemas.rafam_imponibles_deuda ? (
+                        sistemas.rafam_imponibles_deuda.length > 0 ? (
                             <>
                                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {paginatedPages.map(
                                         (
                                             { NRO_COMERCIO, DEUDA_COMERCIO },
                                             index
-                                        ) => (
-                                            <Imponible
-                                                to={`/rafam/comercio/${NRO_COMERCIO}`}
-                                                key={index}
-                                                nro={NRO_COMERCIO}
-                                                deuda={DEUDA_COMERCIO}
-                                                icon={
-                                                    <Store
-                                                        width="50"
-                                                        height="50"
-                                                    />
-                                                }
-                                            />
-                                        )
+                                        ) =>
+                                            NRO_COMERCIO && (
+                                                <Imponible
+                                                    to={`/rafam/comercio/${NRO_COMERCIO}`}
+                                                    key={index}
+                                                    nro={NRO_COMERCIO}
+                                                    deuda={DEUDA_COMERCIO}
+                                                    icon={
+                                                        <Store
+                                                            width="50"
+                                                            height="50"
+                                                        />
+                                                    }
+                                                />
+                                            )
                                     )}
                                 </div>
                                 <div className="flex justify-center items-center mt-4">
