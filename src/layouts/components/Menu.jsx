@@ -22,6 +22,7 @@ const Menu = () => {
 
     const location = useLocation();
     const path = location.pathname;
+
     return (
         <div className="w-2/12 justify-between md:px-5 border-r-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700 pb-32">
             <div className="flex flex-col mt-5">
@@ -57,11 +58,11 @@ const Menu = () => {
                         to={"/pagos"}
                         icon={<Pago />}
                         title={"Pagos"}
-                        count={
-                            sistemas && sistemas.pagos
-                                ? sistemas.pagos.length
-                                : null
-                        }
+                        // count={
+                        //     sistemas && sistemas.pagos
+                        //         ? sistemas.pagos.length
+                        //         : null
+                        // }
                     />
                 </MenuSection>
 
@@ -71,41 +72,43 @@ const Menu = () => {
                         to={"/rafam/comercios"}
                         icon={<Store />}
                         title={"Comercios"}
-                        count={
-                            sistemas.rafam_imponibles_deuda
-                                .flatMap((item) => item.IMPONIBLES)
-                                .filter(
-                                    (imponible) =>
-                                        imponible.NRO_COMERCIO !== null
-                                ).length ?? null
-                        }
+                        // count={
+                        //     sistemas.rafam_imponibles_deuda
+                        //         ? sistemas.rafam_imponibles_deuda
+                        //               .flatMap((item) => item.IMPONIBLES)
+                        //               .filter(
+                        //                   (imponible) =>
+                        //                       imponible.NRO_COMERCIO !== null
+                        //               ).length
+                        //         : null
+                        // }
                     />
                     <MenuButton
                         path={path}
                         to={"/rafam/inmuebles"}
                         icon={<Casa />}
                         title={"Inmuebles"}
-                        count={
-                            sistemas.rafam_imponibles_deuda
-                                .flatMap((item) => item.IMPONIBLES)
-                                .filter(
-                                    (imponible) =>
-                                        imponible.NRO_INMUEBLE !== null
-                                ).length ?? null
-                        }
+                        // count={
+                        //     sistemas.rafam_imponibles_deuda
+                        //         .flatMap((item) => item.IMPONIBLES)
+                        //         .filter(
+                        //             (imponible) =>
+                        //                 imponible.NRO_INMUEBLE !== null
+                        //         ).length ?? null
+                        // }
                     />
                     <MenuButton
                         path={path}
                         to={"/rafam/rodados"}
                         icon={<Auto />}
                         title={"Rodados"}
-                        count={
-                            sistemas.rafam_imponibles_deuda
-                                .flatMap((item) => item.IMPONIBLES)
-                                .filter(
-                                    (imponible) => imponible.NRO_RODADO !== null
-                                ).length ?? null
-                        }
+                        // count={
+                        //     sistemas.rafam_imponibles_deuda
+                        //         .flatMap((item) => item.IMPONIBLES)
+                        //         .filter(
+                        //             (imponible) => imponible.NRO_RODADO !== null
+                        //         ).length ?? null
+                        // }
                     />
                 </MenuSection>
 
