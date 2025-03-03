@@ -38,7 +38,7 @@ const MenuSection = (props) => {
                         : "text-azure-700 dark:text-azure-100"
                 }  py-0 flex justify-between w-full bg-transparent rounded-sm font-bold text-center md:text-left ${
                     props.cs
-                } text-xs shadow-none border-0 hover:text-azure-500 focus:outline-none`}>
+                } text-xs shadow-none border-0  focus:outline-none`}>
                 <span className="block sm:block md:hidden">{props.textsm}</span>
                 <span className="hidden md:block">{props.text}</span>
                 <ChevronDown

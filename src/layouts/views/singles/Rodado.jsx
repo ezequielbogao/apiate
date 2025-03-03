@@ -16,11 +16,27 @@ const Rodado = () => {
         (state) => state.imponible
     );
     const { personales } = useSelector((state) => state.personal);
+    const { sistemas } = useSelector((state) => state.personal);
+    const [tieneDeuda, setTieneDeuda] = useState(false);
 
     useEffect(() => {
         if (Object.keys(personales).length == 0) navigate("/");
         if (rodado) dispatch(fetchImponible(rodado, "rodado"));
-    }, [rodado, dispatch]);
+
+        if (sistemas && sistemas.rafam_imponibles_deuda) {
+            let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
+                (item) => item.IMPONIBLES
+            );
+
+            const foundRodado = imponibles.find(
+                (item) => item.NRO_RODADO == rodado
+            );
+
+            if (foundRodado) {
+                if (foundRodado.DEUDA_RODADO > 0) setTieneDeuda(true);
+            }
+        }
+    }, [rodado, personales, dispatch, navigate, sistemas]);
 
     return (
         <Content>
@@ -47,6 +63,23 @@ const Rodado = () => {
                         <Loading title="rodado" />
                     ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className="flex w-full justify-end">
+                                <span
+                                    className={`px-2 py-2 text-sm bg-${
+                                        tieneDeuda ? "red" : "green"
+                                    }-500 text-white rounded-lg`}>
+                                    {tieneDeuda ? "Tiene deuda" : "Sin deuda"}
+                                </span>
+                                {/* {tieneDeuda ? (
+                                    <span className="px-4 py-2 bg-red-600 text-white rounded-lg">
+                                        Tiene deuda
+                                    </span>
+                                ) : (
+                                    <span className="px-4 py-2 bg-green-600 text-white rounded-lg">
+                                        Sin deuda
+                                    </span>
+                                )} */}
+                            </div>
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full md:w-6/12">
                                     <div className="flex flex-col mt-3">
