@@ -20,7 +20,7 @@ const Rodado = () => {
     const [tieneDeuda, setTieneDeuda] = useState(false);
 
     useEffect(() => {
-        if (Object.keys(personales).length == 0) navigate("/");
+        // if (Object.keys(personales).length == 0) navigate("/");
         if (rodado) dispatch(fetchImponible(rodado, "rodado"));
 
         if (sistemas && sistemas.rafam_imponibles_deuda) {
@@ -70,15 +70,6 @@ const Rodado = () => {
                                     }-500 text-white rounded-lg`}>
                                     {tieneDeuda ? "Tiene deuda" : "Sin deuda"}
                                 </span>
-                                {/* {tieneDeuda ? (
-                                    <span className="px-4 py-2 bg-red-600 text-white rounded-lg">
-                                        Tiene deuda
-                                    </span>
-                                ) : (
-                                    <span className="px-4 py-2 bg-green-600 text-white rounded-lg">
-                                        Sin deuda
-                                    </span>
-                                )} */}
                             </div>
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full md:w-6/12">

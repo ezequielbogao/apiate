@@ -1,11 +1,8 @@
 import Content from "../../components/Content";
-import { useMenu } from "../../../Context/MenuContext";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Errormsg from "../../components/Errormsg";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchImponible } from "../../../redux/slices/imponibleSlice";
 
@@ -17,11 +14,27 @@ const Inmueble = () => {
         (state) => state.imponible
     );
     const { personales } = useSelector((state) => state.personal);
+    const { sistemas } = useSelector((state) => state.personal);
+    const [tieneDeuda, setTieneDeuda] = useState(false);
 
     useEffect(() => {
-        if (Object.keys(personales).length == 0) navigate("/");
+        // if (Object.keys(personales).length == 0) navigate("/");
         if (inmueble) dispatch(fetchImponible(inmueble, "inmueble"));
-    }, [inmueble, dispatch]);
+
+        if (sistemas && sistemas.rafam_imponibles_deuda) {
+            let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
+                (item) => item.IMPONIBLES
+            );
+
+            const foundRodado = imponibles.find(
+                (item) => item.NRO_INMUEBLE == inmueble
+            );
+
+            if (foundRodado) {
+                if (foundRodado.NRO_INMUEBLE > 0) setTieneDeuda(true);
+            }
+        }
+    }, [inmueble, personales, dispatch, navigate, sistemas]);
 
     return (
         <Content>
@@ -48,6 +61,14 @@ const Inmueble = () => {
                         <Loading title="rodado" />
                     ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className="flex w-full justify-end">
+                                <span
+                                    className={`px-2 py-2 text-sm bg-${
+                                        tieneDeuda ? "red" : "green"
+                                    }-500 text-white rounded-lg`}>
+                                    {tieneDeuda ? "Tiene deuda" : "Sin deuda"}
+                                </span>
+                            </div>
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full md:w-6/12">
                                     <div className="flex flex-col mt-3">

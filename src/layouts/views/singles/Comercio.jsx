@@ -18,11 +18,39 @@ const Comercio = () => {
     );
 
     const { personales } = useSelector((state) => state.personal);
+    const { sistemas } = useSelector((state) => state.personal);
+    const { comercios } = useSelector((state) => state.imponible);
+    const [tieneDeuda, setTieneDeuda] = useState(false);
 
     useEffect(() => {
-        if (Object.keys(personales).length == 0) navigate("/");
+        // if (Object.keys(personales).length == 0) navigate("/");
         if (comercio) dispatch(fetchImponible(comercio, "comercio"));
-    }, [comercio, dispatch]);
+
+        if (sistemas && sistemas.rafam_imponibles_deuda) {
+            let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
+                (item) => item.IMPONIBLES
+            );
+
+            const foundRodado = imponibles.find(
+                (item) => item.NRO_COMERCIO == comercio
+            );
+
+            if (foundRodado) {
+                if (foundRodado.NRO_COMERCIO > 0) setTieneDeuda(true);
+            }
+        }
+
+        if (comercios) {
+            const foundRodado = comercios.find(
+                (item) => item.comercio == comercio
+            );
+
+            if (foundRodado) {
+                if (foundRodado.comercio > 0) setTieneDeuda(true);
+            }
+        }
+    }, [comercio, personales, dispatch, navigate, sistemas, comercios]);
+
     return (
         <Content>
             <div className="text-left w-full">
@@ -48,6 +76,14 @@ const Comercio = () => {
                         <Loading title="rodado" />
                     ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
+                            <div className="flex w-full justify-end">
+                                <span
+                                    className={`px-2 py-2 text-sm bg-${
+                                        tieneDeuda ? "red" : "green"
+                                    }-500 text-white rounded-lg`}>
+                                    {tieneDeuda ? "Tiene deuda" : "Sin deuda"}
+                                </span>
+                            </div>
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full md:w-6/12">
                                     <div className="flex flex-col mt-3">

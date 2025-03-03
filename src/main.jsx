@@ -30,6 +30,8 @@ import Centros from "./layouts/views/cartilla/Centros";
 
 import { Provider } from "react-redux";
 import { store } from "@store/store";
+import { ToastContainer } from "react-toastify";
+import Notification from "./layouts/components/Notification";
 
 const router = createBrowserRouter([
     { path: "/login", element: <Login /> },
@@ -120,10 +122,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
     <Provider store={store}>
-        <MenuProvider>
-            <RouterProvider router={router}>
-                <MainLayout />
-            </RouterProvider>
-        </MenuProvider>
+        <RouterProvider router={router}>
+            <MainLayout />
+        </RouterProvider>
     </Provider>
 );

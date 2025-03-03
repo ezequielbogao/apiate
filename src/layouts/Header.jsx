@@ -54,6 +54,11 @@ const Header = () => {
         }
     }, [personales, dispatch]);
 
+    const closeSession = () => {
+        dispatch(setAlert("info", "Cerraste sesión"));
+        navigate("/");
+    };
+
     return (
         <>
             <div className="px-5 gap-5 flex flex-col md:flex-row align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
@@ -94,6 +99,7 @@ const Header = () => {
                         </div>
                     </form>
                     <Link
+                        onClick={closeSession}
                         to="/login"
                         className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">
                         <Logout />
@@ -142,26 +148,6 @@ const Header = () => {
                     </button>
                 </div>
             </div>
-            {/* <div className="block md:flex px-5 align-middle items-end justify-end py-2 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex rounded-xl justify-end">
-                    <input
-                        required
-                        type="text"
-                        className="form-control focus:outline-none bg-azure-100 dark:bg-azure-500 dark:text-azure-100 p-2  text-xs font-light rounded-tl-xl rounded-bl-xl"
-                        placeholder="Buscar por DNI"
-                        name="dni"
-                    />
-                    <div className="flex justify-end">
-                        <button
-                            type="submit"
-                            className="bg-azure-600 text-white text-xs font-light  md:mt-0 rounded-tl-none rounded-bl-none rounded-tr-xl rounded-br-xl focus:border-azure-600 hover:bg-azure-500 hover:outline-none hover:border-azure-600">
-                            <Lupa width={"20"} />
-                        </button>
-                    </div>
-                </form>
-            </div> */}
         </>
     );
 };

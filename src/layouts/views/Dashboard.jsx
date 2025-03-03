@@ -1,41 +1,28 @@
 import { useEffect, useState } from "react";
 import Content from "@cpt/Content";
-import { useMenu } from "@ctx/MenuContext";
-
 import Loading from "@cpt/Loading";
 import ContentHeader from "@cpt/ContentHeader";
 
-import Chart from "react-apexcharts";
-import axios from "axios";
-import { toast } from "react-toastify";
-import Location from "@icons/Location";
-import Email from "@icons/Email";
 import Dni from "@icons/Dni";
-import Phone from "@icons/Phone";
 import Auto from "@icons/Auto";
-import Store from "@icons/Store";
+import Moto from "@icons/Moto";
 import Casa from "@icons/Casa";
-import { Dialog } from "@material-tailwind/react";
-import MapDeudas from "@cpt/MapDeudas";
-import ReactApexChart from "react-apexcharts";
-import { setOptions } from "leaflet";
-import { ChartDeuda } from "@cpt/ChartDeuda";
-import Errormsg from "@cpt/Errormsg";
-import Table from "@cpt/table/Table";
+import Email from "@icons/Email";
+import Phone from "@icons/Phone";
+import Store from "@icons/Store";
+import Location from "@icons/Location";
+import Rightarrow from "@icons/Rightarrow";
+
 import Th from "@cpt/table/Th";
 import Tr from "@cpt/table/Tr";
 import Td from "@cpt/table/Td";
+import Table from "@cpt/table/Table";
 import { Link } from "react-router-dom";
-import Ojos from "@icons/Ojos";
-import Rightarrow from "@icons/Rightarrow";
-
-import { formatNumber } from "../../services/helpers"; // Importa funciones de numberUtils
-import { Moto } from "../components/icons/Moto";
-
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMain, fetchRubros, fetchDeuda } from "@slices/dashboardSlice";
 
 import { setAlert } from "@slices/notificationSlice";
+import { formatNumber } from "../../services/helpers";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMain, fetchRubros, fetchDeuda } from "@slices/dashboardSlice";
 
 const Dashboard = () => {
     //Redux
@@ -97,7 +84,7 @@ const Dashboard = () => {
                 setAlert("error", "Ups! Error al obtener información de deuda")
             );
         }
-    }, [errorMain, errorRubros, errorDeuda, dispatch]);
+    }, [errorMain, errorRubros, errorDeuda, dispatch, rubros]);
 
     const recursos = {
         20: "COMERCIOS",
@@ -224,9 +211,9 @@ const Dashboard = () => {
                         </div>
                     )}
 
-                    {Object.keys(rubros).length !== 0 ? (
+                    {loadingRubros ? (
                         <Loading title="Rubros" />
-                    ) : (
+                    ) : paginatedPages.length > 0 ? (
                         <Table
                             currentPage={currentPage}
                             prevPage={prevPage}
@@ -287,6 +274,8 @@ const Dashboard = () => {
                                 )}
                             </tbody>
                         </Table>
+                    ) : (
+                        <></>
                     )}
                 </div>
             </div>

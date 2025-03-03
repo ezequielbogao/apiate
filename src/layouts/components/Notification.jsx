@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Error from "./icons/notification/Error";
-import Success from "./icons/notification/Success";
-import Warning from "./icons/notification/Warning";
-import Info from "./icons/notification/Info";
-import { removeNotification } from "../../redux/slices/notificationSlice"; // Asegúrate de ajustar la ruta correcta
+import Success from "@icons/notification/Success";
+import Warning from "@icons/notification/Warning";
+import Info from "@icons/notification/Info";
+import { removeNotification } from "@slices/notificationSlice"; // Asegúrate de ajustar la ruta correcta
 
 const Notification = () => {
     const dispatch = useDispatch();
