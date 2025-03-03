@@ -32,14 +32,25 @@ import Rightarrow from "@icons/Rightarrow";
 import { formatNumber } from "../../services/helpers"; // Importa funciones de numberUtils
 import { Moto } from "../components/icons/Moto";
 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMain, fetchRubros, fetchDeuda } from "@slices/dashboardSlice";
+
+import { setAlert } from "@slices/notificationSlice";
+
 const Dashboard = () => {
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(null);
-    const { dashboard, setDashboard } = useMenu();
-    const [open, setOpen] = useState(false);
-    const [modal, setModal] = useState("");
-    const [comerciosRubros, setComerciosRubros] = useState([]);
-    const [deuda, setDeuda] = useState([]);
+    //Redux
+    const dispatch = useDispatch();
+    const {
+        main,
+        rubros,
+        deuda,
+        loadingMain,
+        loadingRubros,
+        loadingDeuda,
+        errorMain,
+        errorRubros,
+        errorDeuda,
+    } = useSelector((state) => state.dashboard);
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -48,74 +59,9 @@ const Dashboard = () => {
 
     const TABLE_RUBROS = ["Rubro", "Descripción", "Cantidad", "Deuda", ""];
 
-    const onLoad = async () => {
-        setLoading(true);
-        setError(null);
-        let info = null;
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/atenea/api/dashboard`
-            );
-
-            info = response.data.data[0];
-        } catch (err) {
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        } finally {
-            setLoading(false);
-            setDashboard(info);
-        }
-    };
-
-    useEffect(() => {
-        if (!dashboard) {
-            onLoad();
-        }
-    }, [dashboard]);
-
-    const getRubros = async () => {
-        let rubros = [];
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/rafam/comercios/rubros`
-            );
-            rubros = response.data.data;
-            setComerciosRubros(rubros);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
-    const getDeuda = async () => {
-        let deuda = [];
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/rafam/recursos/deuda`
-            );
-            deuda = response.data.data;
-            setDeuda(deuda);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
-    if (comerciosRubros) {
-        totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);
-        paginatedPages = comerciosRubros.slice(
+    if (rubros) {
+        totalPage = Math.ceil(rubros.length / itemsPerPage);
+        paginatedPages = rubros.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -134,9 +80,24 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
-        getDeuda();
-        getRubros();
-    }, []);
+        dispatch(fetchMain());
+        dispatch(fetchRubros());
+        dispatch(fetchDeuda());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (errorMain) {
+            dispatch(setAlert("error", "Ups! Error al obtener información"));
+        }
+        if (errorRubros) {
+            dispatch(setAlert("error", "Ups! Error al obtener rubros"));
+        }
+        if (errorDeuda) {
+            dispatch(
+                setAlert("error", "Ups! Error al obtener información de deuda")
+            );
+        }
+    }, [errorMain, errorRubros, errorDeuda, dispatch]);
 
     const recursos = {
         20: "COMERCIOS",
@@ -151,297 +112,181 @@ const Dashboard = () => {
                 <ContentHeader label="Home" title="DASHBOARD" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
-                        <Loading title="Tablero" />
-                    ) : dashboard ? (
-                        <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Location width={"40"} height={"40"} />
-                                    <div className="flex flex-col">
-                                        <div className="text-xl text-azure-300 font-light">
-                                            Direcciones
-                                        </div>
-                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.direcciones.toLocaleString(
-                                                "de-DE"
-                                            )}
-                                        </div>
+                    {loadingMain ? (
+                        <Loading title="Información" />
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Location width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Direcciones
                                     </div>
-                                </div>
-                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Dni width={"40"} height={"40"} />
-                                    <div className="flex flex-col">
-                                        <div className="text-xl text-azure-300 font-light">
-                                            Documentos
-                                        </div>
-                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.documentos.toLocaleString(
-                                                "de-DE"
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Email width={"40"} height={"40"} />
-                                    <div className="flex flex-col">
-                                        <div className="text-xl text-azure-300 font-light">
-                                            Emails
-                                        </div>
-                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.mails.toLocaleString(
-                                                "de-DE"
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                    <Phone width={"40"} height={"40"} />
-                                    <div className="flex flex-col">
-                                        <div className="text-xl text-azure-300 font-light">
-                                            Telefonos
-                                        </div>
-                                        <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                            {dashboard.telefonos.toLocaleString(
-                                                "de-DE"
-                                            )}
-                                        </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.direcciones?.toLocaleString(
+                                            "de-DE"
+                                        )}
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-                                {deuda &&
-                                    deuda.map(({ recurso, deuda }) => (
-                                        <div key={recurso}>
-                                            <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                                {recurso === 20 ? (
-                                                    <Store
-                                                        width="40"
-                                                        height="40"
-                                                    />
-                                                ) : recurso === 10 ? (
-                                                    <Casa
-                                                        width="40"
-                                                        height="40"
-                                                    />
-                                                ) : recurso === 60 ? (
-                                                    <Auto
-                                                        width="40"
-                                                        height="40"
-                                                    />
-                                                ) : recurso === 30 ? (
-                                                    <Moto
-                                                        width="40"
-                                                        height="40"
-                                                    />
-                                                ) : (
-                                                    ""
-                                                )}
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Dni width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Documentos
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.documentos?.toLocaleString(
+                                            "de-DE"
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Email width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Emails
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.mails?.toLocaleString("de-DE")}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Phone width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Telefonos
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.telefonos?.toLocaleString(
+                                            "de-DE"
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
-                                                <div className="flex flex-col w-full">
-                                                    <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
-                                                        {recursos[recurso]}
+                    {loadingDeuda ? (
+                        <Loading title="Imponibles" />
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5">
+                            {deuda &&
+                                deuda.map(({ recurso, deuda }) => (
+                                    <div key={recurso}>
+                                        <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
+                                            {recurso === 20 ? (
+                                                <Store width="40" height="40" />
+                                            ) : recurso === 10 ? (
+                                                <Casa width="40" height="40" />
+                                            ) : recurso === 60 ? (
+                                                <Auto width="40" height="40" />
+                                            ) : recurso === 30 ? (
+                                                <Moto width="40" height="40" />
+                                            ) : (
+                                                ""
+                                            )}
+
+                                            <div className="flex flex-col w-full">
+                                                <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
+                                                    {recursos[recurso]}
+                                                </div>
+                                                <div className="flex flex-col mt-5">
+                                                    <div className="text-md text-azure-300 font-light">
+                                                        Deuda
                                                     </div>
-                                                    <div className="flex flex-col mt-5">
-                                                        <div className="text-md text-azure-300 font-light">
-                                                            Deuda
-                                                        </div>
-                                                        <div className="text-4xl font-medium text-red-400 flex flex-flow">
-                                                            <span className="me-3">
-                                                                $
-                                                            </span>
-                                                            {formatNumber(
-                                                                deuda
-                                                            )}
-                                                            {/* {formatNumber(
+                                                    <div className="text-4xl font-medium text-red-400 flex flex-flow">
+                                                        <span className="me-3">
+                                                            $
+                                                        </span>
+                                                        {formatNumber(deuda)}
+                                                        {/* {formatNumber(
                                                                 deuda.toLocaleString(
                                                                     "de-DE"
                                                                 )
                                                             )} */}
-                                                        </div>
+                                                    </div>
+                                                    <div className="text-lg font-medium text-azure-300 flex flex-flow">
+                                                        <span className="me-3 d-block">
+                                                            ${" "}
+                                                            {deuda.toLocaleString(
+                                                                "de-DE"
+                                                            )}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
-                                {/* <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                    <Auto width={"40"} height={"40"} />
-                                    <div className="flex flex-col w-full">
-                                        <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
-                                            RODADOS
-                                        </div>
-                                        <div className="flex flex-col mt-5">
-                                            <div className="text-md text-azure-300 font-light">
-                                                Deuda
-                                            </div>
-                                            <div className="text-4xl font-medium text-red-400 ">
-                                                ${" "}
-                                                {(837230).toLocaleString(
-                                                    "de-DE"
-                                                )}
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                    <Casa width={"40"} height={"40"} />
-                                    <div className="flex flex-col w-full">
-                                        <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
-                                            INMUEBLES
-                                        </div>
-                                        <div className="flex flex-col mt-5">
-                                            <div className="text-md text-azure-300 font-light">
-                                                Deuda
-                                            </div>
-                                            <div className="text-4xl font-medium text-red-400 ">
-                                                ${" "}
-                                                {(2743892).toLocaleString(
-                                                    "de-DE"
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                    <Store width={"40"} height={"40"} />
-                                    <div className="flex flex-col w-full">
-                                        <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
-                                            COMERCIOS
-                                        </div>
-                                        <div className="flex flex-col mt-5">
-                                            <div className="text-md text-azure-300 font-light">
-                                                Deuda
-                                            </div>
-                                            <div className="text-4xl font-medium text-red-400 ">
-                                                ${" "}
-                                                {(3612936182).toLocaleString(
-                                                    "de-DE"
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
-                            </div>
-                            <div className="">
-                                {loading ? (
-                                    <Loading title="citas" />
-                                ) : comerciosRubros ? (
-                                    <Table
-                                        currentPage={currentPage}
-                                        prevPage={prevPage}
-                                        nextPage={nextPage}
-                                        totalPage={totalPage}>
-                                        <thead>
-                                            <tr>
-                                                {TABLE_RUBROS.map((head) => (
-                                                    <Th
-                                                        key={head}
-                                                        text={head}
-                                                    />
-                                                ))}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {comerciosRubros.length > 0 ? (
-                                                paginatedPages.map(
-                                                    (
-                                                        {
-                                                            rubro,
-                                                            descripcion,
-                                                            cantidad,
-                                                            deuda,
-                                                        },
-                                                        index
-                                                    ) => (
-                                                        <Tr key={index}>
-                                                            <Td
-                                                                content={rubro}
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    descripcion
-                                                                }
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    cantidad
-                                                                }
-                                                            />
-                                                            <Td
-                                                                content={
-                                                                    "$ " +
-                                                                    deuda.toLocaleString(
-                                                                        "de-DE"
-                                                                    )
-                                                                }
-                                                            />
-                                                            <Td>
-                                                                <Link
-                                                                    className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
-                                                                    to={`/rafam/comercios/${rubro}`}>
-                                                                    <Rightarrow
-                                                                        width={
-                                                                            "25"
-                                                                        }
-                                                                        height={
-                                                                            "25"
-                                                                        }
-                                                                    />
-                                                                </Link>
-                                                            </Td>
-                                                        </Tr>
-                                                    )
-                                                )
-                                            ) : (
-                                                <tr>
-                                                    <td
-                                                        colSpan="6"
-                                                        className="p-4 text-center">
-                                                        No hay información
-                                                        disponibles.
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </Table>
-                                ) : (
-                                    !error && (
-                                        <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
-                                            NO HAY INFORMACIÓN DISPONIBLES
-                                        </div>
-                                    )
-                                )}
-                                {error && <Errormsg />}
-                            </div>
-                            {/* <div className="mt-5 pt-4 flex flex-col">
-                                <span className="text-azure-600 text-md py-3">
-                                    MAPA DE COMERCIOS CON DEUDAS
-                                </span>
-                                <MapDeudas />
-                            </div> */}
-                            {/* <>
-                                {chartOnload && (
-                                    <div className="mt-10">
-                                        <div id="chart">
-                                            <ReactApexChart
-                                                options={options}
-                                                series={series}
-                                                type="line"
-                                                height={350}
-                                            />
-                                        </div>
-                                        <div id="html-dist"></div>
-                                    </div>
-                                )}
-                            </> */}
-                        </>
-                    ) : (
-                        <></>
-                    )}
-                    {error && (
-                        <div className="w-full h-full flex justify-center align-middle items-center">
-                            <p className="text-red-600">Error</p>
+                                ))}
                         </div>
+                    )}
+
+                    {Object.keys(rubros).length !== 0 ? (
+                        <Loading title="Rubros" />
+                    ) : (
+                        <Table
+                            currentPage={currentPage}
+                            prevPage={prevPage}
+                            nextPage={nextPage}
+                            totalPage={totalPage}>
+                            <thead>
+                                <tr>
+                                    {TABLE_RUBROS.map((head) => (
+                                        <Th key={head} text={head} />
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rubros.length > 0 ? (
+                                    paginatedPages.map(
+                                        (
+                                            {
+                                                rubro,
+                                                descripcion,
+                                                cantidad,
+                                                deuda,
+                                            },
+                                            index
+                                        ) => (
+                                            <Tr key={index}>
+                                                <Td content={rubro} />
+                                                <Td content={descripcion} />
+                                                <Td content={cantidad} />
+                                                <Td
+                                                    content={
+                                                        "$ " +
+                                                        deuda.toLocaleString(
+                                                            "de-DE"
+                                                        )
+                                                    }
+                                                />
+                                                <Td>
+                                                    <Link
+                                                        className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
+                                                        to={`/rafam/comercios/${rubro}`}>
+                                                        <Rightarrow
+                                                            width={"25"}
+                                                            height={"25"}
+                                                        />
+                                                    </Link>
+                                                </Td>
+                                            </Tr>
+                                        )
+                                    )
+                                ) : (
+                                    <tr>
+                                        <td
+                                            colSpan="6"
+                                            className="p-4 text-center">
+                                            No hay información disponibles.
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
                     )}
                 </div>
             </div>

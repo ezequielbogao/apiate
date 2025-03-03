@@ -6,9 +6,12 @@ import Casa from "@icons/Casa";
 import ContentHeader from "@cpt/ContentHeader";
 import Errormsg from "@cpt/Errormsg";
 import Imponible from "@cpt/Imponible";
+import { useSelector } from "react-redux";
 
 const Inmuebles = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -24,6 +27,7 @@ const Inmuebles = () => {
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
+        console.log(paginatedPages);
     }
 
     const nextPage = () => {
@@ -44,10 +48,12 @@ const Inmuebles = () => {
                 <ContentHeader label="Rafam" title="INMUEBLES" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="inmuebles" />
-                    ) : sistemas && sistemas.rafam_imponibles_deuda ? (
-                        sistemas.rafam_imponibles_deuda.length > 0 ? (
+                    ) : paginatedPages ? (
+                        paginatedPages.some(
+                            ({ NRO_INMUEBLE }) => NRO_INMUEBLE
+                        ) ? (
                             <>
                                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {paginatedPages.map(
@@ -114,20 +120,18 @@ const Inmuebles = () => {
                                 </div>
                             </>
                         ) : (
-                            <tr>
-                                <td colSpan="6" className="p-4 text-center">
-                                    No hay inmuebles disponibles.
-                                </td>
-                            </tr>
+                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                NO HAY INMUEBLES DISPONIBLES
+                            </div>
                         )
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY INMUEBLES DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

@@ -12,6 +12,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@slices': path.resolve(__dirname, 'src/redux/slices'),
+      '@store': path.resolve(__dirname, 'src/redux/store'),
       '@views': path.resolve(__dirname, 'src/layouts/views'),
       '@cpt': path.resolve(__dirname, 'src/layouts/components'),
       '@icons': path.resolve(__dirname, 'src/layouts/components/icons'),

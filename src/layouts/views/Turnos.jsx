@@ -8,10 +8,12 @@ import Th from "@cpt/table/Th";
 import Tr from "@cpt/table/Tr";
 import Td from "@cpt/table/Td";
 import Table from "@cpt/table/Table";
+import { useSelector } from "react-redux";
 
 const Turnos = () => {
-    const { sistemas, error, loading } = useMenu();
-
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
     const TABLE_TURNOS = [
         "Paciente",
         "Médico",
@@ -53,7 +55,7 @@ const Turnos = () => {
                 <ContentHeader label="Salud" title="TURNOS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="turnos" />
                     ) : sistemas && sistemas.salud_turnos ? (
                         <Table
@@ -97,13 +99,13 @@ const Turnos = () => {
                             </tbody>
                         </Table>
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY TURNOS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

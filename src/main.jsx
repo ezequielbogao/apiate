@@ -28,6 +28,9 @@ import Cartilla from "@views/Cartilla";
 import Medicos from "@views/cartilla/Medicos";
 import Centros from "./layouts/views/cartilla/Centros";
 
+import { Provider } from "react-redux";
+import { store } from "@store/store";
+
 const router = createBrowserRouter([
     { path: "/login", element: <Login /> },
     {
@@ -116,9 +119,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-    <MenuProvider>
-        <RouterProvider router={router}>
-            <MainLayout />
-        </RouterProvider>
-    </MenuProvider>
+    <Provider store={store}>
+        <MenuProvider>
+            <RouterProvider router={router}>
+                <MainLayout />
+            </RouterProvider>
+        </MenuProvider>
+    </Provider>
 );

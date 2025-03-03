@@ -3,17 +3,19 @@ import { useMenu } from "@ctx/MenuContext";
 import Loading from "@cpt/Loading";
 import ContentHeader from "@cpt/ContentHeader";
 import Errormsg from "@cpt/Errormsg";
+import { useSelector } from "react-redux";
 
 const Emergencias = () => {
-    const { sistemas, error, loading } = useMenu();
-
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
     return (
         <Content>
             <div className="text-left w-full">
                 <ContentHeader label="Salud" title="EMERGENCIAS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="citas" />
                     ) : sistemas && sistemas.salud_emergencias ? (
                         sistemas.salud_emergencias.length > 0 ? (
@@ -101,13 +103,13 @@ const Emergencias = () => {
                             </div>
                         )
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY EMERGENCIAS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

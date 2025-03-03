@@ -8,9 +8,12 @@ import Th from "@cpt/table/Th";
 import Td from "@cpt/table/Td";
 import Tr from "@cpt/table/Tr";
 import Table from "@cpt/table/Table";
+import { useSelector } from "react-redux";
 
 const Citas = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
 
     const TABLE_CITAS = [
         "Email",
@@ -52,7 +55,7 @@ const Citas = () => {
                 <ContentHeader label="Conducir" title="CITAS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="citas" />
                     ) : sistemas && sistemas.citas ? (
                         <Table
@@ -113,13 +116,13 @@ const Citas = () => {
                             </tbody>
                         </Table>
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY CITAS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

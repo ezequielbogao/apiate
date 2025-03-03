@@ -8,10 +8,12 @@ import Th from "@cpt/table/Th";
 import Table from "@cpt/table/Table";
 import Tr from "@cpt/table/Tr";
 import Td from "@cpt/table/Td";
+import { useSelector } from "react-redux";
 
 const Pagos = () => {
-    const { sistemas, error, loading } = useMenu();
-
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
     const TABLE_PAGOS = [
         "Tipo",
         "Modo de pago",
@@ -51,7 +53,7 @@ const Pagos = () => {
                 <ContentHeader label="Autogestión" title="PAGOS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="pagos" />
                     ) : sistemas && sistemas.pagos ? (
                         <Table
@@ -112,13 +114,13 @@ const Pagos = () => {
                             </tbody>
                         </Table>
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY PAGOS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

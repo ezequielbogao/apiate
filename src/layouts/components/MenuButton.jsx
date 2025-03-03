@@ -17,7 +17,7 @@ const MenuButton = (props) => {
                 props.count ? "(" + props.count + ")" : ""
             }`}
             placement="right"
-            className={`block md:hidden bg-white  text-azure-600 dark:text-white dark:bg-azure-600 text-md`}>
+            className={`block md:hidden bg-white  text-azure-600 dark:text-white dark:bg-azure-600 text-md py-2`}>
             <Link
                 to={props.to}
                 className={`flex p-0 md:p-2 py-2 justify-center ${

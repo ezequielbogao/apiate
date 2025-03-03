@@ -9,10 +9,12 @@ import Td from "@cpt/table/Td";
 import Tr from "@cpt/table/Tr";
 import Table from "@cpt/table/Table";
 import MapReclamos from "@cpt/MapReclamos";
+import { useSelector } from "react-redux";
 
 const Reclamos = () => {
-    const { sistemas, error, loading } = useMenu();
-
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
     const TABLE_RECLAMOS = [
         "Número",
         "Documento",
@@ -55,7 +57,7 @@ const Reclamos = () => {
                 <ContentHeader label="Gestión" title="RECLAMOS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="citas" />
                     ) : sistemas && sistemas.reclamos ? (
                         <Table
@@ -112,13 +114,13 @@ const Reclamos = () => {
                             </tbody>
                         </Table>
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY RECLAMOS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
                 <div className="p-10">{<MapReclamos />}</div>
             </div>

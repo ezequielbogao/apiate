@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { setAlert } from "@slices/notificationSlice";
+import { fetchPersonal } from "@slices/personalSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import Lupa from "@icons/Lupa";
+import Logout from "@icons/Logout";
 import logo_black from "../assets/ate_logo_b.svg";
 import logo_white from "../assets/ate_logo_w.svg";
-import { useForm } from "react-hook-form";
-import { useMenu } from "@ctx/MenuContext";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import Lupa from "./components/icons/Lupa";
-import Logout from "./components/icons/Logout";
 
 const Header = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { personales } = useSelector((state) => state.personal);
+
     const [darkMode, setDarkMode] = useState(false);
-    const { setPersona, setSistemas, setError, setLoading } = useMenu();
-
     const { handleSubmit } = useForm();
-
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
     };
@@ -40,30 +42,22 @@ const Header = () => {
 
     const onSubmit = async () => {
         let dni = document.querySelector("[name=dni]").value;
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/atenea/api/persona/${dni}`
-            );
-            setPersona(response.data.data.datos_personales);
-            setSistemas(response.data.data.sistemas);
-            toast.success("Persona con DNI " + dni + " encontrada con exito!");
-        } catch (err) {
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        } finally {
-            setLoading(false);
-        }
+        dispatch(fetchPersonal(dni));
+        navigate("/personal");
     };
+
+    useEffect(() => {
+        if (personales && personales.documento) {
+            dispatch(setAlert("success", "Persona encontrada con éxito"));
+        } else if (!personales) {
+            dispatch(setAlert("warning", "No se encontró ninguna persona"));
+        }
+    }, [personales, dispatch]);
 
     return (
         <>
-            <div className="px-5 gap-5 flex align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
-                <div className="flex align-middle items-center">
+            <div className="px-5 gap-5 flex flex-col md:flex-row align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
+                <div className="flex align-middle items-center w-full">
                     <a href="/">
                         <img
                             src={darkMode ? logo_white : logo_black}
@@ -80,7 +74,25 @@ const Header = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 w-full justify-end">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="flex rounded-xl justify-end w-full">
+                        <input
+                            required
+                            type="text"
+                            className="form-control focus:outline-none bg-azure-100 dark:bg-azure-500 dark:text-azure-100 p-2  text-md font-light rounded-tl-xl rounded-bl-xl"
+                            placeholder="Buscar por DNI"
+                            name="dni"
+                        />
+                        <div className="flex justify-end">
+                            <button
+                                type="submit"
+                                className="bg-azure-600 text-white text-xs font-light  md:mt-0 rounded-tl-none rounded-bl-none rounded-tr-xl rounded-br-xl focus:border-azure-600 hover:bg-azure-500 hover:outline-none hover:border-azure-600">
+                                <Lupa width={"20"} />
+                            </button>
+                        </div>
+                    </form>
                     <Link
                         to="/login"
                         className="p-2 rounded-full bg-azure-50 text-azure-800 dark:text-yellow-300 hover:bg-azure-100 dark:bg-azure-800 hover:dark:bg-azure-600 border-none focus:outline-none">
@@ -130,7 +142,7 @@ const Header = () => {
                     </button>
                 </div>
             </div>
-            <div className="block md:flex px-5 align-middle items-end justify-end py-2 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
+            {/* <div className="block md:flex px-5 align-middle items-end justify-end py-2 text-left border-b-2 border-azure-200 dark:border-azure-600 bg-white dark:bg-azure-700">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex rounded-xl justify-end">
@@ -149,7 +161,7 @@ const Header = () => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> */}
         </>
     );
 };

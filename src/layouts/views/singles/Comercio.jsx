@@ -2,44 +2,27 @@ import Content from "../../components/Content";
 import { useMenu } from "../../../Context/MenuContext";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Errormsg from "../../components/Errormsg";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchImponible } from "../../../redux/slices/imponibleSlice";
 
 const Comercio = () => {
-    const { sistemas, error, loading, setLoading, setError } = useMenu();
     const { comercio } = useParams();
-    const [com, setCom] = useState(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { imponible, loadingImponible, errorImponible } = useSelector(
+        (state) => state.imponible
+    );
 
-    const loadData = async (comercio) => {
-        setLoading(true);
-        setError(null);
-
-        let getCom = null;
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/rafam/comercio/${comercio}`
-            );
-            getCom = response.data.data[0];
-            console.log(getCom);
-        } catch (err) {
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        } finally {
-            setCom(getCom);
-            setLoading(false);
-        }
-    };
+    const { personales } = useSelector((state) => state.personal);
 
     useEffect(() => {
-        if (comercio && !com) loadData(comercio);
-        // console.log(comercio);
-    }, [comercio]);
+        if (Object.keys(personales).length == 0) navigate("/");
+        if (comercio) dispatch(fetchImponible(comercio, "comercio"));
+    }, [comercio, dispatch]);
     return (
         <Content>
             <div className="text-left w-full">
@@ -61,9 +44,9 @@ const Comercio = () => {
                     </div>
                 </div>
                 <div className="p-5">
-                    {loading ? (
+                    {loadingImponible ? (
                         <Loading title="rodado" />
-                    ) : com ? (
+                    ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
                                 <div className="flex flex-col w-full md:w-6/12">
@@ -72,7 +55,7 @@ const Comercio = () => {
                                             CUIT
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.CUIT ?? "-"}
+                                            {imponible.CUIT ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -80,7 +63,7 @@ const Comercio = () => {
                                             DIRECCIÓN
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.DP_CALLE ?? "-"}
+                                            {imponible.DP_CALLE ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -88,7 +71,7 @@ const Comercio = () => {
                                             ALTURA
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.DP_NRO ?? "-"}
+                                            {imponible.DP_NRO ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -96,7 +79,7 @@ const Comercio = () => {
                                             FECHA DE APERTURA
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.FECHA_APERTURA ?? "-"}
+                                            {imponible.FECHA_APERTURA ?? "-"}
                                         </span>
                                     </div>
                                 </div>
@@ -106,7 +89,7 @@ const Comercio = () => {
                                             NOMBRE
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.NOMBRE ?? "-"}
+                                            {imponible.NOMBRE ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -114,7 +97,7 @@ const Comercio = () => {
                                             NRO COMERCIO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.NRO_COMERCIO ?? "-"}
+                                            {imponible.NRO_COMERCIO ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -122,7 +105,7 @@ const Comercio = () => {
                                             RESPONSABLE PAGO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.RESP_PAGO ?? "-"}
+                                            {imponible.RESP_PAGO ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -130,7 +113,7 @@ const Comercio = () => {
                                             RUBRO
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.RUBRO ?? "-"}
+                                            {imponible.RUBRO ?? "-"}
                                         </span>
                                     </div>
                                     <div className="flex flex-col mt-3">
@@ -138,20 +121,20 @@ const Comercio = () => {
                                             TELEFONOS
                                         </span>
                                         <span className=" dark:text-azure-100 font-medium">
-                                            {com.TELEFONOS ?? "-"}
+                                            {imponible.TELEFONOS ?? "-"}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        !error && (
+                        !errorImponible && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY COMERCIO DISPONIBLE
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorImponible && <Errormsg />}
                 </div>
             </div>
         </Content>

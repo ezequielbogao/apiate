@@ -16,15 +16,16 @@ import { useMenu } from "@ctx/MenuContext";
 import { useLocation } from "react-router-dom";
 import Email from "./icons/Email";
 import Cartilla from "./icons/Cartilla";
+import { useDispatch, useSelector } from "react-redux";
 
 const Menu = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { sistemas } = useSelector((state) => state.personal);
 
     const location = useLocation();
     const path = location.pathname;
 
     return (
-        <div className="w-2/12 justify-between md:px-5 border-r-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700 pb-32">
+        <div className="w-2/12 justify-between md:px-3 border-r-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700 pb-32">
             <div className="flex flex-col mt-5">
                 <MenuSection text="HOME" textsm="HM">
                     <MenuButton
@@ -34,7 +35,7 @@ const Menu = () => {
                         title={"Dashboard"}
                     />
                 </MenuSection>
-                <MenuSection text="PERSONA" textsm="PS" cs="mt-10">
+                <MenuSection text="PERSONA" textsm="PS" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/personal"}
@@ -42,7 +43,7 @@ const Menu = () => {
                         title={"Información"}
                     />
                 </MenuSection>
-                <MenuSection text="CONDUCIR" textsm="CD" cs="mt-10">
+                <MenuSection text="CONDUCIR" textsm="CD" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/citas"}
@@ -52,67 +53,68 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="AUTOGESTIÓN" textsm="AG" cs="mt-10">
+                <MenuSection text="AUTOGESTIÓN" textsm="AG" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/pagos"}
                         icon={<Pago />}
                         title={"Pagos"}
-                        // count={
-                        //     sistemas && sistemas.pagos
-                        //         ? sistemas.pagos.length
-                        //         : null
-                        // }
+                        count={sistemas?.pagos?.length ?? null}
                     />
                 </MenuSection>
 
-                <MenuSection text="RAFAM" textsm="RF" cs="mt-10">
+                <MenuSection text="RAFAM" textsm="RF" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/rafam/comercios"}
                         icon={<Store />}
                         title={"Comercios"}
-                        // count={
-                        //     sistemas.rafam_imponibles_deuda
-                        //         ? sistemas.rafam_imponibles_deuda
-                        //               .flatMap((item) => item.IMPONIBLES)
-                        //               .filter(
-                        //                   (imponible) =>
-                        //                       imponible.NRO_COMERCIO !== null
-                        //               ).length
-                        //         : null
-                        // }
+                        count={
+                            sistemas && sistemas.rafam_imponibles_deuda
+                                ? sistemas.rafam_imponibles_deuda
+                                      .flatMap((item) => item.IMPONIBLES)
+                                      .filter(
+                                          (imponible) =>
+                                              imponible.NRO_COMERCIO !== null
+                                      ).length
+                                : null
+                        }
                     />
                     <MenuButton
                         path={path}
                         to={"/rafam/inmuebles"}
                         icon={<Casa />}
                         title={"Inmuebles"}
-                        // count={
-                        //     sistemas.rafam_imponibles_deuda
-                        //         .flatMap((item) => item.IMPONIBLES)
-                        //         .filter(
-                        //             (imponible) =>
-                        //                 imponible.NRO_INMUEBLE !== null
-                        //         ).length ?? null
-                        // }
+                        count={
+                            sistemas && sistemas.rafam_imponibles_deuda
+                                ? sistemas.rafam_imponibles_deuda
+                                      .flatMap((item) => item.IMPONIBLES)
+                                      .filter(
+                                          (imponible) =>
+                                              imponible.NRO_INMUEBLE !== null
+                                      ).length
+                                : null
+                        }
                     />
                     <MenuButton
                         path={path}
                         to={"/rafam/rodados"}
                         icon={<Auto />}
                         title={"Rodados"}
-                        // count={
-                        //     sistemas.rafam_imponibles_deuda
-                        //         .flatMap((item) => item.IMPONIBLES)
-                        //         .filter(
-                        //             (imponible) => imponible.NRO_RODADO !== null
-                        //         ).length ?? null
-                        // }
+                        count={
+                            sistemas && sistemas.rafam_imponibles_deuda
+                                ? sistemas.rafam_imponibles_deuda
+                                      .flatMap((item) => item.IMPONIBLES)
+                                      .filter(
+                                          (imponible) =>
+                                              imponible.NRO_RODADO !== null
+                                      ).length
+                                : null
+                        }
                     />
                 </MenuSection>
 
-                <MenuSection text="SALUD" textsm="SL" cs="mt-10">
+                <MenuSection text="SALUD" textsm="SL" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/salud/emergencias"}
@@ -142,7 +144,7 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="GESTIÓN" textsm="GT" cs="mt-10">
+                <MenuSection text="GESTIÓN" textsm="GT" cs="mt-5">
                     <MenuButton
                         path={path}
                         to={"/gestion/reclamos"}

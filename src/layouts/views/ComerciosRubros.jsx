@@ -14,43 +14,31 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Rightarrow from "@icons/Rightarrow";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchComercios } from "../../redux/slices/imponibleSlice";
 
 const ComerciosRubros = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { rubro } = useParams();
+
+    const dispatch = useDispatch();
+    const { comercios, loading, error } = useSelector(
+        (state) => state.imponible
+    );
+
     const TABLE_RUBROS = ["N° Comercio", "Rubro", "Descripción", "Deuda", ""];
 
     let totalPage = 0;
     let paginatedPages = 0;
     const itemsPerPage = 10;
     const [currentPage, setcurrentPage] = useState(1);
-    const [comerciosRubros, setComerciosRubros] = useState([]);
-    const { rubro } = useParams();
-
-    const getImponibleByRubro = async (rubro) => {
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/rafam/comercios/rubros/${rubro}`
-            );
-
-            setComerciosRubros(response.data.data);
-        } catch (err) {
-            console.log(err);
-            setComerciosRubros(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
 
     useEffect(() => {
-        getImponibleByRubro(rubro);
-    }, []);
+        dispatch(fetchComercios(rubro));
+    }, [dispatch]);
 
-    if (comerciosRubros) {
-        totalPage = Math.ceil(comerciosRubros.length / itemsPerPage);
-        paginatedPages = comerciosRubros.slice(
+    if (comercios) {
+        totalPage = Math.ceil(comercios.length / itemsPerPage);
+        paginatedPages = comercios.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
@@ -75,8 +63,8 @@ const ComerciosRubros = () => {
                     label="Rafam"
                     title={`COMERCIOS`}
                     subtitle={`${
-                        comerciosRubros && comerciosRubros.length > 0
-                            ? comerciosRubros[0].descripcion
+                        comercios && comercios.length > 0
+                            ? comercios[0].descripcion
                             : ""
                     }`}
                 />
@@ -84,7 +72,7 @@ const ComerciosRubros = () => {
                 <div className="p-5 md:p-10">
                     {loading ? (
                         <Loading title="citas" />
-                    ) : comerciosRubros ? (
+                    ) : comercios ? (
                         <Table
                             currentPage={currentPage}
                             prevPage={prevPage}
@@ -98,7 +86,7 @@ const ComerciosRubros = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {comerciosRubros.length > 0 ? (
+                                {comercios.length > 0 ? (
                                     paginatedPages.map(
                                         (
                                             {

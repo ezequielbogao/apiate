@@ -6,9 +6,12 @@ import Auto from "@icons/Auto";
 import ContentHeader from "@cpt/ContentHeader";
 import Errormsg from "@cpt/Errormsg";
 import Imponible from "@cpt/Imponible";
+import { useSelector } from "react-redux";
 
 const Rodados = () => {
-    const { sistemas, error, loading } = useMenu();
+    const { sistemas, loadingSistemas, errorSistemas } = useSelector(
+        (state) => state.personal
+    );
 
     let totalPage = 0;
     let paginatedPages = 0;
@@ -44,10 +47,10 @@ const Rodados = () => {
                 <ContentHeader label="Rafam" title="RODADOS" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingSistemas ? (
                         <Loading title="rodados" />
-                    ) : sistemas && sistemas.rafam_imponibles_deuda ? (
-                        paginatedPages.length > 0 ? (
+                    ) : paginatedPages.length > 0 ? (
+                        paginatedPages.some(({ NRO_RODADO }) => NRO_RODADO) ? (
                             <>
                                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {paginatedPages.map(
@@ -116,13 +119,13 @@ const Rodados = () => {
                             </div>
                         )
                     ) : (
-                        !error && (
+                        !errorSistemas && (
                             <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                 NO HAY RODADOS DISPONIBLES
                             </div>
                         )
                     )}
-                    {error && <Errormsg />}
+                    {errorSistemas && <Errormsg />}
                 </div>
             </div>
         </Content>

@@ -6,6 +6,7 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import DownArrow from "./icons/DownArrow";
+import ChevronDown from "./icons/chevronDown";
 
 const MenuSection = (props) => {
     MenuSection.propTypes = {
@@ -28,13 +29,28 @@ const MenuSection = (props) => {
     };
 
     return (
-        <Accordion open={open === 1} className="accordion-menu">
+        <Accordion open={open === 1} className="accordion-menu py-0">
             <AccordionHeader
                 onClick={() => handleOpen(1)}
-                className={`text-azure-300 py-0 flex justify-between w-full bg-transparent rounded-sm font-light text-center md:text-left ${props.cs} text-xs shadow-none border-0 hover:text-azure-500 focus:outline-none`}>
+                className={` ${
+                    isRotated
+                        ? "text-azure-300 dark:text-azure-400"
+                        : "text-azure-700 dark:text-azure-100"
+                }  py-0 flex justify-between w-full bg-transparent rounded-sm font-bold text-center md:text-left ${
+                    props.cs
+                } text-xs shadow-none border-0 hover:text-azure-500 focus:outline-none`}>
                 <span className="block sm:block md:hidden">{props.textsm}</span>
                 <span className="hidden md:block">{props.text}</span>
-                <DownArrow style={rotationStyle} width={"20"} />
+                <ChevronDown
+                    css={
+                        isRotated
+                            ? "text-azure-300 dark:text-azure-400 font-bold hidden md:block"
+                            : "text-azure-700 dark:text-azure-100 font-bold hidden md:block"
+                    }
+                    stroke={isRotated ? "2" : "2"}
+                    style={rotationStyle}
+                    width={"20"}
+                />
             </AccordionHeader>
             <AccordionBody>{props.children}</AccordionBody>
         </Accordion>
