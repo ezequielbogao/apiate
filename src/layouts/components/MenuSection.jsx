@@ -5,8 +5,7 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import DownArrow from "./icons/DownArrow";
-import ChevronDown from "./icons/chevronDown";
+import ChevronDown from "@icons/ChevronDown";
 
 const MenuSection = (props) => {
     MenuSection.propTypes = {
