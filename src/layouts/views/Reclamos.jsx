@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useMenu } from "@ctx/MenuContext";
 import Content from "@cpt/Content";
 import Loading from "@cpt/Loading";
 import ContentHeader from "@cpt/ContentHeader";
@@ -59,7 +58,7 @@ const Reclamos = () => {
                 <div className="p-5 md:p-10">
                     {loadingSistemas ? (
                         <Loading title="citas" />
-                    ) : sistemas && sistemas.reclamos ? (
+                    ) : paginatedPages.length > 0 ? (
                         <Table
                             currentPage={currentPage}
                             prevPage={prevPage}
@@ -122,7 +121,9 @@ const Reclamos = () => {
                     )}
                     {errorSistemas && <Errormsg />}
                 </div>
-                <div className="p-10">{<MapReclamos />}</div>
+                {paginatedPages.length > 0 && (
+                    <div className="p-10">{<MapReclamos />}</div>
+                )}
             </div>
         </Content>
     );

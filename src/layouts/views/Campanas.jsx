@@ -8,16 +8,18 @@ import { toast } from "react-toastify";
 import { setCampanasData } from "../../services/campanasService";
 
 const Campanas = () => {
-    const { error, loading, setLoading, setError } = useMenu();
+    // const { error, loading, setLoading, setError } = useMenu();
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [file, setFile] = useState(null);
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
 
     const handleSubmit = async (event) => {
-        setLoading(true);
-        setError(null);
+        // setLoading(true);
+        // setError(null);
 
         event.preventDefault();
         if (!file) {
@@ -39,7 +41,7 @@ const Campanas = () => {
             document.body.appendChild(link);
             link.click();
             toast.success("Archivo procesado y descargado");
-            setLoading(false);
+            // setLoading(false);
         } catch (error) {
             if (error.response) {
                 toast.error(`Error: no se pudo procesar el archivo`);
@@ -48,7 +50,7 @@ const Campanas = () => {
             } else {
                 toast.error("Hubo un error al realizar la solicitud.");
             }
-            setLoading(false);
+            // setLoading(false);
         }
     };
 

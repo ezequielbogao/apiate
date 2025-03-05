@@ -14,49 +14,22 @@ import Leftarrow from "@icons/Leftarrow";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Stetho from "../../components/icons/Stetho";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMedicos } from "../../../redux/slices/cartillaSlice";
 
 const Medicos = () => {
-    const { error, loading, setLoading, setError } = useMenu();
-    const [formSelected, setFormSelected] = useState(1);
-    const [medicos, setMedicos] = useState([]);
+    const dispatch = useDispatch();
+    const { medicos, loadingMedicos, errorMedicos } = useSelector(
+        (state) => state.cartilla
+    );
+
     const { especialidad } = useParams();
-
-    const changeForm = (e) => {
-        setFormSelected(e);
-    };
-
-    const getMedicos = async () => {
-        let meds = [];
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/salud/medicos/${especialidad}`
-            );
-            // medicos = response.data.data;
-            // console.log(response.data.data[0]);
-            if (response.data.data) {
-                setMedicos(response.data.data[0].medicos);
-            }
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
     useEffect(() => {
-        getMedicos(especialidad);
+        dispatch(fetchMedicos(especialidad));
         if (medicos) {
             console.log(medicos);
         }
     }, []);
-
-    const style = {
-        item: "p-5 shadow-sm rounded-lg border-2 border-azure-100  text-azure-500 bg-white hover:border-light-green-200  hover:shadow-md hover:text-azure-500 transition-all focus:outline-none",
-    };
 
     return (
         <Content>
@@ -68,7 +41,7 @@ const Medicos = () => {
                 />
 
                 <div className="p-5 md:pl-10 md:pr-10">
-                    {loading ? (
+                    {loadingMedicos ? (
                         <Loading title="cartilla médica - Buscador" />
                     ) : (
                         <div className="bg-white dark:bg-azure-700 rounded-xl p-5">
@@ -122,7 +95,7 @@ const Medicos = () => {
                             </div>
                         </div>
                     )}
-                    {error && <Errormsg />}
+                    {errorMedicos && <Errormsg />}
                 </div>
             </div>
         </Content>

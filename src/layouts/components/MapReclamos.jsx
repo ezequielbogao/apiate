@@ -1,49 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
-// import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useMenu } from "@ctx/MenuContext";
-import axios from "axios";
-import { toast } from "react-toastify";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLocations, updateCenter } from "../../redux/slices/reclamosSlice";
 
 const MapReclamos = () => {
-    const { persona, setError } = useMenu();
-    const [locations, setLocations] = useState([]);
-    const [center, setCenter] = useState([
-        -34.575267972791536, -58.72954234901199,
-    ]);
+    const { personales } = useSelector((state) => state.personal);
+    const { center, locations } = useSelector((state) => state.reclamos);
+    const dispatch = useDispatch();
     const mapRef = useRef();
-    const loadLocations = async () => {
-        let locs = [];
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/atenea/api/callejero/${
-                    persona.documento
-                }`
-            );
-            locs = response.data.data;
-            setLocations(locs);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
 
     useEffect(() => {
-        if (persona) {
-            loadLocations();
+        if (personales && personales.documento) {
+            dispatch(fetchLocations(personales.documento));
             if (mapRef.current && mapRef.current.leafletElement) {
                 mapRef.current.leafletElement.invalidateSize();
             }
             if (locations.length > 0) {
                 const firstLocation = locations[0];
-                setCenter([firstLocation.latitud, firstLocation.longitud]);
+                updateCenter([firstLocation.latitud, firstLocation.longitud]);
             }
         }
-    }, [persona]);
+    }, []);
 
     const polygon = [
         [-34.565944, -58.655582],
@@ -63,7 +42,7 @@ const MapReclamos = () => {
     const purpleOptions = { color: "#79c2e6" };
 
     return (
-        persona && (
+        personales && (
             <div
                 className="p-1 bg-azure-300 rounded-md"
                 style={{
