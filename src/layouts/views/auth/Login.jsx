@@ -1,42 +1,36 @@
 import axios from "axios";
 import logo_black from "../../../assets/ate_logo_b.svg";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "@slices/notificationSlice";
 import Notification from "../../components/Notification";
 import { ToastContainer } from "react-toastify";
 import Loading from "@cpt/Loading";
 import { Spinner } from "@material-tailwind/react";
+import { fetchLogin } from "../../../redux/slices/authSlice";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
-
-    const [loading, setLoading] = useState(false);
-
+    const { user, loadingUser, isLoggedIn, errorUser } = useSelector(
+        (state) => state.auth
+    );
     const onSubmit = async (event) => {
         event.preventDefault();
-        setLoading(true);
         try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/atenea/api/login`,
-                { username, password }
-            );
-            if (response.data.status == "success") {
-                // dispatch(setAlert("success", "Login exitoso"));
-
-                setTimeout(() => {
-                    setLoading(false);
-                    navigate("/");
-                }, 3000);
-            }
+            dispatch(fetchLogin(username, password));
         } catch (e) {
             console.log(e);
         }
     };
+
+    useEffect(() => {
+        if (isLoggedIn) navigate("/");
+    }, [isLoggedIn, navigate]);
 
     return (
         <>
@@ -75,7 +69,7 @@ const Login = () => {
                         </div>
                     </div>
                     <div className="p-5 w-full max-w-md text-left">
-                        {loading ? (
+                        {loadingUser ? (
                             <div className="flex justify-center align-items-center flex-col text-center">
                                 <span className="text-azure-600">
                                     VALIDANDO CRENDENCIALES...
