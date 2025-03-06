@@ -9,18 +9,21 @@ import { setCampanasData } from "../../services/campanasService";
 import { Form } from "react-hook-form";
 import { FormServicio } from "./cartilla/FormServicio";
 import { FormProfesional } from "./cartilla/FormProfesional";
+import { useSelector } from "react-redux";
 
 const Cartilla = () => {
-    const { error, loading, setLoading, setError } = useMenu();
-    const [formSelected, setFormSelected] = useState(1);
+    const { loadingMain, errorLoading } = useSelector(
+        (state) => state.dashboard
+    );
+    // const [formSelected, setFormSelected] = useState(1);
 
-    const changeForm = (e) => {
-        setFormSelected(e);
-    };
+    // const changeForm = (e) => {
+    //     setFormSelected(e);
+    // };
 
-    const style = {
-        button: "p-5 shadow-md border-2 border-azure-500 text-azure-500 dark:text-azure-100 dark:border-azure-600 dark:hover:bg-azure-500 dark:hover:border-azure-500 bg-white dark:bg-azure-600 hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none",
-    };
+    // const style = {
+    //     button: "p-5 shadow-md border-2 border-azure-500 text-azure-500 dark:text-azure-100 dark:border-azure-600 dark:hover:bg-azure-500 dark:hover:border-azure-500 bg-white dark:bg-azure-600 hover:bg-azure-600 hover:text-white hover:border-azure-600 transition-colors focus:outline-none",
+    // };
 
     return (
         <Content>
@@ -28,7 +31,7 @@ const Cartilla = () => {
                 <ContentHeader label="Salud" title="CARTILLA MÉDICA" />
 
                 <div className="p-5 md:p-10">
-                    {loading ? (
+                    {loadingMain ? (
                         <Loading title="cartilla médica" />
                     ) : (
                         <div className="bg-white dark:bg-azure-700 rounded-xl">
@@ -47,7 +50,7 @@ const Cartilla = () => {
                             </div>
                         </div>
                     )}
-                    {error && <Errormsg />}
+                    {errorLoading && <Errormsg />}
                 </div>
             </div>
         </Content>

@@ -1,15 +1,17 @@
-import axios from "axios";
-import { useMenu } from "@ctx/MenuContext";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {
+    fetchEspecialidades,
+    fetchServicios,
+} from "../../../redux/slices/cartillaSlice";
 
 export const FormServicio = () => {
     const navigate = useNavigate();
-    const { error, loading, setLoading, setError } = useMenu();
-    const [servicios, setServicios] = useState([]);
-    const [especialidades, setEspecialidades] = useState([]);
-    const [medicos, setMedicos] = useState([]);
+    const dispatch = useDispatch();
+    const { especialidades, servicios } = useSelector(
+        (state) => state.cartilla
+    );
 
     const [selectedCodSer, setSelectedCodSer] = useState("");
     const [selectedCodEsp, setSelectedCodEsp] = useState("");
@@ -30,29 +32,10 @@ export const FormServicio = () => {
         input: "p-3 border-2 dark:text-azure-100 border-azure-300 rounded-md dark:bg-azure-600 dark:border-azure-700 focus:outline-none",
     };
 
-    const getServicios = async () => {
-        let serv = [];
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/atenea/api/salud/servicios`
-            );
-            serv = response.data.data;
-            setServicios(serv);
-            // console.log(serv);
-            // setServicios(serv);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
     const handleSelSer = (e) => {
         const codigo = e.target.value;
         setSelectedCodSer(codigo);
-        getEspecialidades(codigo);
+        dispatch(fetchEspecialidades(codigo));
     };
 
     const handleSelEsp = (e) => {
@@ -65,27 +48,6 @@ export const FormServicio = () => {
         setSelectedCodTipo(codigo);
     };
 
-    const getEspecialidades = async (cod) => {
-        let esp = [];
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/salud/servicios/${cod}`
-            );
-            esp = response.data.data[0].esp;
-
-            setEspecialidades(esp);
-            // console.log(esp);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
     useEffect(() => {
         if (especialidades && especialidades.length > 0) {
             setSelectedCodEsp(especialidades[0].espeCodigo);
@@ -93,7 +55,7 @@ export const FormServicio = () => {
     }, [especialidades]);
 
     useEffect(() => {
-        getServicios();
+        dispatch(fetchServicios());
     }, []);
 
     return (

@@ -1,7 +1,11 @@
 import { createRoot } from "react-dom/client";
 import "./App.css";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+    createBrowserRouter,
+    RouterProvider,
+    useNavigate,
+} from "react-router-dom";
 
 import Citas from "@views/Citas";
 import Pagos from "@views/Pagos";
@@ -30,20 +34,22 @@ import Centros from "./layouts/views/cartilla/Centros";
 
 import { Provider } from "react-redux";
 import { store } from "@store/store";
-import { ToastContainer } from "react-toastify";
-import Notification from "./layouts/components/Notification";
+import { AuthMiddleware } from "./layouts/components/auth/AuthMiddleware";
 
 const router = createBrowserRouter([
     { path: "/login", element: <Login /> },
     {
         path: "/",
-        element: <MainLayout />,
+        element: (
+            <AuthMiddleware>
+                <MainLayout />
+            </AuthMiddleware>
+        ),
         children: [
             {
                 path: "/",
                 element: <Dashboard />,
             },
-
             {
                 path: "/citas",
                 element: <Citas />,

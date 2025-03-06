@@ -14,39 +14,22 @@ import Leftarrow from "@icons/Leftarrow";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Hospital from "../../components/icons/Hospital";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCentros } from "../../../redux/slices/cartillaSlice";
 
 const Centros = () => {
-    const { error, loading, setLoading, setError } = useMenu();
-    const [centros, setCentros] = useState([]);
+    const dispatch = useDispatch();
+    const { centros, loadingCentros, errorCentros } = useSelector(
+        (state) => state.cartilla
+    );
     const { especialidad } = useParams();
 
-    const getCentros = async () => {
-        try {
-            const response = await axios.get(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/atenea/api/salud/centros/${especialidad}`
-            );
-            setCentros(response.data.data[0].centros);
-        } catch (err) {
-            console.log(err);
-            setError(
-                err.response ? err.response.data.message : "Error desconocido"
-            );
-            toast.error("Error");
-        }
-    };
-
     useEffect(() => {
-        getCentros(especialidad);
+        dispatch(fetchCentros(especialidad));
         if (centros) {
             console.log(centros);
         }
     }, []);
-
-    const style = {
-        item: "p-5 flex flex-col shadow-sm rounded-lg border-2 border-azure-100  text-azure-500 bg-white hover:border-light-green-200  hover:shadow-md hover:text-azure-500 transition-all focus:outline-none",
-    };
 
     return (
         <Content>
@@ -58,7 +41,7 @@ const Centros = () => {
                 />
 
                 <div className="p-5 md:pl-10 md:pr-10">
-                    {loading ? (
+                    {loadingCentros ? (
                         <Loading title="cartilla médica - Buscador" />
                     ) : (
                         <div className="bg-white dark:bg-azure-700 rounded-xl p-5">
@@ -106,7 +89,7 @@ const Centros = () => {
                             </div>
                         </div>
                     )}
-                    {error && <Errormsg />}
+                    {errorCentros && <Errormsg />}
                 </div>
             </div>
         </Content>

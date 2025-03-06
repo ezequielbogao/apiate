@@ -9,6 +9,7 @@ import Lupa from "@icons/Lupa";
 import Logout from "@icons/Logout";
 import logo_black from "../assets/ate_logo_b.svg";
 import logo_white from "../assets/ate_logo_w.svg";
+import { logout } from "../redux/slices/authSlice";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -55,6 +56,7 @@ const Header = () => {
     }, [personales, dispatch]);
 
     const closeSession = () => {
+        dispatch(logout());
         dispatch(setAlert("info", "Cerraste sesión"));
         navigate("/");
     };
