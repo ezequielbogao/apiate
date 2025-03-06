@@ -23,6 +23,9 @@ import { setAlert } from "@slices/notificationSlice";
 import { formatNumber } from "../../services/helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMain, fetchRubros, fetchDeuda } from "@slices/dashboardSlice";
+import Pending from "../components/Pending";
+import ItemsMain from "../components/skeletons/dashboard/itemsMain";
+import ItemsImponibles from "../components/skeletons/dashboard/ItemsImponibles";
 
 const Dashboard = () => {
     //Redux
@@ -99,7 +102,65 @@ const Dashboard = () => {
                 <ContentHeader label="Home" title="DASHBOARD" />
 
                 <div className="p-5 md:p-10">
-                    {loadingMain ? (
+                    <Pending
+                        loading={loadingMain}
+                        title={"Información"}
+                        // skeleton={<ItemsMain />}>
+                    >
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-5">
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Location width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Direcciones
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.direcciones?.toLocaleString(
+                                            "de-DE"
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Dni width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Documentos
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.documentos?.toLocaleString(
+                                            "de-DE"
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Email width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Emails
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.mails?.toLocaleString("de-DE")}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
+                                <Phone width={"40"} height={"40"} />
+                                <div className="flex flex-col">
+                                    <div className="text-xl text-azure-300 font-light">
+                                        Telefonos
+                                    </div>
+                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
+                                        {main?.telefonos?.toLocaleString(
+                                            "de-DE"
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Pending>
+                    {/* {loadingMain ? (
                         <Loading title="Información" />
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -154,12 +215,14 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
 
-                    {loadingDeuda ? (
-                        <Loading title="Imponibles" />
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5">
+                    <Pending
+                        loading={loadingDeuda}
+                        title={"Imponibles"}
+                        // skeleton={<ItemsImponibles />}>
+                    >
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 mt-5">
                             {deuda &&
                                 deuda.map(({ recurso, deuda }) => (
                                     <div key={recurso}>
@@ -209,7 +272,57 @@ const Dashboard = () => {
                                     </div>
                                 ))}
                         </div>
-                    )}
+                    </Pending>
+
+                    {/* {loadingDeuda ? (
+                        <Loading title="Imponibles" />
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5">
+                            {deuda &&
+                                deuda.map(({ recurso, deuda }) => (
+                                    <div key={recurso}>
+                                        <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
+                                            {recurso === 20 ? (
+                                                <Store width="40" height="40" />
+                                            ) : recurso === 10 ? (
+                                                <Casa width="40" height="40" />
+                                            ) : recurso === 60 ? (
+                                                <Auto width="40" height="40" />
+                                            ) : recurso === 30 ? (
+                                                <Moto width="40" height="40" />
+                                            ) : (
+                                                ""
+                                            )}
+
+                                            <div className="flex flex-col w-full">
+                                                <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
+                                                    {recursos[recurso]}
+                                                </div>
+                                                <div className="flex flex-col mt-5">
+                                                    <div className="text-md text-azure-300 font-light">
+                                                        Deuda
+                                                    </div>
+                                                    <div className="text-4xl font-medium text-red-400 flex flex-flow">
+                                                        <span className="me-3">
+                                                            $
+                                                        </span>
+                                                        {formatNumber(deuda)}
+                                                    </div>
+                                                    <div className="text-lg font-medium text-azure-300 flex flex-flow">
+                                                        <span className="me-3 d-block">
+                                                            ${" "}
+                                                            {deuda.toLocaleString(
+                                                                "de-DE"
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
+                    )} */}
 
                     {loadingRubros ? (
                         <Loading title="Rubros" />

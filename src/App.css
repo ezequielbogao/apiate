@@ -287,3 +287,40 @@ p {
 .accordion-menu .ml-4 {
     display: none;
 }
+
+/* styles.css or Skeleton.css */
+.skeleton-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.skeleton {
+    background-color: #e0e0e0;
+    animation: pulse 1.5s infinite ease-in-out;
+    border-radius: 4px;
+}
+
+.skeleton-text {
+    height: 20px;
+    width: 80%;
+    margin: 5px 0;
+}
+
+.skeleton-image {
+    height: 150px;
+    width: 100%;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f2f2f2;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}
