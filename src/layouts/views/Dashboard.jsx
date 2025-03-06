@@ -24,7 +24,7 @@ import { formatNumber } from "../../services/helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMain, fetchRubros, fetchDeuda } from "@slices/dashboardSlice";
 import Pending from "../components/Pending";
-import ItemsMain from "../components/skeletons/dashboard/itemsMain";
+import ItemsMain from "../components/skeletons/dashboard/ItemsMain";
 import ItemsImponibles from "../components/skeletons/dashboard/ItemsImponibles";
 
 const Dashboard = () => {
