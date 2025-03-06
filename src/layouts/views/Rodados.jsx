@@ -19,9 +19,7 @@ const Rodados = () => {
     const [currentPage, setcurrentPage] = useState(1);
 
     if (sistemas && sistemas.rafam_imponibles_deuda) {
-        let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
-            (item) => item.IMPONIBLES
-        );
+        let imponibles = sistemas.rafam_imponibles_deuda.IMPONIBLES.RODADOS;
         totalPage = Math.ceil(imponibles.length / itemsPerPage);
         paginatedPages = imponibles.slice(
             (currentPage - 1) * itemsPerPage,

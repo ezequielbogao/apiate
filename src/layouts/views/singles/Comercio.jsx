@@ -27,9 +27,8 @@ const Comercio = () => {
         if (comercio) dispatch(fetchImponible(comercio, "comercio"));
 
         if (sistemas && sistemas.rafam_imponibles_deuda) {
-            let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
-                (item) => item.IMPONIBLES
-            );
+            let imponibles =
+                sistemas.rafam_imponibles_deuda.IMPONIBLES.COMERCIOS;
 
             const foundRodado = imponibles.find(
                 (item) => item.NRO_COMERCIO == comercio

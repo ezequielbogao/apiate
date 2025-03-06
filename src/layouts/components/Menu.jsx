@@ -71,12 +71,8 @@ const Menu = () => {
                         title={"Comercios"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda
-                                      .flatMap((item) => item.IMPONIBLES)
-                                      .filter(
-                                          (imponible) =>
-                                              imponible.NRO_COMERCIO !== null
-                                      ).length
+                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
+                                      .COMERCIOS.length
                                 : null
                         }
                     />
@@ -87,12 +83,8 @@ const Menu = () => {
                         title={"Inmuebles"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda
-                                      .flatMap((item) => item.IMPONIBLES)
-                                      .filter(
-                                          (imponible) =>
-                                              imponible.NRO_INMUEBLE !== null
-                                      ).length
+                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
+                                      .INMUEBLES.length
                                 : null
                         }
                     />
@@ -103,12 +95,8 @@ const Menu = () => {
                         title={"Rodados"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda
-                                      .flatMap((item) => item.IMPONIBLES)
-                                      .filter(
-                                          (imponible) =>
-                                              imponible.NRO_RODADO !== null
-                                      ).length
+                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
+                                      .RODADOS.length
                                 : null
                         }
                     />

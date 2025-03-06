@@ -102,11 +102,14 @@ const Dashboard = () => {
                 <ContentHeader label="Home" title="DASHBOARD" />
 
                 <div className="p-5 md:p-10">
+                    {/* <Pending
+                        loading={loadingMain}
+                        title={"Información"}
+                        > */}
                     <Pending
                         loading={loadingMain}
                         title={"Información"}
-                        // skeleton={<ItemsMain />}>
-                    >
+                        skeleton={<ItemsMain />}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-5">
                             <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
                                 <Location width={"40"} height={"40"} />

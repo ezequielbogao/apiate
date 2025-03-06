@@ -22,9 +22,8 @@ const Inmueble = () => {
         if (inmueble) dispatch(fetchImponible(inmueble, "inmueble"));
 
         if (sistemas && sistemas.rafam_imponibles_deuda) {
-            let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
-                (item) => item.IMPONIBLES
-            );
+            let imponibles =
+                sistemas.rafam_imponibles_deuda.IMPONIBLES.INMUEBLES;
 
             const foundRodado = imponibles.find(
                 (item) => item.NRO_INMUEBLE == inmueble
