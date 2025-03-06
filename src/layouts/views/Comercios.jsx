@@ -22,7 +22,7 @@ const Comercios = () => {
         // let imponibles = sistemas.rafam_imponibles_deuda.flatMap(
         //     (item) => item.IMPONIBLES
         // );
-        let imponibles = sistemas.rafam_imponibles_deuda.IMPONIBLES.COMERCIOS;
+        let imponibles = sistemas.rafam_imponibles_deuda?.IMPONIBLES?.COMERCIOS;
         totalPage = Math.ceil(imponibles.length / itemsPerPage);
         paginatedPages = imponibles.slice(
             (currentPage - 1) * itemsPerPage,

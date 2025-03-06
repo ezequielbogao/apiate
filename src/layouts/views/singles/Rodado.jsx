@@ -20,11 +20,11 @@ const Rodado = () => {
     const [tieneDeuda, setTieneDeuda] = useState(false);
 
     useEffect(() => {
-        // if (Object.keys(personales).length == 0) navigate("/");
         if (rodado) dispatch(fetchImponible(rodado, "rodado"));
 
         if (sistemas && sistemas.rafam_imponibles_deuda) {
-            let imponibles = sistemas.rafam_imponibles_deuda.IMPONIBLES.RODADOS;
+            let imponibles =
+                sistemas.rafam_imponibles_deuda?.IMPONIBLES?.RODADOS;
 
             const foundRodado = imponibles.find(
                 (item) => item.NRO_RODADO == rodado

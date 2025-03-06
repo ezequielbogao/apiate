@@ -73,7 +73,7 @@ export const fetchPersonal = (dni) => async (dispatch) => {
         const response = await axios.get(url);
 
         // Guardamos la info del response y actualizamos el Loading
-        dispatch(setPersonal(response.data.data.datos_personales));
+        dispatch(setPersonal(response.data.data.datos_personales[0]));
         dispatch(setSistemas(response.data.data.sistemas));
 
         // Guardamos la info del response y actualizamos el Loading

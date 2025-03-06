@@ -71,8 +71,8 @@ const Menu = () => {
                         title={"Comercios"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
-                                      .COMERCIOS.length
+                                ? sistemas.rafam_imponibles_deuda?.IMPONIBLES
+                                      ?.COMERCIOS.length
                                 : null
                         }
                     />
@@ -83,8 +83,8 @@ const Menu = () => {
                         title={"Inmuebles"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
-                                      .INMUEBLES.length
+                                ? sistemas.rafam_imponibles_deuda?.IMPONIBLES
+                                      ?.INMUEBLES.length
                                 : null
                         }
                     />
@@ -95,8 +95,8 @@ const Menu = () => {
                         title={"Rodados"}
                         count={
                             sistemas && sistemas.rafam_imponibles_deuda
-                                ? sistemas.rafam_imponibles_deuda.IMPONIBLES
-                                      .RODADOS.length
+                                ? sistemas.rafam_imponibles_deuda?.IMPONIBLES
+                                      ?.RODADOS.length
                                 : null
                         }
                     />

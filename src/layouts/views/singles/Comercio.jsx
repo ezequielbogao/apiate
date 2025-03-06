@@ -28,7 +28,7 @@ const Comercio = () => {
 
         if (sistemas && sistemas.rafam_imponibles_deuda) {
             let imponibles =
-                sistemas.rafam_imponibles_deuda.IMPONIBLES.COMERCIOS;
+                sistemas.rafam_imponibles_deuda?.IMPONIBLES?.COMERCIOS;
 
             const foundRodado = imponibles.find(
                 (item) => item.NRO_COMERCIO == comercio
