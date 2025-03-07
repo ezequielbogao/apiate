@@ -40,7 +40,7 @@ const authSlice = createSlice({
         },
         // Errores
         setErrorUser: (state, action) => {
-            state.errorError = action.payload;
+            state.errorUser = action.payload;
         },
     },
 });
@@ -57,7 +57,11 @@ export const fetchLogin = (username, password) => async (dispatch) => {
 
         dispatch(setIsLoggedIn(true));
     } catch (error) {
-        dispatch(setErrorUser(error.message));
+        if (error.status == 401) {
+            dispatch(setErrorUser(error.response.data.message));
+        } else {
+            dispatch(setErrorUser("Error al iniciar sesión"));
+        }
         dispatch(setLoadingUser(false));
     }
 };

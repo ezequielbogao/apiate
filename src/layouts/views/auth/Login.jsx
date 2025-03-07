@@ -32,6 +32,10 @@ const Login = () => {
         if (isLoggedIn) navigate("/");
     }, [isLoggedIn, navigate]);
 
+    // useEffect(() => {
+    //     if (errorUser) dispatch(setAlert("error", errorUser));
+    // }, [errorUser]);
+
     return (
         <>
             <div className="w-full grid grid-cols-8 h-full min-h-screen bg-azure-100 dark:bg-azure-900">
@@ -80,7 +84,7 @@ const Login = () => {
                             </div>
                         ) : (
                             <>
-                                <h3 className="text-xl text-center font-normal text-azure-800 dark:text-azure-50">
+                                <h3 className="text-xl mb-10 text-center font-normal text-azure-800 dark:text-azure-50">
                                     Ingresá tus credenciales
                                 </h3>
                                 <form
@@ -118,10 +122,18 @@ const Login = () => {
                                             className="w-full px-4 py-2 border rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
                                         />
                                     </div>
+                                    {errorUser && (
+                                        <div>
+                                            <span className="w-full p-5 text-center text-red-400">
+                                                {errorUser}
+                                            </span>
+                                        </div>
+                                    )}
+
                                     <div>
                                         <button
                                             type="submit"
-                                            className="w-full py-2 bg-azure-800 text-white rounded-md hover:bg-azure-700 border-none focus:outline-none">
+                                            className="mt-10 w-full py-2 bg-azure-800 text-white rounded-md hover:bg-azure-700 border-none focus:outline-none">
                                             Iniciar sesión
                                         </button>
                                     </div>
