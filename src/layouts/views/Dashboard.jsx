@@ -70,9 +70,12 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchMain());
-        dispatch(fetchRubros());
-        dispatch(fetchDeuda());
+        if (main.length == 0) dispatch(fetchMain());
+        if (rubros.length == 0) dispatch(fetchRubros());
+        if (deuda.length == 0) dispatch(fetchDeuda());
+        // dispatch(fetchMain());
+        // dispatch(fetchRubros());
+        // dispatch(fetchDeuda());
     }, [dispatch]);
 
     useEffect(() => {
@@ -102,14 +105,16 @@ const Dashboard = () => {
                 <ContentHeader label="Home" title="DASHBOARD" />
 
                 <div className="p-5 md:p-10">
-                    {/* <Pending
+                    <Pending loading={loadingMain} title={"Información"}>
+                        <div className="mt-10">
+                            <span className="text-azure-400 text-lg">
+                                INFORMACIÓN RECOLECTADA
+                            </span>
+                        </div>
+                        {/* <Pending
                         loading={loadingMain}
                         title={"Información"}
-                        > */}
-                    <Pending
-                        loading={loadingMain}
-                        title={"Información"}
-                        skeleton={<ItemsMain />}>
+                        skeleton={<ItemsMain />}> */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-5">
                             <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
                                 <Location width={"40"} height={"40"} />
@@ -163,69 +168,18 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </Pending>
-                    {/* {loadingMain ? (
-                        <Loading title="Información" />
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                <Location width={"40"} height={"40"} />
-                                <div className="flex flex-col">
-                                    <div className="text-xl text-azure-300 font-light">
-                                        Direcciones
-                                    </div>
-                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                        {main?.direcciones?.toLocaleString(
-                                            "de-DE"
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                <Dni width={"40"} height={"40"} />
-                                <div className="flex flex-col">
-                                    <div className="text-xl text-azure-300 font-light">
-                                        Documentos
-                                    </div>
-                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                        {main?.documentos?.toLocaleString(
-                                            "de-DE"
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                <Email width={"40"} height={"40"} />
-                                <div className="flex flex-col">
-                                    <div className="text-xl text-azure-300 font-light">
-                                        Emails
-                                    </div>
-                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                        {main?.mails?.toLocaleString("de-DE")}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex gap-5 bg-azure-50  dark:bg-azure-700 rounded-xl  mt-5 p-5">
-                                <Phone width={"40"} height={"40"} />
-                                <div className="flex flex-col">
-                                    <div className="text-xl text-azure-300 font-light">
-                                        Telefonos
-                                    </div>
-                                    <div className="text-4xl font-medium text-azure-600 dark:text-azure-200">
-                                        {main?.telefonos?.toLocaleString(
-                                            "de-DE"
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )} */}
 
                     <Pending
                         loading={loadingDeuda}
                         title={"Imponibles"}
                         // skeleton={<ItemsImponibles />}>
                     >
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 mt-5">
+                        <div className="mt-10">
+                            <span className="text-azure-400 text-lg">
+                                DEUDA POR IMPONIBLE
+                            </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5 mt-2">
                             {deuda &&
                                 deuda.map(({ recurso, deuda }) => (
                                     <div key={recurso}>
@@ -277,119 +231,76 @@ const Dashboard = () => {
                         </div>
                     </Pending>
 
-                    {/* {loadingDeuda ? (
-                        <Loading title="Imponibles" />
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-5">
-                            {deuda &&
-                                deuda.map(({ recurso, deuda }) => (
-                                    <div key={recurso}>
-                                        <div className="flex gap-5 bg-white border border-azure-200 dark:border-azure-600 dark:bg-azure-800 rounded-xl  mt-5 p-5">
-                                            {recurso === 20 ? (
-                                                <Store width="40" height="40" />
-                                            ) : recurso === 10 ? (
-                                                <Casa width="40" height="40" />
-                                            ) : recurso === 60 ? (
-                                                <Auto width="40" height="40" />
-                                            ) : recurso === 30 ? (
-                                                <Moto width="40" height="40" />
-                                            ) : (
-                                                ""
-                                            )}
-
-                                            <div className="flex flex-col w-full">
-                                                <div className="text-xl text-azure-600 dark:text-azure-200 font-medium">
-                                                    {recursos[recurso]}
-                                                </div>
-                                                <div className="flex flex-col mt-5">
-                                                    <div className="text-md text-azure-300 font-light">
-                                                        Deuda
-                                                    </div>
-                                                    <div className="text-4xl font-medium text-red-400 flex flex-flow">
-                                                        <span className="me-3">
-                                                            $
-                                                        </span>
-                                                        {formatNumber(deuda)}
-                                                    </div>
-                                                    <div className="text-lg font-medium text-azure-300 flex flex-flow">
-                                                        <span className="me-3 d-block">
-                                                            ${" "}
-                                                            {deuda.toLocaleString(
-                                                                "de-DE"
-                                                            )}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
-                    )} */}
-
                     {loadingRubros ? (
                         <Loading title="Rubros" />
                     ) : paginatedPages.length > 0 ? (
-                        <Table
-                            currentPage={currentPage}
-                            prevPage={prevPage}
-                            nextPage={nextPage}
-                            totalPage={totalPage}>
-                            <thead>
-                                <tr>
-                                    {TABLE_RUBROS.map((head) => (
-                                        <Th key={head} text={head} />
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {rubros.length > 0 ? (
-                                    paginatedPages.map(
-                                        (
-                                            {
-                                                rubro,
-                                                descripcion,
-                                                cantidad,
-                                                deuda,
-                                            },
-                                            index
-                                        ) => (
-                                            <Tr key={index}>
-                                                <Td content={rubro} />
-                                                <Td content={descripcion} />
-                                                <Td content={cantidad} />
-                                                <Td
-                                                    content={
-                                                        "$ " +
-                                                        deuda.toLocaleString(
-                                                            "de-DE"
-                                                        )
-                                                    }
-                                                />
-                                                <Td>
-                                                    <Link
-                                                        className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
-                                                        to={`/rafam/comercios/${rubro}`}>
-                                                        <Rightarrow
-                                                            width={"25"}
-                                                            height={"25"}
-                                                        />
-                                                    </Link>
-                                                </Td>
-                                            </Tr>
-                                        )
-                                    )
-                                ) : (
+                        <>
+                            <div className="mt-10">
+                                <span className="text-azure-400 text-lg">
+                                    DEUDA POR RUBRO
+                                </span>
+                            </div>
+                            <Table
+                                currentPage={currentPage}
+                                prevPage={prevPage}
+                                nextPage={nextPage}
+                                totalPage={totalPage}>
+                                <thead>
                                     <tr>
-                                        <td
-                                            colSpan="6"
-                                            className="p-4 text-center">
-                                            No hay información disponibles.
-                                        </td>
+                                        {TABLE_RUBROS.map((head) => (
+                                            <Th key={head} text={head} />
+                                        ))}
                                     </tr>
-                                )}
-                            </tbody>
-                        </Table>
+                                </thead>
+                                <tbody>
+                                    {rubros.length > 0 ? (
+                                        paginatedPages.map(
+                                            (
+                                                {
+                                                    rubro,
+                                                    descripcion,
+                                                    cantidad,
+                                                    deuda,
+                                                },
+                                                index
+                                            ) => (
+                                                <Tr key={index}>
+                                                    <Td content={rubro} />
+                                                    <Td content={descripcion} />
+                                                    <Td content={cantidad} />
+                                                    <Td
+                                                        content={
+                                                            "$ " +
+                                                            deuda.toLocaleString(
+                                                                "de-DE"
+                                                            )
+                                                        }
+                                                    />
+                                                    <Td>
+                                                        <Link
+                                                            className="bg-white hover:bg-azure-100 dark:bg-azure-500 dark:hover:bg-azure-600 transition-colors w-fit p-1 align-items-center justify-center flex rounded-2xl "
+                                                            to={`/rafam/comercios/${rubro}`}>
+                                                            <Rightarrow
+                                                                width={"25"}
+                                                                height={"25"}
+                                                            />
+                                                        </Link>
+                                                    </Td>
+                                                </Tr>
+                                            )
+                                        )
+                                    ) : (
+                                        <tr>
+                                            <td
+                                                colSpan="6"
+                                                className="p-4 text-center">
+                                                No hay información disponibles.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </Table>
+                        </>
                     ) : (
                         <></>
                     )}

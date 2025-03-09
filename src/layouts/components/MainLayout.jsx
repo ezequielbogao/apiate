@@ -1,9 +1,16 @@
 import Header from "../Header";
 import { ToastContainer } from "react-toastify";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Menu from "./Menu";
 import Notification from "./Notification";
+import { useEffect } from "react";
+
 export const MainLayout = () => {
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
     return (
         <div className="w-full flex flex-col justify-center bg-white text-azure-800 dark:bg-azure-900 dark:text-azure-50 bg-pattern">
             <Header />

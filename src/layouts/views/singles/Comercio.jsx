@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchImponible } from "../../../redux/slices/imponibleSlice";
+import Store from "../../components/icons/Store";
 
 const Comercio = () => {
     const { comercio } = useParams();
@@ -75,89 +76,102 @@ const Comercio = () => {
                         <Loading title="rodado" />
                     ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
-                            <div className="flex w-full justify-end">
-                                <span
-                                    className={`px-2 py-2 text-sm bg-${
-                                        tieneDeuda ? "red" : "green"
-                                    }-500 text-white rounded-lg`}>
-                                    {tieneDeuda ? "Tiene deuda" : "Sin deuda"}
-                                </span>
-                            </div>
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">
-                                <div className="flex flex-col w-full md:w-6/12">
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            CUIT
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.CUIT ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            DIRECCIÓN
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.DP_CALLE ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            ALTURA
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.DP_NRO ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            FECHA DE APERTURA
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.FECHA_APERTURA ?? "-"}
-                                        </span>
+                                <div className="flex w-full justify-center md:w-2/12 align-middle">
+                                    <div className="flex flex-col  items-center">
+                                        <Store width="70" height="70" />
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-azure-300 text-lg">
+                                                #{comercio}
+                                            </span>
+                                            <span
+                                                className={`px-2 py-2 mt-2 text-xs bg-${
+                                                    tieneDeuda ? "red" : "green"
+                                                }-500 text-white rounded-lg w-auto`}>
+                                                {tieneDeuda
+                                                    ? "Tiene deuda"
+                                                    : "Sin deuda"}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col w-full md:w-6/12">
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            NOMBRE
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.NOMBRE ?? "-"}
-                                        </span>
+                                <div className="flex w-full md:w-10/12">
+                                    <div className="flex flex-col w-full md:w-6/12">
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                CUIT
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.CUIT ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                DIRECCIÓN
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.DP_CALLE ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                ALTURA
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.DP_NRO ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                FECHA DE APERTURA
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.FECHA_APERTURA ??
+                                                    "-"}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            NRO COMERCIO
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.NRO_COMERCIO ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            RESPONSABLE PAGO
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.RESP_PAGO ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            RUBRO
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.RUBRO ?? "-"}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col mt-3">
-                                        <span className="text-azure-300 font-light">
-                                            TELEFONOS
-                                        </span>
-                                        <span className=" dark:text-azure-100 font-medium">
-                                            {imponible.TELEFONOS ?? "-"}
-                                        </span>
+                                    <div className="flex flex-col w-full md:w-6/12">
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                NOMBRE
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.NOMBRE ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                NRO COMERCIO
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.NRO_COMERCIO ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                RESPONSABLE PAGO
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.RESP_PAGO ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                RUBRO
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.RUBRO ?? "-"}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col mt-3">
+                                            <span className="text-azure-300 font-light">
+                                                TELEFONOS
+                                            </span>
+                                            <span className=" dark:text-azure-100 font-medium">
+                                                {imponible.TELEFONOS ?? "-"}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
