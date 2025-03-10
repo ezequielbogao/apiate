@@ -1,14 +1,23 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setIsLoggedIn, setToken } from "../../../redux/slices/authSlice";
 
 export const AuthMiddleware = ({ children }) => {
-    // const { user } = useSelector((state) => state.auth); // Obtener el estado de usuario
-    // const navigate = useNavigate();
+    const { isLoggedIn, user, token } = useSelector((state) => state.auth); // Obtener el estado de usuario
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const ltoken = localStorage.getItem("access_token");
+        if (!ltoken) navigate("/login");
 
-    // useEffect(() => {
-    //     if (user.length == 0) navigate("/login");
-    // }, [user, navigate]);
+        if (ltoken) {
+            if (!token) dispatch(setToken(ltoken));
+            if (token) dispatch(setIsLoggedIn(true));
+        }
+
+        // if (user.length == 0) navigate("/login");
+    }, [navigate, dispatch, token, isLoggedIn]);
 
     // if (user.length == 0) return null;
 

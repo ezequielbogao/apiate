@@ -19,11 +19,11 @@ export const MainLayout = () => {
                 <Menu />
                 <Outlet />
             </div>
-            <ToastContainer limit={3} stacked />
+            {/* <ToastContainer limit={3} stacked /> */}
             <Notification />
             <ToastContainer
                 limit={3}
-                // stacked
+                stacked
                 pauseOnFocusLoss={false}
                 autoClose={5000}
             />

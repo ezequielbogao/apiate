@@ -42,6 +42,8 @@ const Dashboard = () => {
         errorDeuda,
     } = useSelector((state) => state.dashboard);
 
+    const { isLoggedIn } = useSelector((state) => state.auth);
+
     let totalPage = 0;
     let paginatedPages = 0;
     const itemsPerPage = 10;
@@ -70,13 +72,12 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
-        if (main.length == 0) dispatch(fetchMain());
-        if (rubros.length == 0) dispatch(fetchRubros());
-        if (deuda.length == 0) dispatch(fetchDeuda());
-        // dispatch(fetchMain());
-        // dispatch(fetchRubros());
-        // dispatch(fetchDeuda());
-    }, [dispatch]);
+        if (isLoggedIn) {
+            if (main.length == 0) dispatch(fetchMain());
+            if (rubros.length == 0) dispatch(fetchRubros());
+            if (deuda.length == 0) dispatch(fetchDeuda());
+        }
+    }, [isLoggedIn, dispatch]);
 
     useEffect(() => {
         if (errorMain) {

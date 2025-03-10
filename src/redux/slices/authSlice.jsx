@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { setAlert } from "@slices/notificationSlice";
 
 const initialState = {
-    token: "",
+    token: localStorage.getItem("access_token") || null,
     user: [],
     isLoggedIn: false,
     loading: false,
@@ -53,6 +54,8 @@ export const fetchLogin = (username, password) => async (dispatch) => {
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setUser(response.data));
+        dispatch(setToken(response.data.data.token));
+        localStorage.setItem("access_token", response.data.data.token);
         dispatch(setLoadingUser(false));
 
         dispatch(setIsLoggedIn(true));
@@ -69,9 +72,16 @@ export const fetchLogin = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     dispatch(setUser([]));
     dispatch(setIsLoggedIn(false));
+    localStorage.removeItem("access_token");
+    dispatch(setAlert("info", "Sesión terminada"));
 };
 
 export default authSlice.reducer;
 
-export const { setUser, setLoadingUser, setIsLoggedIn, setErrorUser } =
-    authSlice.actions;
+export const {
+    setUser,
+    setLoadingUser,
+    setIsLoggedIn,
+    setToken,
+    setErrorUser,
+} = authSlice.actions;

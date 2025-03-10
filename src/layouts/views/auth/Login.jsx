@@ -14,7 +14,8 @@ import {
     Spinner,
     Typography,
 } from "@material-tailwind/react";
-import { fetchLogin } from "../../../redux/slices/authSlice";
+
+import { fetchLogin, setIsLoggedIn } from "../../../redux/slices/authSlice";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -22,11 +23,12 @@ const Login = () => {
     const [loginUser, setLoginUser] = useState(true);
     const [accessView, setAccessView] = useState(false);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
-    const { user, loadingUser, isLoggedIn, errorUser } = useSelector(
+
+    const { loadingUser, isLoggedIn, errorUser } = useSelector(
         (state) => state.auth
     );
+
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -131,6 +133,11 @@ const Login = () => {
                                                 className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
                                             />
                                         </div>
+                                        <div className="flex w-full p-3font-light text-center border-2 rounded-md">
+                                            <span className="text-center w-full text-red-500">
+                                                {errorUser}
+                                            </span>
+                                        </div>
                                         <div>
                                             <button
                                                 type="submit"
@@ -141,7 +148,7 @@ const Login = () => {
                                     </form>
                                 </>
                             )}
-                            <div className="flex justify-center align-items-center flex-col text-left mt-10 p-5 bg-azure-200 rounded-lg">
+                            <div className="flex justify-center align-items-center flex-col text-left mt-10 p-5 bg-azure-100 border-2 border-azure-300 rounded-lg">
                                 <span className="text-lg">
                                     ¿Querés usar nuestra API de ATENEA?
                                 </span>

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logout } from "./authSlice";
+import { getHeaders } from "../../services/utils";
 
 const initialState = {
     main: [], // datos del principal dashboard
@@ -48,52 +50,55 @@ const dashboardSlice = createSlice({
 });
 
 // Función para obtener la información principal
-export const fetchMain = () => async (dispatch) => {
+export const fetchMain = () => async (dispatch, getState) => {
     dispatch(setLoadingMain(true));
     try {
         const url = `${import.meta.env.VITE_API_URL}/atenea/api/dashboard`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setMain(response.data.data[0]));
         dispatch(setLoadingMain(false));
     } catch (error) {
+        if (error.status == 401) dispatch(logout());
         dispatch(setErrorMain(error.message));
         dispatch(setLoadingMain(false));
     }
 };
 
 // Función para obtener rubros
-export const fetchRubros = () => async (dispatch) => {
+export const fetchRubros = () => async (dispatch, getState) => {
     dispatch(setLoadingRubros(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/rafam/comercios/rubros`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setRubros(response.data.data));
         dispatch(setLoadingRubros(false));
     } catch (error) {
+        if (error.status == 401) dispatch(logout());
         dispatch(setErrorRubros(error.message));
         dispatch(setLoadingRubros(false));
     }
 };
 
 // Función para obtener la deuda
-export const fetchDeuda = () => async (dispatch) => {
+export const fetchDeuda = () => async (dispatch, getState) => {
     dispatch(setLoadingDeuda(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/rafam/recursos/deuda`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setDeuda(response.data.data));
         dispatch(setLoadingDeuda(false));
     } catch (error) {
+        if (error.status == 401) dispatch(logout());
         dispatch(setErrorDeuda(error.message));
         dispatch(setLoadingDeuda(false));
     }
