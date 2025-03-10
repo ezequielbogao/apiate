@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getHeaders } from "../../services/utils";
 
 const initialState = {
     medicos: [],
@@ -63,13 +64,13 @@ const cartillaSlice = createSlice({
     },
 });
 
-export const fetchCentros = (especialidad) => async (dispatch) => {
+export const fetchCentros = (especialidad) => async (dispatch, getState) => {
     dispatch(setLoadingCentros(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/salud/centros/${especialidad}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setCentros(response.data.data[0].centros));
@@ -80,13 +81,13 @@ export const fetchCentros = (especialidad) => async (dispatch) => {
     }
 };
 
-export const fetchMedicos = (especialidad) => async (dispatch) => {
+export const fetchMedicos = (especialidad) => async (dispatch, getState) => {
     dispatch(setLoadingMedicos(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/salud/medicos/${especialidad}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setMedicos(response.data.data[0].medicos));
@@ -97,13 +98,13 @@ export const fetchMedicos = (especialidad) => async (dispatch) => {
     }
 };
 
-export const fetchEspecialidades = (cod) => async (dispatch) => {
+export const fetchEspecialidades = (cod) => async (dispatch, getState) => {
     dispatch(setLoadingEspecialidades(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/salud/servicios/${cod}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setEspecialidades(response.data.data[0].esp));
@@ -114,13 +115,13 @@ export const fetchEspecialidades = (cod) => async (dispatch) => {
     }
 };
 
-export const fetchServicios = () => async (dispatch) => {
+export const fetchServicios = () => async (dispatch, getState) => {
     dispatch(setLoadingServicios(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/salud/servicios`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setServicios(response.data.data));

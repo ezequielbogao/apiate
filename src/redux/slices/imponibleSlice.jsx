@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getHeaders } from "../../services/utils";
 
 const initialState = {
     comercios: [],
@@ -40,13 +41,13 @@ const imponibleSlice = createSlice({
     },
 });
 
-export const fetchComercios = (rubro) => async (dispatch) => {
+export const fetchComercios = (rubro) => async (dispatch, getState) => {
     dispatch(setLoadingComercios(true));
     try {
         const url = `${
             import.meta.env.VITE_API_URL
         }/atenea/api/rafam/comercios/rubros/${rubro}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, getHeaders(getState));
 
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setComercios(response.data.data));
@@ -57,22 +58,23 @@ export const fetchComercios = (rubro) => async (dispatch) => {
     }
 };
 
-export const fetchImponible = (imponible, tipo) => async (dispatch) => {
-    dispatch(setLoadingImponible(true));
+export const fetchImponible =
+    (imponible, tipo) => async (dispatch, getState) => {
+        dispatch(setLoadingImponible(true));
 
-    try {
-        const response = await axios.get(
-            `${
+        try {
+            const url = `${
                 import.meta.env.VITE_API_URL
-            }/atenea/api/rafam/${tipo}/${imponible}`
-        );
-        dispatch(setImponible(response.data.data[0]));
-        dispatch(setLoadingImponible(false));
-    } catch (error) {
-        dispatch(setErrorImponible(error.message));
-        dispatch(setLoadingImponible(false));
-    }
-};
+            }/atenea/api/rafam/${tipo}/${imponible}`;
+            const response = await axios.get(url, getHeaders(getState));
+
+            dispatch(setImponible(response.data.data[0]));
+            dispatch(setLoadingImponible(false));
+        } catch (error) {
+            dispatch(setErrorImponible(error.message));
+            dispatch(setLoadingImponible(false));
+        }
+    };
 
 export default imponibleSlice.reducer;
 
