@@ -1,11 +1,8 @@
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import {
-    createBrowserRouter,
-    RouterProvider,
-    useNavigate,
-} from "react-router-dom";
 
 import Citas from "@views/Citas";
 import Pagos from "@views/Pagos";
@@ -24,7 +21,6 @@ import Dashboard from "@views/Dashboard";
 import Login from "@views/auth/Login";
 import Reclamos from "@views/Reclamos";
 import Campanas from "@views/Campanas";
-
 import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "./layouts/components/MainLayout";
 import ComerciosRubros from "@views/ComerciosRubros";
@@ -36,100 +32,68 @@ import { Provider } from "react-redux";
 import { store } from "@store/store";
 import { AuthMiddleware } from "./layouts/components/auth/AuthMiddleware";
 
-const router = createBrowserRouter([
-    { path: "/login", element: <Login /> },
-    {
-        path: "/",
-        element: (
-            <AuthMiddleware>
-                <MainLayout />
-            </AuthMiddleware>
-        ),
-        children: [
-            {
-                path: "/",
-                element: <Dashboard />,
-            },
-            {
-                path: "/citas",
-                element: <Citas />,
-            },
-            {
-                path: "/pagos",
-                element: <Pagos />,
-            },
-            {
-                path: "/personal",
-                element: <Personal />,
-            },
-            {
-                path: "/rafam/comercios",
-                element: <Comercios />,
-            },
-            {
-                path: "/rafam/comercio/:comercio",
-                element: <Comercio />,
-            },
-            {
-                path: "/rafam/comercios/:rubro",
-                element: <ComerciosRubros />,
-            },
-            {
-                path: "/rafam/inmuebles",
-                element: <Inmuebles />,
-            },
-            {
-                path: "/rafam/inmueble/:inmueble",
-                element: <Inmueble />,
-            },
-            {
-                path: "/rafam/rodados",
-                element: <Rodados />,
-            },
-            {
-                path: "/rafam/rodado/:rodado",
-                element: <Rodado />,
-            },
-            {
-                path: "/salud/emergencias",
-                element: <Emergencias />,
-            },
-            {
-                path: "/salud/cartilla",
-                element: <Cartilla />,
-            },
-            {
-                path: "/salud/cartilla/medicos/:especialidad",
-                element: <Medicos />,
-            },
-            {
-                path: "/salud/cartilla/centros/:especialidad",
-                element: <Centros />,
-            },
-            {
-                path: "/salud/internacion",
-                element: <Internacion />,
-            },
-            {
-                path: "/salud/turnos",
-                element: <Turnos />,
-            },
-            {
-                path: "/gestion/reclamos",
-                element: <Reclamos />,
-            },
-            {
-                path: "/gestion/campañas",
-                element: <Campanas />,
-            },
-        ],
-    },
-]);
+const ProtectedRoutes = () => {
+    return (
+        <AuthMiddleware>
+            <MainLayout>
+                <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/citas" element={<Citas />} />
+                    <Route path="/pagos" element={<Pagos />} />
+                    <Route path="/personal" element={<Personal />} />
+                    <Route path="/rafam/comercios" element={<Comercios />} />
+                    <Route
+                        path="/rafam/comercio/:comercio"
+                        element={<Comercio />}
+                    />
+                    <Route
+                        path="/rafam/comercios/:rubro"
+                        element={<ComerciosRubros />}
+                    />
+                    <Route path="/rafam/inmuebles" element={<Inmuebles />} />
+                    <Route
+                        path="/rafam/inmueble/:inmueble"
+                        element={<Inmueble />}
+                    />
+                    <Route path="/rafam/rodados" element={<Rodados />} />
+                    <Route path="/rafam/rodado/:rodado" element={<Rodado />} />
+                    <Route
+                        path="/salud/emergencias"
+                        element={<Emergencias />}
+                    />
+                    <Route path="/salud/cartilla" element={<Cartilla />} />
+                    <Route
+                        path="/salud/cartilla/medicos/:especialidad"
+                        element={<Medicos />}
+                    />
+                    <Route
+                        path="/salud/cartilla/centros/:especialidad"
+                        element={<Centros />}
+                    />
+                    <Route
+                        path="/salud/internacion"
+                        element={<Internacion />}
+                    />
+                    <Route path="/salud/turnos" element={<Turnos />} />
+                    <Route path="/gestion/reclamos" element={<Reclamos />} />
+                    <Route path="/gestion/campañas" element={<Campanas />} />
+                </Routes>
+            </MainLayout>
+        </AuthMiddleware>
+    );
+};
 
-createRoot(document.getElementById("root")).render(
+const root = document.getElementById("root");
+
+ReactDOM.createRoot(root).render(
     <Provider store={store}>
-        <RouterProvider router={router}>
-            <MainLayout />
-        </RouterProvider>
+        <MenuProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/*" element={<ProtectedRoutes />} />
+                </Routes>
+            </BrowserRouter>
+        </MenuProvider>
     </Provider>
 );
