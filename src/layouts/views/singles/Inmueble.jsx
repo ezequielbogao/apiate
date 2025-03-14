@@ -58,7 +58,7 @@ const Inmueble = () => {
                 </div>
                 <div className="p-5">
                     {loadingImponible ? (
-                        <Loading title="rodado" />
+                        <Loading title="inmueble" />
                     ) : imponible ? (
                         <div className="bg-white dark:bg-azure-700 rounded-xl  mt-5 border-2 border-azure-200 dark:border-azure-700 p-5">
                             <div className="flex flex-col md:flex-row text-azure-600 mb-10 gap-5 md:gap-20">

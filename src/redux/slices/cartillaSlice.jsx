@@ -93,6 +93,7 @@ export const fetchMedicos = (especialidad) => async (dispatch, getState) => {
         dispatch(setMedicos(response.data.data[0].medicos));
         dispatch(setLoadingMedicos(false));
     } catch (error) {
+        dispatch(setMedicos([]));
         dispatch(setErrorMedicos(error.message));
         dispatch(setLoadingMedicos(false));
     }

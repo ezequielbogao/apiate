@@ -91,7 +91,7 @@ const Dashboard = () => {
                 setAlert("error", "Ups! Error al obtener información de deuda")
             );
         }
-    }, [errorMain, errorRubros, errorDeuda, dispatch, rubros]);
+    }, [errorMain, errorRubros, errorDeuda]);
 
     const recursos = {
         20: "COMERCIOS",
