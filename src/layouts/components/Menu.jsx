@@ -12,22 +12,32 @@ import Turnosmed from "./icons/Turnosmed";
 import Reclamo from "./icons/Reclamo";
 
 import MenuSection from "./MenuSection";
-import { useMenu } from "@ctx/MenuContext";
 import { useLocation } from "react-router-dom";
 import Email from "./icons/Email";
 import Cartilla from "./icons/Cartilla";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Menu = () => {
     const { sistemas } = useSelector((state) => state.personal);
+    const { user } = useSelector((state) => state.auth);
+
+    const [role, setRole] = useState(null);
 
     const location = useLocation();
     const path = location.pathname;
 
+    useEffect(() => {
+        if (user && user.roles) setRole(user.roles[0]);
+    }, [user]);
+
     return (
         <div className="w-2/12 justify-between md:px-3 border-r-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700 pb-32">
             <div className="flex flex-col mt-5">
-                <MenuSection text="HOME" textsm="HM">
+                <MenuSection
+                    text="HOME"
+                    textsm="HM"
+                    visible={role == "admin" || role == "tasas"}>
                     <MenuButton
                         path={path}
                         to={"/"}
@@ -35,7 +45,11 @@ const Menu = () => {
                         title={"Dashboard"}
                     />
                 </MenuSection>
-                <MenuSection text="PERSONA" textsm="PS" cs="mt-5">
+                <MenuSection
+                    text="PERSONA"
+                    textsm="PS"
+                    cs="mt-5"
+                    visible={role == "admin" || role == "tasas"}>
                     <MenuButton
                         path={path}
                         to={"/personal"}
@@ -43,7 +57,11 @@ const Menu = () => {
                         title={"Información"}
                     />
                 </MenuSection>
-                <MenuSection text="CONDUCIR" textsm="CD" cs="mt-5">
+                <MenuSection
+                    text="CONDUCIR"
+                    textsm="CD"
+                    cs="mt-5"
+                    visible={role == "admin"}>
                     <MenuButton
                         path={path}
                         to={"/citas"}
@@ -53,7 +71,11 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="AUTOGESTIÓN" textsm="AG" cs="mt-5">
+                <MenuSection
+                    text="AUTOGESTIÓN"
+                    textsm="AG"
+                    cs="mt-5"
+                    visible={role == "admin"}>
                     <MenuButton
                         path={path}
                         to={"/pagos"}
@@ -63,7 +85,11 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="RAFAM" textsm="RF" cs="mt-5">
+                <MenuSection
+                    text="RAFAM"
+                    textsm="RF"
+                    cs="mt-5"
+                    visible={role == "admin" || role == "tasas"}>
                     <MenuButton
                         path={path}
                         to={"/rafam/comercios"}
@@ -102,7 +128,11 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="SALUD" textsm="SL" cs="mt-5">
+                <MenuSection
+                    text="SALUD"
+                    textsm="SL"
+                    cs="mt-5"
+                    visible={role == "admin"}>
                     <MenuButton
                         path={path}
                         to={"/salud/emergencias"}
@@ -132,7 +162,11 @@ const Menu = () => {
                     />
                 </MenuSection>
 
-                <MenuSection text="GESTIÓN" textsm="GT" cs="mt-5">
+                <MenuSection
+                    text="GESTIÓN"
+                    textsm="GT"
+                    cs="mt-5"
+                    visible={role == "admin"}>
                     <MenuButton
                         path={path}
                         to={"/gestion/reclamos"}

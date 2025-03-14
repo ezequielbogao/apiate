@@ -13,6 +13,7 @@ const MenuSection = (props) => {
         textsm: PropTypes.string,
         cs: PropTypes.string,
         children: PropTypes.any,
+        visible: PropTypes.any,
     };
 
     const [open, setOpen] = useState(1);
@@ -28,7 +29,10 @@ const MenuSection = (props) => {
     };
 
     return (
-        <Accordion open={open === 1} className="accordion-menu py-0">
+        <Accordion
+            open={open === 1}
+            className="accordion-menu py-0"
+            style={{ display: props.visible ? "block" : "none" }}>
             <AccordionHeader
                 onClick={() => handleOpen(1)}
                 className={` ${
