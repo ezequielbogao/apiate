@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setAlert } from "@slices/notificationSlice";
+import Cookies from 'js-cookie';
 
 const initialState = {
     token: localStorage.getItem("access_token") || null,
@@ -55,7 +56,8 @@ export const fetchLogin = (username, password) => async (dispatch) => {
         // Guardamos la info del response y actualizamos el Loading
         dispatch(setUser(response.data));
         dispatch(setToken(response.data.data.token));
-        localStorage.setItem("access_token", response.data.data.token);
+        Cookies.set("access_token", response.data.data.token, { expires: 1 / 24 }); 
+        // localStorage.setItem("access_token", response.data.data.token);
         dispatch(setLoadingUser(false));
 
         dispatch(setIsLoggedIn(true));
@@ -72,7 +74,8 @@ export const fetchLogin = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     dispatch(setUser([]));
     dispatch(setIsLoggedIn(false));
-    localStorage.removeItem("access_token");
+    // localStorage.removeItem("access_token");
+    Cookies.remove('access_token');
     dispatch(setAlert("info", "Sesión terminada"));
 };
 
