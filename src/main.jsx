@@ -27,6 +27,7 @@ import ComerciosRubros from "@views/ComerciosRubros";
 import Cartilla from "@views/Cartilla";
 import Medicos from "@views/cartilla/Medicos";
 import Centros from "./layouts/views/cartilla/Centros";
+import Denegado from "@views/Denegado";
 
 import { Provider } from "react-redux";
 import { store } from "@store/store";
@@ -92,6 +93,7 @@ ReactDOM.createRoot(root).render(
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/*" element={<ProtectedRoutes />} />
+                    <Route path="/acceso-denegado" element={<Denegado />} />
                 </Routes>
             </BrowserRouter>
         </MenuProvider>

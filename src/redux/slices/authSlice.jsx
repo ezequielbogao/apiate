@@ -54,10 +54,13 @@ export const fetchLogin = (username, password) => async (dispatch) => {
         const response = await axios.post(url, { username, password });
 
         // Guardamos la info del response y actualizamos el Loading
-        dispatch(setUser(response.data));
+        dispatch(setUser(response.data.data.user));
         dispatch(setToken(response.data.data.token));
-        Cookies.set("access_token", response.data.data.token, { expires: 1 / 24 }); 
-        // localStorage.setItem("access_token", response.data.data.token);
+
+        Cookies.set("access_token", response.data.data.token, { expires: 1 / 24 });
+        localStorage.setItem("user", JSON.stringify(response.data.data.user));
+
+
         dispatch(setLoadingUser(false));
 
         dispatch(setIsLoggedIn(true));
