@@ -28,7 +28,7 @@ const Menu = () => {
     const path = location.pathname;
 
     useEffect(() => {
-        if (user && user.roles) setRole(user.roles[0]);
+        if (user && user.roles) setRole(user.roles);
     }, [user]);
 
     return (

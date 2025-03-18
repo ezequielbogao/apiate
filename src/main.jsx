@@ -56,8 +56,8 @@ const ProtectedRoutes = () => {
                         path="/rafam/inmueble/:inmueble"
                         element={<Inmueble />}
                     />
-                    <Route path="/rafam/rodados" element={<Rodados />} />
                     <Route path="/rafam/rodado/:rodado" element={<Rodado />} />
+                    <Route path="/rafam/rodados" element={<Rodados />} />
                     <Route
                         path="/salud/emergencias"
                         element={<Emergencias />}

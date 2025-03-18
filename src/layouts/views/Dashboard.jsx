@@ -79,19 +79,19 @@ const Dashboard = () => {
         }
     }, [isLoggedIn, dispatch]);
 
-    useEffect(() => {
-        if (errorMain) {
-            dispatch(setAlert("error", "Ups! Error al obtener información"));
-        }
-        if (errorRubros) {
-            dispatch(setAlert("error", "Ups! Error al obtener rubros"));
-        }
-        if (errorDeuda) {
-            dispatch(
-                setAlert("error", "Ups! Error al obtener información de deuda")
-            );
-        }
-    }, [errorMain, errorRubros, errorDeuda]);
+    // useEffect(() => {
+    //     if (errorMain) {
+    //         dispatch(setAlert("error", "Ups! Error al obtener información"));
+    //     }
+    //     if (errorRubros) {
+    //         dispatch(setAlert("error", "Ups! Error al obtener rubros"));
+    //     }
+    //     if (errorDeuda) {
+    //         dispatch(
+    //             setAlert("error", "Ups! Error al obtener información de deuda")
+    //         );
+    //     }
+    // }, [errorMain, errorRubros, errorDeuda]);
 
     const recursos = {
         20: "COMERCIOS",

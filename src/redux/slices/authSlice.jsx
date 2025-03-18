@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setAlert } from "@slices/notificationSlice";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const initialState = {
     token: localStorage.getItem("access_token") || null,
@@ -57,14 +57,16 @@ export const fetchLogin = (username, password) => async (dispatch) => {
         dispatch(setUser(response.data.data.user));
         dispatch(setToken(response.data.data.token));
 
-        Cookies.set("access_token", response.data.data.token, { expires: 1 / 24 });
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
-
+        Cookies.set("access_token", response.data.data.token, {
+            expires: 1 / 24,
+        });
+        Cookies.set("user", JSON.stringify(response.data.data.user));
 
         dispatch(setLoadingUser(false));
 
         dispatch(setIsLoggedIn(true));
     } catch (error) {
+        console.log(error);
         if (error.status == 401) {
             dispatch(setErrorUser(error.response.data.message));
         } else {
@@ -77,9 +79,7 @@ export const fetchLogin = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     dispatch(setUser([]));
     dispatch(setIsLoggedIn(false));
-    // localStorage.removeItem("access_token");
-    Cookies.remove('access_token');
-    dispatch(setAlert("info", "Sesión terminada"));
+    Cookies.remove("access_token");
 };
 
 export default authSlice.reducer;

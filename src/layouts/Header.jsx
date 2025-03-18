@@ -57,7 +57,6 @@ const Header = () => {
 
     const closeSession = () => {
         dispatch(logout());
-        // dispatch(setAlert("info", "Cerraste sesión"));
         navigate("/");
     };
 
