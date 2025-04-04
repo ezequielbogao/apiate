@@ -6,6 +6,7 @@ import Casa from "./icons/Casa";
 import Auto from "./icons/Auto";
 import Charts from "./icons/Charts";
 import Store from "./icons/Store";
+import Devicecheck from "./icons/Devicecheck";
 import Inter from "./icons/Inter";
 import Corazon from "./icons/Corazon";
 import Turnosmed from "./icons/Turnosmed";
@@ -129,7 +130,7 @@ const Menu = () => {
                     <MenuButton
                         path={path}
                         to={"/rafam/ddjj"}
-                        icon={<Auto />}
+                        icon={<Devicecheck />}
                         title={"Declaraciones Juradas"}
                     />
                 </MenuSection>
