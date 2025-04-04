@@ -6,6 +6,7 @@ import authReducer from "@slices/authSlice";
 import notificationReducer from "@slices/notificationSlice";
 import reclamosReducer from "@slices/reclamosSlice";
 import cartillaReducer from "@slices/cartillaSlice";
+import ddjjReducer from "@slices/declaracionesJuradasSlice";
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         notification: notificationReducer,
         reclamos: reclamosReducer,
         cartilla: cartillaReducer,
+        declaraciones: ddjjReducer,
     },
 });

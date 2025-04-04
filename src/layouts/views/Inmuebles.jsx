@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMenu } from "@ctx/MenuContext";
 import Content from "@cpt/Content";
 import Loading from "@cpt/Loading";
@@ -15,19 +15,24 @@ const Inmuebles = () => {
     );
 
     let totalPage = 0;
-    let paginatedPages = 0;
+    let paginatedPages = [];
     const itemsPerPage = 8;
     const [currentPage, setcurrentPage] = useState(1);
 
-    if (sistemas && sistemas.rafam_imponibles_deuda) {
-        let imponibles = sistemas.rafam_imponibles_deuda?.IMPONIBLES?.INMUEBLES;
-        totalPage = Math.ceil(imponibles.length / itemsPerPage);
-        paginatedPages = imponibles.slice(
-            (currentPage - 1) * itemsPerPage,
-            currentPage * itemsPerPage
-        );
-        console.log(paginatedPages);
-    }
+    useEffect(() => {
+        if (sistemas && sistemas.rafam_imponibles_deuda) {
+            let imponibles =
+                sistemas.rafam_imponibles_deuda?.IMPONIBLES?.INMUEBLES;
+            console.log(imponibles);
+            if (imponibles.length > 0) {
+                totalPage = Math.ceil(imponibles.length / itemsPerPage);
+                paginatedPages = imponibles.slice(
+                    (currentPage - 1) * itemsPerPage,
+                    currentPage * itemsPerPage
+                );
+            }
+        }
+    }, [sistemas]);
 
     const nextPage = () => {
         if (currentPage < totalPage) {
@@ -47,15 +52,18 @@ const Inmuebles = () => {
                 <ContentHeader label="Rafam" title="INMUEBLES" />
                 <div className="p-5 md:p-10">
                     <Pending loading={loadingSistemas} title={"Información"}>
-                        { paginatedPages.length > 0 && (
-                            paginatedPages.some(
+                        {paginatedPages.length > 0 &&
+                            (paginatedPages.some(
                                 ({ NRO_INMUEBLE }) => NRO_INMUEBLE
                             ) ? (
                                 <>
                                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                         {paginatedPages.map(
                                             (
-                                                { NRO_INMUEBLE, DEUDA_INMUEBLE },
+                                                {
+                                                    NRO_INMUEBLE,
+                                                    DEUDA_INMUEBLE,
+                                                },
                                                 index
                                             ) =>
                                                 NRO_INMUEBLE && (
@@ -120,8 +128,7 @@ const Inmuebles = () => {
                                 <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                     NO HAY INMUEBLES DISPONIBLES
                                 </div>
-                            )
-                        )}
+                            ))}
                     </Pending>
                 </div>
             </div>

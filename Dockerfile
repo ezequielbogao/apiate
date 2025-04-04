@@ -18,6 +18,9 @@ WORKDIR /usr/share/nginx/html
 # Copiar los archivos estáticos desde el build de React/Vite
 COPY --from=builder /app/dist ./
 
+# Copiar la configuración de Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Exponer el puerto 80
 EXPOSE 80
 

@@ -64,13 +64,13 @@ const Header = () => {
         <>
             <div className="px-5 gap-5 flex flex-col md:flex-row align-middle items-center justify-between py-2 md:py-3 text-left border-b-2 border-azure-100 dark:border-azure-600 bg-white dark:bg-azure-700">
                 <div className="flex align-middle items-center w-full">
-                    <a href="/">
+                    <Link to="/">
                         <img
                             src={darkMode ? logo_white : logo_black}
                             alt="Logo de la aplicación"
                             className="me-5 w-14 md:w-20"
                         />
-                    </a>
+                    </Link>
                     <div className="flex flex-col">
                         <span className="text-sm md:text-md text-azure-400 dark:text-azure-400 font-light">
                             API Atenea

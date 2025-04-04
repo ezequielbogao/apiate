@@ -126,6 +126,12 @@ const Menu = () => {
                                 : null
                         }
                     />
+                    <MenuButton
+                        path={path}
+                        to={"/rafam/ddjj"}
+                        icon={<Auto />}
+                        title={"Declaraciones Juradas"}
+                    />
                 </MenuSection>
 
                 <MenuSection
