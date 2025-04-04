@@ -15,24 +15,20 @@ const Inmuebles = () => {
     );
 
     let totalPage = 0;
-    let paginatedPages = [];
+    let paginatedPages = 0;
     const itemsPerPage = 8;
     const [currentPage, setcurrentPage] = useState(1);
 
-    useEffect(() => {
-        if (sistemas && sistemas.rafam_imponibles_deuda) {
-            let imponibles =
-                sistemas.rafam_imponibles_deuda?.IMPONIBLES?.INMUEBLES;
-            console.log(imponibles);
-            if (imponibles.length > 0) {
-                totalPage = Math.ceil(imponibles.length / itemsPerPage);
-                paginatedPages = imponibles.slice(
-                    (currentPage - 1) * itemsPerPage,
-                    currentPage * itemsPerPage
-                );
-            }
+    if (sistemas && sistemas.rafam_imponibles_deuda) {
+        let imponibles = sistemas.rafam_imponibles_deuda?.IMPONIBLES?.INMUEBLES;
+        if (imponibles && imponibles.length > 0) {
+            totalPage = Math.ceil(imponibles.length / itemsPerPage);
+            paginatedPages = imponibles.slice(
+                (currentPage - 1) * itemsPerPage,
+                currentPage * itemsPerPage
+            );
         }
-    }, [sistemas]);
+    }
 
     const nextPage = () => {
         if (currentPage < totalPage) {
@@ -52,8 +48,8 @@ const Inmuebles = () => {
                 <ContentHeader label="Rafam" title="INMUEBLES" />
                 <div className="p-5 md:p-10">
                     <Pending loading={loadingSistemas} title={"Información"}>
-                        {paginatedPages.length > 0 &&
-                            (paginatedPages.some(
+                        {paginatedPages.length > 0 ? (
+                            paginatedPages.some(
                                 ({ NRO_INMUEBLE }) => NRO_INMUEBLE
                             ) ? (
                                 <>
@@ -128,7 +124,12 @@ const Inmuebles = () => {
                                 <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
                                     NO HAY INMUEBLES DISPONIBLES
                                 </div>
-                            ))}
+                            )
+                        ) : (
+                            <div className="p-4 text-lg text-center text-azure-600 font-light dark:text-azure-300">
+                                NO HAY INMUEBLES DISPONIBLES
+                            </div>
+                        )}
                     </Pending>
                 </div>
             </div>
