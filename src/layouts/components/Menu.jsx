@@ -46,6 +46,7 @@ const Menu = () => {
                         title={"Dashboard"}
                     />
                 </MenuSection>
+                {sistemas && Object.keys(sistemas).length > 0 && <>
                 <MenuSection
                     text="PERSONA"
                     textsm="PS"
@@ -188,6 +189,7 @@ const Menu = () => {
                         title={"Campañas"}
                     />
                 </MenuSection>
+                </>}
             </div>
         </div>
     );

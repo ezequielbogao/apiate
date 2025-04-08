@@ -114,7 +114,7 @@ const Login = () => {
                                                 onChange={(e) =>
                                                     setUsername(e.target.value)
                                                 }
-                                                className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
+                                                className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none dark:border-azure-500 dark:border-2"
                                             />
                                         </div>
                                         <div>
@@ -126,14 +126,15 @@ const Login = () => {
                                             <input
                                                 type="password"
                                                 id="password"
+                                                autoComplete="current-password"
                                                 placeholder="Introduce tu contraseña"
                                                 onChange={(e) =>
                                                     setPassword(e.target.value)
                                                 }
-                                                className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
+                                                className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none dark:border-azure-500 dark:border-2"
                                             />
                                         </div>
-                                        <div className="flex w-full p-3font-light text-center border-2 rounded-md">
+                                        <div className="flex w-full font-light text-center border-2 rounded-md dark:border-none">
                                             <span className="text-center w-full text-red-500">
                                                 {errorUser}
                                             </span>
@@ -148,7 +149,7 @@ const Login = () => {
                                     </form>
                                 </>
                             )}
-                            <div className="flex justify-center align-items-center flex-col text-left mt-10 p-5 bg-azure-100 border-2 border-azure-300 rounded-lg">
+                            <div className="flex justify-center align-items-center flex-col text-left mt-10 p-5 bg-azure-100 border-2 border-azure-300 rounded-lg dark:bg-azure-600 dark:text-azure-100 dark:border-azure-700">
                                 <span className="text-lg">
                                     ¿Querés usar nuestra API de ATENEA?
                                 </span>
@@ -206,7 +207,7 @@ const Login = () => {
                                             onChange={(e) =>
                                                 setUsername(e.target.value)
                                             }
-                                            className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
+                                            className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none dark:border-azure-500 dark:border-2"
                                         />
                                     </div>
                                     <div className="flex flex-col gap-3">
@@ -270,7 +271,7 @@ const Login = () => {
                                                             e.target.value
                                                         )
                                                     }
-                                                    className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
+                                                    className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none dark:border-azure-500 dark:border-2"
                                                 />
                                             </div>
                                             <div>
@@ -288,7 +289,7 @@ const Login = () => {
                                                             e.target.value
                                                         )
                                                     }
-                                                    className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none"
+                                                    className="w-full px-4 py-2 border border-azure-200 rounded-md text-azure-700 bg-white dark:bg-azure-700 dark:text-azure-50 focus:outline-none dark:border-azure-500 dark:border-2"
                                                 />
                                             </div>
                                             <div>

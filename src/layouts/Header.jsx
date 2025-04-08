@@ -10,6 +10,7 @@ import Logout from "@icons/Logout";
 import logo_black from "../assets/ate_logo_b.svg";
 import logo_white from "../assets/ate_logo_w.svg";
 import { logout } from "../redux/slices/authSlice";
+import { setPersonal, setSistemas } from "../redux/slices/personalSlice";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -56,6 +57,8 @@ const Header = () => {
     }, [personales, dispatch]);
 
     const closeSession = () => {
+        dispatch(setPersonal({}));
+        dispatch(setSistemas({}));
         dispatch(logout());
         navigate("/");
     };
